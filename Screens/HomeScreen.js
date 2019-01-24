@@ -9,8 +9,7 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import { createStackNavigator, createAppContainer } from "react-navigation";
-import MenuItem from './MenuItem';
+
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -26,7 +25,6 @@ export default class HomeScreen extends React.Component {
       <ImageBackground
         source={require('../assets/bg.jpg')}
         style={styles.container}>      
-            
 
         <View style={styles.top}>
           <Text style={styles.header}>HandyHand</Text>
@@ -34,17 +32,67 @@ export default class HomeScreen extends React.Component {
 
         <View style={styles.menuContainer}>
 
-          <TouchableOpacity onPress={()=>this.props.navigation.navigate('Details')}>  
-            <MenuItem itemImage={require('../assets/electrician.png')}/>
-          </TouchableOpacity>
+          <View style={styles.menuItem}>
+            <TouchableOpacity           
+            onPress={()=>this.props.navigation.navigate('Details')}>  
+              <Image 
+                source={require('../assets/electrician.png')}
+                style={styles.image}
+              />
+            </TouchableOpacity>
+          </View>
+          
+          <View style={styles.menuItem}>
+            <TouchableOpacity           
+            onPress={()=>this.props.navigation.navigate('Details')}>  
+              <Image 
+                source={require('../assets/gardener.png')}
+                style={styles.image}
+              />
+            </TouchableOpacity>
+          </View>
 
-          <MenuItem itemImage={require('../assets/gardener.png')}/>
-          <MenuItem itemImage={require('../assets/plumber.png')}/>
-          <MenuItem itemImage={require('../assets/cleaner.png')}/>
-          <MenuItem itemImage={require('../assets/carpenter.png')}/>
-          <MenuItem itemImage={require('../assets/painter.png')}/>
+          <View style={styles.menuItem}>
+            <TouchableOpacity           
+            onPress={()=>this.props.navigation.navigate('Details')}>  
+              <Image 
+                source={require('../assets/plumber.png')}
+                style={styles.image}
+              />
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.menuItem}>
+            <TouchableOpacity           
+            onPress={()=>this.props.navigation.navigate('Details')}>  
+              <Image 
+                source={require('../assets/cleaner.png')}
+                style={styles.image}
+              />
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.menuItem}>
+            <TouchableOpacity           
+            onPress={()=>this.props.navigation.navigate('Details')}>  
+              <Image 
+                source={require('../assets/carpenter.png')}
+                style={styles.image}
+              />
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.menuItem}>
+            <TouchableOpacity           
+            onPress={()=>this.props.navigation.navigate('Details')}>  
+              <Image 
+                source={require('../assets/painter.png')}
+                style={styles.image}
+              />
+            </TouchableOpacity>
+          </View>
+
         </View>
-
 
       </ImageBackground>
 
@@ -84,5 +132,11 @@ const styles = StyleSheet.create({
     height: '40%',
     flexDirection: 'column',
     flexWrap:'wrap',
-  }
+  },
+  menuItem: {
+    width: '33.333333%',
+    height: '50%',
+    padding: 20,
+},
+
 });
