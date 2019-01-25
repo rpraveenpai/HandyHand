@@ -8,7 +8,11 @@ import {
   ImageBackground,
   Image,
   TouchableOpacity,
+  NetInfo,  
+  Alert,
+  BackHandler
 } from "react-native";
+
 
 
 export default class HomeScreen extends React.Component {
@@ -17,17 +21,47 @@ export default class HomeScreen extends React.Component {
     };
     constructor(props){
       super(props);
+      this.state={isConnected: false};
     } 
-
-
+    componentDidMount(){
+      BackHandler.addEventListener('hardwareBackPress', this.backPressed);
+      NetInfo.isConnected.addEventListener('connectionChange',this.handleConnectivityChange);
+      
+    }
+    
+    componentWillUnmount(){
+      NetInfo.isConnected.removeEventListener('connectionChange',this.handleConnectivityChange);
+      BackHandler.removeEventListener('hardwareBackPress', this.backPressed);
+    }
+    
+    handleConnectivityChange = (isConnected) => {
+      this.setState({isConnected});     
+      if(!this.state.isConnected){
+          this.backPressed();
+      }
+    }
+    backPressed = () => {
+      Alert.alert(
+      'No Internet',
+      'Internet Connectivity is needed',
+      [       
+       {text: 'Okay', onPress: () => BackHandler.exitApp()},
+     ],
+    { cancelable: false });
+    return true;
+}
+    
   render() {
     return (
       <ImageBackground
-        source={require('../assets/bg.jpg')}
+        source={require('../assets/background/bg.jpg')}
         style={styles.container}>      
 
-        <View style={styles.top}>
-          <Text style={styles.header}>HandyHand</Text>
+        <View style={styles.top}>          
+          <Image 
+          source={require('../assets/icons/logo.png')}
+          style={styles.logo}
+          />          
         </View>
 
         <View style={styles.menuContainer}>
@@ -36,60 +70,66 @@ export default class HomeScreen extends React.Component {
             <TouchableOpacity           
             onPress={()=>this.props.navigation.navigate('Details')}>  
               <Image 
-                source={require('../assets/electrician.png')}
+                source={require('../assets/icons/electrician.png')}
                 style={styles.image}
-              />
+              />             
             </TouchableOpacity>
+              <Text style={styles.menuText}>Electrician</Text>
           </View>
           
           <View style={styles.menuItem}>
             <TouchableOpacity           
             onPress={()=>this.props.navigation.navigate('Details')}>  
               <Image 
-                source={require('../assets/gardener.png')}
+                source={require('../assets/icons/gardener.png')}
                 style={styles.image}
               />
             </TouchableOpacity>
+            <Text style={styles.menuText}>Gardener</Text>
           </View>
 
           <View style={styles.menuItem}>
             <TouchableOpacity           
             onPress={()=>this.props.navigation.navigate('Details')}>  
               <Image 
-                source={require('../assets/plumber.png')}
+                source={require('../assets/icons/plumber.png')}
                 style={styles.image}
               />
             </TouchableOpacity>
+            <Text style={styles.menuText}>Plumber</Text>
           </View>
 
           <View style={styles.menuItem}>
             <TouchableOpacity           
             onPress={()=>this.props.navigation.navigate('Details')}>  
               <Image 
-                source={require('../assets/cleaner.png')}
+                source={require('../assets/icons/cleaner.png')}
                 style={styles.image}
               />
             </TouchableOpacity>
+            <Text style={styles.menuText}>Cleaner</Text>
           </View>
 
           <View style={styles.menuItem}>
             <TouchableOpacity           
             onPress={()=>this.props.navigation.navigate('Details')}>  
               <Image 
-                source={require('../assets/carpenter.png')}
+                source={require('../assets/icons/carpenter.png')}
                 style={styles.image}
               />
             </TouchableOpacity>
+            <Text style={styles.menuText}>Carpenter</Text>
           </View>
 
           <View style={styles.menuItem}>
             <TouchableOpacity           
             onPress={()=>this.props.navigation.navigate('Details')}>  
               <Image 
-                source={require('../assets/painter.png')}
+                source={require('../assets/icons/painter.png')}
                 style={styles.image}
               />
             </TouchableOpacity>
+            <Text style={styles.menuText}>Painter</Text>
           </View>
 
         </View>
@@ -108,7 +148,7 @@ const styles = StyleSheet.create({
   top:{
     height:'50%',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center',    
   },
   image: {
     width: '100%',
@@ -117,17 +157,7 @@ const styles = StyleSheet.create({
     borderColor: '#fff',
     borderWidth: 3,
     borderRadius: 90,
-},
-  header:{
-    color:'#fff',
-    fontSize: 28,
-    borderColor: '#fff',
-    borderWidth: 2,
-    padding: 20,
-    paddingLeft: 40,
-    paddingRight: 40,
-    backgroundColor: 'rgba(255,255,255, .1)'
-  },
+  }, 
   menuContainer:{
     height: '40%',
     flexDirection: 'column',
@@ -138,5 +168,18 @@ const styles = StyleSheet.create({
     height: '50%',
     padding: 20,
 },
+  menuText:{
+    fontSize: 15,
+    color: 'white',
+    fontWeight: 'bold',   
+    textAlign: 'center'    
+  },
+  logo: {     
+    flex: 1,
+    height: '100%',
+    width: '100%',
+    resizeMode:"cover"        
+  },
+  
 
 });
