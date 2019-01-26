@@ -4,7 +4,9 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 import DetailsScreen from './Screens/DetailsScreen';
 import HomeScreen from './Screens/HomeScreen';
 import LoginScreen from "./Screens/LoginScreen";
-import SignupScreen from "./Screens/SignupScreen";
+
+
+
 export default class App extends React.Component {
   render() {
     return <AppContainer />;
@@ -33,14 +35,7 @@ const AppNavigator = createStackNavigator(
       navigationOptions: () => ({
         header: null,
        }),
-    }, 
-    Signup:
-    {
-      screen: SignupScreen,
-      navigationOptions: () => ({
-        header: null,
-       }),
-    },
+    },  
     
   },
   {
