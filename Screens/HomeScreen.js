@@ -20,36 +20,8 @@ export default class HomeScreen extends React.Component {
 		title: 'Home',
     };
     constructor(props){
-      super(props);
-      this.state={isConnected: false};
+      super(props);      
     } 
-    componentDidMount(){
-      BackHandler.addEventListener('hardwareBackPress', this.backPressed);
-      NetInfo.isConnected.addEventListener('connectionChange',this.handleConnectivityChange);
-      
-    }
-    
-    componentWillUnmount(){
-      NetInfo.isConnected.removeEventListener('connectionChange',this.handleConnectivityChange);
-      BackHandler.removeEventListener('hardwareBackPress', this.backPressed);
-    }
-    
-    handleConnectivityChange = (isConnected) => {
-      this.setState({isConnected});     
-      if(!this.state.isConnected){
-          this.backPressed();
-      }
-    }
-    backPressed = () => {
-      Alert.alert(
-      'No Internet',
-      'Internet Connectivity is needed',
-      [       
-       {text: 'Okay', onPress: () => BackHandler.exitApp()},
-     ],
-    { cancelable: false });
-    return true;
-}
     
   render() {
     return (
@@ -178,7 +150,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: '100%',
     width: '100%',
-    resizeMode:"cover"        
+    resizeMode:"contain"        
   },
   
 
