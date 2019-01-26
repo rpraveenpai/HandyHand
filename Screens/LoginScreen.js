@@ -60,13 +60,20 @@ export default class LoginScreen extends React.Component {
                 ref={(input) => this.passwordInput = input}
                 />
 
+                
                 <TouchableOpacity style={styles.buttonContainer} onPress={()=> this.props.navigation.navigate('Home')}>
                   <Text style={styles.buttonText}>LOGIN</Text>
+                </TouchableOpacity> 
+                
+                   
+                <TouchableOpacity style={styles.buttonContainer} onPress={()=> this.props.navigation.navigate('Home')}>
+                  <Text style={styles.buttonText}>SIGNUP</Text>
                 </TouchableOpacity>
+                
+              </View>     
 
-              </View>
             </View>
-
+           
           </View>
 
         </ImageBackground>
@@ -95,7 +102,7 @@ const styles = StyleSheet.create({
   logoContainer: {
     alignItems: 'center',
     flexGrow: 1,
-    justifyContent:'center'
+    justifyContent:'center',    
   },
   logo: {
    width: '100%',
@@ -112,11 +119,14 @@ const styles = StyleSheet.create({
   buttonContainer: {
     backgroundColor: '#f5a623',
     paddingVertical: 15,
-    borderRadius: 5
+    borderRadius: 5, 
+    marginBottom: 10,   
   },
+  
   buttonText: {
     textAlign: 'center',
     color:  '#FFFFFF',
     fontWeight: '700'
-  }
+  },
+ 
 });
