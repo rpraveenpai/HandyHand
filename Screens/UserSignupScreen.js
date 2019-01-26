@@ -13,10 +13,10 @@ import {
 
 
 
-export default class LoginScreen extends React.Component {
+export default class UserSignupScreen extends React.Component {
 
 	static navigationOptions = {
-		title: 'Login',
+		title: 'Signup',
     };
   
 	render() {
@@ -40,12 +40,23 @@ export default class LoginScreen extends React.Component {
 
 
               <View style={styles.Logincontainer}>
-        
-                <TextInput
-                placeholder="username or email"
+              
+              <TextInput
+                placeholder="username"
                 placeholderTextColor="rgba(255,255,255,0.7)"
                 returnKeyType="next"
-                onSubmitEditing={() => this.passwordInput.focus()}
+                onSubmitEditing={() => this.emailInput.focus()}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                autoCorrect={false}
+                style={styles.input}/>
+
+                <TextInput
+                placeholder="email"
+                placeholderTextColor="rgba(255,255,255,0.7)"
+                returnKeyType="next"
+                ref={(input) => this.emailInput = input}
+                onSubmitEditing={() => this.passwordInput.focus()}                
                 keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -58,15 +69,22 @@ export default class LoginScreen extends React.Component {
                 secureTextEntry
                 style={styles.input}
                 ref={(input) => this.passwordInput = input}
+                onSubmitEditing={() => this.PhoneInput.focus()}
+                />                  
+
+                <TextInput
+                placeholder="phone Number"
+                placeholderTextColor="rgba(255,255,255,0.7)"
+                returnKeyType="go"
+                secureTextEntry
+                style={styles.input}
+                ref={(input) => this.PhoneInput = input}
                 />
 
-                
-                <TouchableOpacity style={styles.buttonContainer} onPress={()=> this.props.navigation.navigate('Home')}>
-                  <Text style={styles.buttonText}>LOGIN</Text>
-                </TouchableOpacity> 
+                          
                 
                    
-                <TouchableOpacity style={styles.buttonContainer} onPress={()=> this.props.navigation.navigate('UserSignup')}>
+                <TouchableOpacity style={styles.buttonContainer} onPress={()=> this.props.navigation.navigate('Home')}>
                   <Text style={styles.buttonText}>SIGNUP</Text>
                 </TouchableOpacity>
                 
@@ -105,10 +123,10 @@ const styles = StyleSheet.create({
     justifyContent:'center',    
   },
   logo: {
-   width: '100%',
-   height: '50%', 
-   resizeMode: 'contain' 
-  },
+    width: '100%',
+    height: '50%', 
+    resizeMode: 'contain'                  
+  }, 
   title: {
     color: '#FFF',
     marginTop: 10,
