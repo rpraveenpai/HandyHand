@@ -5,7 +5,7 @@ import DetailsScreen from './Screens/DetailsScreen';
 import HomeScreen from './Screens/HomeScreen';
 import LoginScreen from "./Screens/LoginScreen";
 import UserSignupScreen from "./Screens/UserSignupScreen";
-
+import HandymanSignupScreen from "./Screens/HandymanSignupScreen";
 
 export default class App extends React.Component {
   render() {
@@ -42,7 +42,14 @@ const AppNavigator = createStackNavigator(
       navigationOptions: () => ({
         header: null,
        }),
-    },  
+    },    
+    HandymanSignup:
+    {
+      screen: HandymanSignupScreen,
+      navigationOptions: () => ({
+        header: null,
+       }),
+    }, 
     
     
   },
