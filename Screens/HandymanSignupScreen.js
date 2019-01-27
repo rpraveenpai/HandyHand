@@ -7,17 +7,24 @@ import {
   ImageBackground,
   KeyboardAvoidingView,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  Picker
 } from 'react-native';
 
 
 
 
-export default class UserSignupScreen extends React.Component {
+export default class HandymanSignupScreen extends React.Component {
 
 	static navigationOptions = {
-		title: 'UserSignup',
+		title: 'HandymanSignup',
     };
+
+    constructor(props){
+      super(props); 
+      this.state={service: ''}
+      this.state={yearsofexp:''}     
+    } 
   
 	render() {
 		return(
@@ -28,28 +35,30 @@ export default class UserSignupScreen extends React.Component {
           source={require('../assets/background/bg2.png')}
           style={styles.container}>   
 
-          <View style={styles.container}>
+          <View style={styles.container}> 
 
-            <View style={styles.logoContainer}>
-              <Image
-                style={styles.logo}
-                source={require('../assets/icons/logo.png')}/>                
-            </View>           
+              <View style={styles.Signupcontainer}>              
+              <Text style={styles.title}>REGISTER</Text>   
+              <TextInput
+                placeholder="name"
+                placeholderTextColor="rgba(255,255,255,0.7)"
+                returnKeyType="next"
+                onSubmitEditing={() => this.userInput.focus()}             
+                autoCorrect={false}
+                style={styles.input}/> 
 
-
-              <View style={styles.Signupcontainer}>
-              
               <TextInput
                 placeholder="username"
                 placeholderTextColor="rgba(255,255,255,0.7)"
                 returnKeyType="next"
+                ref={(input) => this.userInput = input}
                 onSubmitEditing={() => this.emailInput.focus()}
                 keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.input}/>
 
-                <TextInput
+              <TextInput
                 placeholder="email"
                 placeholderTextColor="rgba(255,255,255,0.7)"
                 returnKeyType="next"
@@ -60,7 +69,7 @@ export default class UserSignupScreen extends React.Component {
                 autoCorrect={false}
                 style={styles.input}/>
 
-                <TextInput
+              <TextInput
                 placeholder="password"
                 placeholderTextColor="rgba(255,255,255,0.7)"
                 returnKeyType="next"
@@ -68,27 +77,48 @@ export default class UserSignupScreen extends React.Component {
                 style={styles.input}
                 ref={(input) => this.passwordInput = input}
                 onSubmitEditing={() => this.PhoneInput.focus()}
-                />                  
+              />
 
-                <TextInput
+              <TextInput
                 placeholder="phone number"
                 placeholderTextColor="rgba(255,255,255,0.7)"
                 returnKeyType="go"                
                 style={styles.input}
                 ref={(input) => this.PhoneInput = input}
-                />
+              />  
+              <Text style={styles.text}>              
+              Type of service:
+              </Text>
+              <Picker
+                selectedValue={this.state.service}
+                style={styles.pickerText}
+                onValueChange={(itemValue) =>
+                this.setState({service: itemValue})
+                }>
+                <Picker.Item label="Electrician" value="1" />
+                <Picker.Item label="Plumber" value="2" />              
+              </Picker>
 
-                          
-                
-                   
+              <Picker
+                selectedValue={this.state.yearsofexp}
+                style={styles.pickerText}
+                onValueChange={(itemValue) =>
+                this.setState({yearsofexp: itemValue})
+                }>
+                <Picker.Item label="0-5" value="1" />
+                <Picker.Item label="0-10" value="2" /> 
+                <Picker.Item label="More than 10" value="3" />            
+              </Picker>
+
+
+                 
                 <TouchableOpacity style={styles.buttonContainer} onPress={()=> this.props.navigation.navigate('Home')}>
                   <Text style={styles.buttonText}>SIGNUP</Text>
                 </TouchableOpacity>
                 
               </View>     
 
-            </View>          
-         
+            </View>
 
         </ImageBackground>
 
@@ -103,7 +133,8 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   Signupcontainer : {    
-    padding: 20
+    padding: 50,
+    marginTop: 50,
   },
   input: {
     height: 40,
@@ -113,22 +144,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 5
   },
-  logoContainer: {
-    alignItems: 'center',
-    flexGrow: 1,
-    justifyContent:'center',    
-  },
   logo: {
     width: '100%',
     height: '50%', 
     resizeMode: 'contain'                  
   }, 
-  title: {
+  text: {
     color: '#FFF',
-    marginTop: 10,
-    width: 180,
-    textAlign: 'center',
-    opacity: 0.9,  
+    fontWeight: 'bold' 
   },
   buttonContainer: {
     backgroundColor: '#f5a623',
@@ -142,5 +165,18 @@ const styles = StyleSheet.create({
     color:  '#FFFFFF',
     fontWeight: '700'
   },
+  pickerText: {
+    height:50,
+    width: '100%',
+    color: '#FFF'
+  },
+  title: {
+    color:  '#f5a623',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    padding: 10,
+    fontSize:20
+  }
+  
  
 });
