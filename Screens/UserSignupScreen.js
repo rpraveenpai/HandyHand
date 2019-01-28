@@ -2,43 +2,35 @@ import React from "react";
 import {
   StyleSheet,
   Text,
-  View,  
-  Image,  
+  View,
+  Image,
   ImageBackground,
   KeyboardAvoidingView,
   TextInput,
   TouchableOpacity
-} from 'react-native';
-
-
-
+} from "react-native";
 
 export default class UserSignupScreen extends React.Component {
+  static navigationOptions = {
+    title: "UserSignup"
+  };
 
-	static navigationOptions = {
-		title: 'UserSignup',
-    };
-  
-	render() {
-		return(
-
+  render() {
+    return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
-
         <ImageBackground
-          source={require('../assets/background/bg2.png')}
-          style={styles.container}>   
-
+          source={require("../assets/background/bg2.png")}
+          style={styles.container}
+        >
           <View style={styles.container}>
-
             <View style={styles.logoContainer}>
               <Image
                 style={styles.logo}
-                source={require('../assets/icons/logo.png')}/>                
-            </View>           
+                source={require("../assets/icons/logo.png")}
+              />
+            </View>
 
-
-              <View style={styles.Signupcontainer}>
-              
+            <View style={styles.Signupcontainer}>
               <TextInput
                 placeholder="username"
                 placeholderTextColor="rgba(255,255,255,0.7)"
@@ -47,100 +39,95 @@ export default class UserSignupScreen extends React.Component {
                 keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
-                style={styles.input}/>
+                style={styles.input}
+              />
 
-                <TextInput
+              <TextInput
                 placeholder="email"
                 placeholderTextColor="rgba(255,255,255,0.7)"
                 returnKeyType="next"
-                ref={(input) => this.emailInput = input}
-                onSubmitEditing={() => this.passwordInput.focus()}                
+                ref={input => (this.emailInput = input)}
+                onSubmitEditing={() => this.passwordInput.focus()}
                 keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
-                style={styles.input}/>
+                style={styles.input}
+              />
 
-                <TextInput
+              <TextInput
                 placeholder="password"
                 placeholderTextColor="rgba(255,255,255,0.7)"
                 returnKeyType="next"
                 secureTextEntry
                 style={styles.input}
-                ref={(input) => this.passwordInput = input}
+                ref={input => (this.passwordInput = input)}
                 onSubmitEditing={() => this.PhoneInput.focus()}
-                />                  
+              />
 
-                <TextInput
+              <TextInput
                 placeholder="phone number"
                 placeholderTextColor="rgba(255,255,255,0.7)"
-                returnKeyType="go"                
+                returnKeyType="go"
                 style={styles.input}
-                ref={(input) => this.PhoneInput = input}
-                />
+                ref={input => (this.PhoneInput = input)}
+              />
 
-                          
-                
-                   
-                <TouchableOpacity style={styles.buttonContainer} onPress={()=> this.props.navigation.navigate('Home')}>
-                  <Text style={styles.buttonText}>SIGNUP</Text>
-                </TouchableOpacity>
-                
-              </View>     
-
-            </View>          
-         
-
+              <TouchableOpacity
+                style={styles.buttonContainer}
+                onPress={() => this.props.navigation.navigate("Home")}
+              >
+                <Text style={styles.buttonText}>SIGNUP</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         </ImageBackground>
-
       </KeyboardAvoidingView>
-		)
-	}
+    );
+  }
 }
 const styles = StyleSheet.create({
-  container : {    
-    flex:  1,
-    width:  '100%',
-    height: '100%',
+  container: {
+    flex: 1,
+    width: "100%",
+    height: "100%"
   },
-  Signupcontainer : {    
+  Signupcontainer: {
     padding: 20
   },
   input: {
     height: 40,
-    backgroundColor: 'rgba(255,255,255,0.2)',
+    backgroundColor: "rgba(255,255,255,0.2)",
     marginBottom: 10,
-    color: '#FFF',
+    color: "#FFF",
     paddingHorizontal: 10,
     borderRadius: 5
   },
   logoContainer: {
-    alignItems: 'center',
+    alignItems: "center",
     flexGrow: 1,
-    justifyContent:'center',    
+    justifyContent: "center"
   },
   logo: {
-    width: '100%',
-    height: '50%', 
-    resizeMode: 'contain'                  
-  }, 
+    width: "100%",
+    height: "50%",
+    resizeMode: "contain"
+  },
   title: {
-    color: '#FFF',
+    color: "#FFF",
     marginTop: 10,
     width: 180,
-    textAlign: 'center',
-    opacity: 0.9,  
+    textAlign: "center",
+    opacity: 0.9
   },
   buttonContainer: {
-    backgroundColor: '#f5a623',
+    backgroundColor: "#f5a623",
     paddingVertical: 15,
-    borderRadius: 5, 
-    marginBottom: 10,   
+    borderRadius: 5,
+    marginBottom: 10
   },
-  
   buttonText: {
-    textAlign: 'center',
-    color:  '#FFFFFF',
-    fontWeight: '700'
-  },
- 
+    textAlign: "center",
+    color: "#FFFFFF",
+    fontWeight: "500"
+  }
 });
