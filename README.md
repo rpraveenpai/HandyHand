@@ -7,3 +7,4 @@ HandyHand is an online handyman service booking app made using React-Native.
  ```sh
 $ npm install --save react-navigation
 ```
+# HandyHand
