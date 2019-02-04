@@ -1,9 +1,9 @@
 {
-  "expoServerPort": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
-  "packagerPort": null,
-  "packagerPid": null,
+  "expoServerPort": 19000,
+  "expoServerNgrokUrl": "https://w6-h77.anonymous.handyhand.exp.direct",
+  "packagerNgrokUrl": "https://packager.w6-h77.anonymous.handyhand.exp.direct",
+  "ngrokPid": 4081,
+  "packagerPort": 19001,
+  "packagerPid": 3904,
   "devToolsPort": 19002
 }

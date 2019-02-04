@@ -12,9 +12,11 @@
     "native-base": "^2.10.0",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+    "react-native-check-box": "^2.1.7",
     "react-native-elements": "^1.0.0-beta7",
     "react-native-exit-app": "^1.0.0",
     "react-native-linear-gradient": "^2.5.3",
+    "react-native-modest-checkbox": "^3.1.0",
     "react-navigation": "^3.0.9"
   },
   "devDependencies": {
