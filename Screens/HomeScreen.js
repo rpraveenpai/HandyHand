@@ -37,7 +37,7 @@ export default class HomeScreen extends React.Component {
         <View style={styles.menuContainer}>
           <View style={styles.menuItem}>
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("Details")}
+              onPress={() => this.props.navigation.navigate("Electrician")}
             >
               <Image
                 source={require("../assets/icons/electrician.png")}
@@ -49,7 +49,7 @@ export default class HomeScreen extends React.Component {
 
           <View style={styles.menuItem}>
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("Details")}
+              onPress={() => this.props.navigation.navigate("Gardener")}
             >
               <Image
                 source={require("../assets/icons/gardener.png")}
@@ -61,7 +61,7 @@ export default class HomeScreen extends React.Component {
 
           <View style={styles.menuItem}>
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("Details")}
+              onPress={() => this.props.navigation.navigate("Plumber")}
             >
               <Image
                 source={require("../assets/icons/plumber.png")}
@@ -73,7 +73,7 @@ export default class HomeScreen extends React.Component {
 
           <View style={styles.menuItem}>
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("Details")}
+              onPress={() => this.props.navigation.navigate("Cleaner")}
             >
               <Image
                 source={require("../assets/icons/cleaner.png")}
@@ -85,7 +85,7 @@ export default class HomeScreen extends React.Component {
 
           <View style={styles.menuItem}>
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("Details")}
+              onPress={() => this.props.navigation.navigate("Carpenter")}
             >
               <Image
                 source={require("../assets/icons/carpenter.png")}
@@ -97,7 +97,7 @@ export default class HomeScreen extends React.Component {
 
           <View style={styles.menuItem}>
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("Details")}
+              onPress={() => this.props.navigation.navigate("Painter")}
             >
               <Image
                 source={require("../assets/icons/painter.png")}
