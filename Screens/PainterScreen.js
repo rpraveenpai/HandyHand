@@ -3,7 +3,8 @@ import {
     StyleSheet,
     View,
     ImageBackground,
-    Text
+    Text,
+    TouchableOpacity
 } from "react-native";
 import CheckBox from 'react-native-check-box';
 
@@ -46,6 +47,14 @@ export default class PainterScreen extends React.Component {
                             leftText={"Other"}
                         />
                     </View>
+                    <View style={styles.touchcontainer}>
+                <TouchableOpacity
+                  style={styles.buttonContainer}
+                  onPress={() => this.props.navigation.navigate("Home")}
+                >
+                  <Text style={styles.buttonText}>Continue</Text>
+                </TouchableOpacity>
+                </View>
                 </View>
             </ImageBackground>
         )
@@ -57,6 +66,20 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         flex: 1,
+    },
+    touchcontainer: {
+        padding: 20
+    },
+    buttonContainer: {
+        backgroundColor: "#f5a623",
+        paddingVertical: 15,
+        borderRadius: 5,
+        marginBottom: 10,
+    },
+    buttonText: {
+        textAlign: "center",
+        color: "#FFFFFF",
+        fontWeight: "500"
     },
     title: {
         fontSize: 25,
