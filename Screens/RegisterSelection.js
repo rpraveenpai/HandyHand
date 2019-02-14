@@ -4,7 +4,8 @@ import {
   Text,
   View,
   TouchableOpacity,
-  ImageBackground
+  ImageBackground,
+  Image
 } from "react-native";
 
 export default class RegisterSelection extends React.Component {
@@ -19,21 +20,30 @@ export default class RegisterSelection extends React.Component {
       >
         <View style={styles.container}>
         <View  style={styles.menuContainer}>
+        <View style={styles.menuItem}>
         <TouchableOpacity
-            style={styles.buttonContainer}
-            onPress={() => this.props.navigation.navigate("UserSignup")}
-          >
-            <Text style={styles.buttonText}>Register as a User</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.buttonContainer}
-            onPress={() => this.props.navigation.navigate("HandymanSignup")}
-          >
-            <Text style={styles.buttonText}>Register as a Handyman</Text>
-          </TouchableOpacity>
+              onPress={() => this.props.navigation.navigate("UserSignup")}
+            >
+              <Image
+                source={require("../assets/icons/user.png")}
+                style={styles.image}
+              />
+            </TouchableOpacity>
+            <Text style={styles.buttonText}>User</Text>
+            </View>
+            <View style={styles.menuItem}>
+        <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("HandymanSignup")}
+            >
+              <Image
+                source={require("../assets/icons/handyman.png")}
+                style={styles.image}
+              />
+            </TouchableOpacity>
+            <Text style={styles.buttonText}>Handyman</Text>
+            </View>
         </View>
-          
+     
         </View>
       </ImageBackground>
     );
@@ -44,24 +54,32 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
-    height: "100%",    
+    height: "100%",  
+    justifyContent: "center",
   },
   buttonText: {
     textAlign: "center",
     color: "#FFFFFF",
     fontWeight: "700",
-    fontSize: 50
-  },
-  buttonContainer: {
-    backgroundColor: "#f5a623",
-    paddingVertical: 20,
-    borderRadius: 5,
-    marginBottom: 10
+    fontSize: 20
   },
   menuContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
-    flex:1
-  }
+    height: "40%",    
+    flexWrap: "wrap",
+    alignItems: "center", 
+    flexDirection: 'column',
+  },
+  menuItem: {
+    width: "33.333333%",
+    height: "50%",
+    padding: 20
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+    opacity: 0.8,
+    borderColor: "#fff",
+    borderWidth: 3,
+    borderRadius: 90
+  },
 });
