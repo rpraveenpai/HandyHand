@@ -10,9 +10,9 @@ import {
   TouchableOpacity
 } from "react-native";
 
-export default class LoginScreen extends React.Component {
+export default class HLoginScreen extends React.Component {
   static navigationOptions = {
-    title: "Login"
+    title: "HLogin"
   };
 
   render() {
@@ -33,7 +33,7 @@ export default class LoginScreen extends React.Component {
             <View style={styles.formContainer}>
               <View style={styles.Logincontainer}>
                 <TextInput
-                  placeholder="username or email"
+                  placeholder="email"
                   placeholderTextColor="rgba(255,255,255,0.7)"
                   returnKeyType="next"
                   onSubmitEditing={() => this.passwordInput.focus()}
@@ -61,7 +61,7 @@ export default class LoginScreen extends React.Component {
 
                 <TouchableOpacity
                   style={styles.buttonContainer}
-                  onPress={() => this.props.navigation.navigate("Register")}
+                  onPress={() => this.props.navigation.navigate("HandymanSignup")}
                 >
                   <Text style={styles.buttonText}>SIGNUP</Text>
                 </TouchableOpacity>

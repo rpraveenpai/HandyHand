@@ -13,6 +13,7 @@ import {
   BackHandler
 } from "react-native";
 
+
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     title: "Home"
@@ -23,6 +24,7 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
+      
       <ImageBackground
         source={require("../assets/background/bg.jpg")}
         style={styles.container}
@@ -108,9 +110,12 @@ export default class HomeScreen extends React.Component {
           </View>
         </View>
       </ImageBackground>
+      
     );
   }
 }
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

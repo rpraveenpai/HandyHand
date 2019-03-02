@@ -1,104 +1,63 @@
 import React from "react";
 import {
-  StyleSheet,  
-  View,
-  ImageBackground,
-  Text,
-  TouchableOpacity
+    StyleSheet,
+    View,
+    ImageBackground,
+    Text,
+    TouchableOpacity,
+    Picker
 } from "react-native";
-import CheckBox from 'react-native-check-box';
 
-export default class CarpenterScreen extends React.Component{
+
+export default class CarpenterScreen extends React.Component {
     constructor() {
         super();
-        this.state={
-            isChecked1: false,
-            isChecked2: false,
-            isChecked3: false,
-            isChecked4: false,
-            isChecked5: false,
+        this.state = {
+            CarpenterWork: 'General Carpenter Work'
         };
     }
-    
-    render(){
-        return(
+
+    render() {
+        return (
             <ImageBackground
-               source={require("../assets/background/bgwatermark.jpg")}
-               style={styles.container}
+                source={require("../assets/background/bg2.png")}
+                style={styles.container}
             >
                 <View style={styles.container}>
-                <Text style={styles.title}>Carpenter</Text>
-                <View style={styles.checkContainer}>
-                    <CheckBox style={styles.checkboxstyle}
-                        onClick={()=>{
-                            this.setState({
-                                isChecked1:!this.state.isChecked1
-                            })
-                          }}
-                          isChecked={this.state.isChecked1}
-                          leftTextStyle={styles.checkboxtext}
-                        leftText={"General Carpentry Works"}
-                    />  
-                   <CheckBox style={styles.checkboxstyle}
-                        onClick={()=>{
-                            this.setState({
-                                isChecked2:!this.state.isChecked2
-                            })
-                          }}
-                          isChecked={this.state.isChecked2}
-                          leftTextStyle={styles.checkboxtext}
-                         leftText={"New Furniture Making"}
-                    />  
-                    <CheckBox style={styles.checkboxstyle}
-                        onClick={()=>{
-                            this.setState({
-                                isChecked3:!this.state.isChecked3
-                            })
-                          }}
-                          isChecked={this.state.isChecked3}
-                          leftTextStyle={styles.checkboxtext}
-                        leftText={"Furniture Installation & Repairing"}
-                    /> 
-                    <CheckBox style={styles.checkboxstyle}
-                        onClick={()=>{
-                            this.setState({
-                                isChecked4:!this.state.isChecked4
-                            })
-                          }}
-                          isChecked={this.state.isChecked4}
-                          leftTextStyle={styles.checkboxtext}
-                        leftText={"Window or Door Assembly & Repair"}
-                    /> 
-                    <CheckBox style={styles.checkboxstyle}
-                        onClick={()=>{
-                            this.setState({
-                                isChecked5:!this.state.isChecked5
-                            })
-                          }}
-                          isChecked={this.state.isChecked5}
-                          leftTextStyle={styles.checkboxtext}
-                        leftText={"Others"}
-                    />
+                    <Text style={styles.title}>Carpenter</Text>
+                    <View style={styles.PickerContainer}>
+                        <Picker
+                            selectedValue={this.state.CarpenterWork}
+                            style={styles.pickerstyle}
+                            onValueChange={(itemValue) =>
+                                this.setState({ CarpenterWork: itemValue })
+                            }>
+                            <Picker.Item label="General Carpenter Work" value="General Carpenter Work" />
+                            <Picker.Item label="New Furniture Making" value="Bathroom Fitting Installation" />
+                            <Picker.Item label="Furniture Installation and Repairing" value="Furniture Installation and Repairing" />
+                            <Picker.Item label="Window or Door Assembly and Repair" value="Window or Door Assembly and Repair" />
+                            <Picker.Item label="Others" value="Others" />
+                        </Picker>
+                    </View>
+                    <View style={styles.touchcontainer}>
+                        <TouchableOpacity
+                            style={styles.buttonContainer}
+                            onPress={() => this.props.navigation.navigate("Home")}
+                        >
+                            <Text style={styles.buttonText}>Continue</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-                <View style={styles.touchcontainer}>
-                <TouchableOpacity
-                  style={styles.buttonContainer}
-                  onPress={() => this.props.navigation.navigate("Home")}
-                >
-                  <Text style={styles.buttonText}>Continue</Text>
-                </TouchableOpacity>
-                </View>
-            </View>
             </ImageBackground>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container:{
+    container: {
         width: '100%',
         height: '100%',
-        flex:1,
+        flex: 1,
     },
     touchcontainer: {
         padding: 20
@@ -120,16 +79,17 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         marginTop: 20,
         fontWeight: 'bold',
-        padding: 20
+        padding: 30
     },
-    checkboxstyle:{
-        padding: 20,
+    PickerContainer: {
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center"
     },
-    checkContainer: {
-        flexDirection: "column",        
-    },
-    checkboxtext: {
-        color: '#ffffff',
-        fontWeight: 'bold'
-    } 
+    pickerstyle: {
+        height: 50,
+        width: "100%",
+        color: "#f5a623",
+    }
+
 })

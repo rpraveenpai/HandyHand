@@ -9,15 +9,23 @@
   "dependencies": {
     "@expo/vector-icons": "^9.0.0",
     "expo": "^32.0.2",
+    "firebase": "^5.8.4",
     "native-base": "^2.10.0",
+    "radio-button-react-native": "^1.1.6",
+    "radio-react-native": "0.0.4",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-check-box": "^2.1.7",
-    "react-native-elements": "^1.0.0-beta7",
+    "react-native-custom-radio-button": "^1.0.2",
+    "react-native-elements": "^1.1.0",
     "react-native-exit-app": "^1.0.0",
+    "react-native-flexi-radio-button": "^0.2.2",
     "react-native-linear-gradient": "^2.5.3",
     "react-native-modest-checkbox": "^3.1.0",
-    "react-navigation": "^3.0.9"
+    "react-native-radio-buttons-group": "^1.0.7",
+    "react-native-radio-lib": "^1.0.2",
+    "react-navigation": "^3.0.9",
+    "react-radio-buttons": "^1.2.2"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0"
