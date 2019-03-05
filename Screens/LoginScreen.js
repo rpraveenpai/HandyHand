@@ -9,11 +9,18 @@ import {
   TextInput,
   TouchableOpacity
 } from "react-native";
+//import { observer } from 'mobx-react';
+//import axios from 'axios';
 
 export default class LoginScreen extends React.Component {
   static navigationOptions = {
     title: "Login"
   };
+
+  constructor(props){
+		super(props);
+		this.state = {user:'',pwd:'',verified:false};
+  }
 
   render() {
     return (
@@ -33,7 +40,7 @@ export default class LoginScreen extends React.Component {
             <View style={styles.formContainer}>
               <View style={styles.Logincontainer}>
                 <TextInput
-                  placeholder="username or email"
+                  placeholder="Username or Email"
                   placeholderTextColor="rgba(255,255,255,0.7)"
                   returnKeyType="next"
                   onSubmitEditing={() => this.passwordInput.focus()}
@@ -44,7 +51,7 @@ export default class LoginScreen extends React.Component {
                 />
 
                 <TextInput
-                  placeholder="password"
+                  placeholder="Password"
                   placeholderTextColor="rgba(255,255,255,0.7)"
                   returnKeyType="go"
                   secureTextEntry

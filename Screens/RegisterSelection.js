@@ -19,31 +19,31 @@ export default class RegisterSelection extends React.Component {
         style={styles.container}
       >
         <View style={styles.container}>
-        <View  style={styles.menuContainer}>
-        <View style={styles.menuItem}>
-        <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("UserSignup")}
-            >
-              <Image
-                source={require("../assets/icons/user.png")}
-                style={styles.image}
-              />
-            </TouchableOpacity>
-            <Text style={styles.buttonText}>User</Text>
+          <View style={styles.menuContainer}>
+            <View style={styles.menuItem}>
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate("UserSignup")}
+              >
+                <Image
+                  source={require("../assets/icons/user.png")}
+                  style={styles.image}
+                />
+              </TouchableOpacity>
+              <Text style={styles.buttonText}>User</Text>
             </View>
             <View style={styles.menuItem}>
-        <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("HandymanSignup")}
-            >
-              <Image
-                source={require("../assets/icons/handyman.png")}
-                style={styles.image}
-              />
-            </TouchableOpacity>
-            <Text style={styles.buttonText}>Handyman</Text>
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate("HandymanSignup")}
+              >
+                <Image
+                  source={require("../assets/icons/handyman.png")}
+                  style={styles.image}
+                />
+              </TouchableOpacity>
+              <Text style={styles.buttonText}>Handyman</Text>
             </View>
-        </View>
-     
+          </View>
+
         </View>
       </ImageBackground>
     );
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
-    height: "100%",  
+    height: "100%",
     justifyContent: "center",
   },
   buttonText: {
@@ -64,9 +64,9 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   menuContainer: {
-    height: "40%",    
+    height: "40%",
     flexWrap: "wrap",
-    alignItems: "center", 
+    alignItems: "center",
     flexDirection: 'column',
   },
   menuItem: {

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Button } from "react-native";
 import { createStackNavigator, createAppContainer } from "react-navigation";
-import DetailsScreen from "./Screens/DetailsScreen";
+import BookServiceScreen from "./Screens/BookServiceScreen";
 import HomeScreen from "./Screens/HomeScreen";
 import LoginScreen from "./Screens/LoginScreen";
 import UserSignupScreen from "./Screens/UserSignupScreen";
@@ -24,12 +24,6 @@ const AppNavigator = createStackNavigator(
   {
     Home: {
       screen: HomeScreen,
-      navigationOptions: () => ({
-        header: null
-      })
-    },
-    Details: {
-      screen: DetailsScreen,
       navigationOptions: () => ({
         header: null
       })
@@ -57,42 +51,69 @@ const AppNavigator = createStackNavigator(
       navigationOptions: () => ({
         header: null
       })
-    },  
+    },
     Electrician: {
       screen: ElectricianScreen,
       navigationOptions: () => ({
-        header: null
-      })
-    },   
+        headerTintColor: '#f5a623',
+        headerStyle: {
+          backgroundColor: '#2a363b'
+        },        
+      })    
+    },
     Plumber: {
       screen: PlumberScreen,
       navigationOptions: () => ({
-        header: null
-      })
+        headerTintColor: '#f5a623',
+        headerStyle: {
+          backgroundColor: '#2a363b'
+        },        
+      })      
     },
     Painter: {
       screen: PainterScreen,
       navigationOptions: () => ({
-        header: null
+        headerTintColor: '#f5a623',
+        headerStyle: {
+          backgroundColor: '#2a363b'
+        },        
       })
-    }, 
+    },
     Gardener: {
       screen: GardenerScreen,
       navigationOptions: () => ({
-        header: null
+        headerTintColor: '#f5a623',
+        headerStyle: {
+          backgroundColor: '#2a363b'
+        },        
       })
     },
     Carpenter: {
       screen: CarpenterScreen,
       navigationOptions: () => ({
-        header: null
+        headerTintColor: '#f5a623',
+        headerStyle: {
+          backgroundColor: '#2a363b'
+        },        
       })
     },
     Cleaner: {
       screen: CleanerScreen,
       navigationOptions: () => ({
-        header: null
+        headerTintColor: '#f5a623',
+        headerStyle: {
+          backgroundColor: '#2a363b'
+        },        
       })
+    },
+    BookService: {
+      screen: BookServiceScreen,
+      navigationOptions: () => ({
+        headerTintColor: '#f5a623',
+        headerStyle: {
+          backgroundColor: '#2a363b'
+        },        
+      })     
     },
   },
   {

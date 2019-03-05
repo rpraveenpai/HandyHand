@@ -23,16 +23,10 @@ export default class UserSignupScreen extends React.Component {
           style={styles.container}
         >
           <View style={styles.container}>
-            <View style={styles.logoContainer}>
-              <Image
-                style={styles.logo}
-                source={require("../assets/icons/logo.png")}
-              />
-            </View>
-
             <View style={styles.Signupcontainer}>
+            <Text style={styles.title}>REGISTER</Text>
               <TextInput
-                placeholder="username"
+                placeholder="Username"
                 placeholderTextColor="rgba(255,255,255,0.7)"
                 returnKeyType="next"
                 onSubmitEditing={() => this.emailInput.focus()}
@@ -43,7 +37,7 @@ export default class UserSignupScreen extends React.Component {
               />
 
               <TextInput
-                placeholder="email"
+                placeholder="Email"
                 placeholderTextColor="rgba(255,255,255,0.7)"
                 returnKeyType="next"
                 ref={input => (this.emailInput = input)}
@@ -55,7 +49,7 @@ export default class UserSignupScreen extends React.Component {
               />
 
               <TextInput
-                placeholder="password"
+                placeholder="Password"
                 placeholderTextColor="rgba(255,255,255,0.7)"
                 returnKeyType="next"
                 secureTextEntry
@@ -65,7 +59,7 @@ export default class UserSignupScreen extends React.Component {
               />
 
               <TextInput
-                placeholder="phone number"
+                placeholder="Phone Number"
                 placeholderTextColor="rgba(255,255,255,0.7)"
                 returnKeyType="go"
                 style={styles.input}
@@ -92,7 +86,8 @@ const styles = StyleSheet.create({
     height: "100%"
   },
   Signupcontainer: {
-    padding: 20
+    padding: 50,
+    marginTop:50,
   },
   input: {
     height: 40,
@@ -113,11 +108,11 @@ const styles = StyleSheet.create({
     resizeMode: "contain"
   },
   title: {
-    color: "#FFF",
-    marginTop: 10,
-    width: 180,
+    color: "#f5a623",
+    fontWeight: "bold",
     textAlign: "center",
-    opacity: 0.9
+    padding: 10,
+    fontSize: 20
   },
   buttonContainer: {
     backgroundColor: "#f5a623",

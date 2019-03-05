@@ -8,7 +8,12 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^9.0.0",
+    "axios": "^0.18.0",
     "expo": "^32.0.2",
+    "firebase": "^5.8.4",
+    "grpc": "^1.18.0",
+    "mobx": "^5.9.0",
+    "mongodb": "^3.1.13",
     "native-base": "^2.10.0",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
@@ -16,6 +21,7 @@
     "react-native-elements": "^1.0.0-beta7",
     "react-native-exit-app": "^1.0.0",
     "react-native-linear-gradient": "^2.5.3",
+    "react-native-local-mongodb": "^2.2.5",
     "react-native-modest-checkbox": "^3.1.0",
     "react-navigation": "^3.0.9"
   },

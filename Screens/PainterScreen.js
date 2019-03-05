@@ -20,7 +20,7 @@ export default class PainterScreen extends React.Component {
     render() {
         return (
             <ImageBackground
-                source={require("../assets/background/bgwatermark.jpg")}
+                source={require("../assets/background/bg2.png")}
                 style={styles.container}
             >
                 <View style={styles.container}>
@@ -48,13 +48,13 @@ export default class PainterScreen extends React.Component {
                         />
                     </View>
                     <View style={styles.touchcontainer}>
-                <TouchableOpacity
-                  style={styles.buttonContainer}
-                  onPress={() => this.props.navigation.navigate("Home")}
-                >
-                  <Text style={styles.buttonText}>Continue</Text>
-                </TouchableOpacity>
-                </View>
+                        <TouchableOpacity
+                            style={styles.buttonContainer}
+                            onPress={() => this.props.navigation.navigate("BookService")}
+                        >
+                            <Text style={styles.buttonText}>Continue</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </ImageBackground>
         )
@@ -79,12 +79,13 @@ const styles = StyleSheet.create({
     buttonText: {
         textAlign: "center",
         color: "#FFFFFF",
-        fontWeight: "500"
+        fontWeight: "500",
+        fontSize:20
     },
     title: {
         fontSize: 25,
         textAlign: 'center',
-        color: '#ffffff',
+        color: "#f5a623",
         marginTop: 20,
         fontWeight: 'bold',
         padding: 20
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
     },
     checkboxtext: {
-        color: '#ffffff',
-        fontWeight: 'bold'
+        color: '#ffffff',        
+        fontSize: 20
     }
 })

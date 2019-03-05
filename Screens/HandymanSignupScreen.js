@@ -33,7 +33,7 @@ export default class HandymanSignupScreen extends React.Component {
             <View style={styles.Signupcontainer}>
               <Text style={styles.title}>REGISTER</Text>
               <TextInput
-                placeholder="name"
+                placeholder="Name"
                 placeholderTextColor="rgba(255,255,255,0.7)"
                 returnKeyType="next"
                 onSubmitEditing={() => this.userInput.focus()}
@@ -42,7 +42,7 @@ export default class HandymanSignupScreen extends React.Component {
               />
 
               <TextInput
-                placeholder="username"
+                placeholder="Username"
                 placeholderTextColor="rgba(255,255,255,0.7)"
                 returnKeyType="next"
                 ref={input => (this.userInput = input)}
@@ -54,7 +54,7 @@ export default class HandymanSignupScreen extends React.Component {
               />
 
               <TextInput
-                placeholder="email"
+                placeholder="Email"
                 placeholderTextColor="rgba(255,255,255,0.7)"
                 returnKeyType="next"
                 ref={input => (this.emailInput = input)}
@@ -66,7 +66,7 @@ export default class HandymanSignupScreen extends React.Component {
               />
 
               <TextInput
-                placeholder="password"
+                placeholder="Password"
                 placeholderTextColor="rgba(255,255,255,0.7)"
                 returnKeyType="next"
                 secureTextEntry
@@ -76,13 +76,13 @@ export default class HandymanSignupScreen extends React.Component {
               />
 
               <TextInput
-                placeholder="phone number"
+                placeholder="Phone Number"
                 placeholderTextColor="rgba(255,255,255,0.7)"
                 returnKeyType="go"
                 style={styles.input}
                 ref={input => (this.PhoneInput = input)}
               />
-              <Text style={styles.text}>Type of service:</Text>
+              <Text style={styles.text}>Type of Service:</Text>
               <Picker
                 selectedValue={this.state.service}
                 style={styles.pickerText}
@@ -91,9 +91,13 @@ export default class HandymanSignupScreen extends React.Component {
                 }
               >
                 <Picker.Item label="Electrician" value="1" />
-                <Picker.Item label="Plumber" value="2" />
+                <Picker.Item label="Plumber" value="2"/>
+                <Picker.Item label="Gardener" value="3"/>
+                <Picker.Item label="Cleaner" value="4"/>
+                <Picker.Item label="Painter" value="5"/>
+                <Picker.Item label="Carpenter" value="6" />
               </Picker>
-
+              <Text style={styles.text}>Years of Experience:</Text>
               <Picker
                 selectedValue={this.state.yearsofexp}
                 style={styles.pickerText}
@@ -127,7 +131,7 @@ const styles = StyleSheet.create({
   },
   Signupcontainer: {
     padding: 50,
-    marginTop: 50
+    marginTop: 60
   },
   input: {
     height: 40,
