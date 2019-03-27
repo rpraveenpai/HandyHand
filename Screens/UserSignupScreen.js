@@ -146,6 +146,7 @@ export default class UserSignupScreen extends React.Component {
 								placeholder="phone number"
 								placeholderTextColor="rgba(255,255,255,0.7)"
 								returnKeyType="go"
+								keyboardType="phone-pad"
 								style={styles.input}
 								ref={(input) => (this.PhoneInput = input)}
 								onChangeText={(phone) => this.setState({ phone })}
