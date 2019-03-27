@@ -7,8 +7,7 @@ import {
 	ImageBackground,
 	KeyboardAvoidingView,
 	TextInput,
-	TouchableOpacity,
-	Alert
+	TouchableOpacity
 } from 'react-native';
 import axios from 'axios';
 
@@ -28,7 +27,9 @@ export default class UserSignupScreen extends React.Component {
 		};
 	}
 
+	//axios data handling.
 	_register = () => {
+		var self = this;
 		axios
 			.post('http://handyhand.herokuapp.com/cust_registration.php/', {
 				username: this.state.username,
@@ -38,14 +39,53 @@ export default class UserSignupScreen extends React.Component {
 				email: this.state.email
 			})
 			.then(function(response) {
-				alert(response.data.res);
+				if (response.data.res == 'success') {
+					alert('Registration Successful');
+					self.props.navigation.navigate('CLogin');
+				} else {
+					alert(response.data.res);
+				}
 
 				//				DataStore.updateUser(self.state.user);
-				//self.props.navigation.navigate('CLogin');
 			})
 			.catch(function(error) {
 				alert(error);
 			});
+	};
+
+	//regex for email validation.
+	validateEmail = (email) => {
+		var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		return re.test(email);
+	};
+
+	//regex for indian phone number validation.
+	validatePhone = (phone) => {
+		var rp = /^[789]\d{9}$/;
+		return rp.test(phone);
+	};
+
+	//function to check all validation and if fields are empty.
+	_onCheck = async () => {
+		if (this.state.name == '') {
+			alert('Please fill name');
+		} else if (this.state.username == '') {
+			alert('Please fill username');
+		} else if (this.state.password == '') {
+			alert('Please fill password');
+		} else if (this.state.email == '') {
+			alert('Please fill email');
+		} else if (this.state.phone == '') {
+			alert('Please fill phone number');
+		} else {
+			if (!this.validateEmail(this.state.email)) {
+				alert('Enter a valid email address');
+			} else if (!this.validatePhone(this.state.phone)) {
+				alert('Enter a valid Indian phone number');
+			} else {
+				await this._register();
+			}
+		}
 	};
 
 	render() {
@@ -72,7 +112,7 @@ export default class UserSignupScreen extends React.Component {
 								placeholderTextColor="rgba(255,255,255,0.7)"
 								returnKeyType="next"
 								ref={(input) => (this.emailInput = input)}
-								onSubmitEditing={() => this.userlInput.focus()}
+								onSubmitEditing={() => this.userInput.focus()}
 								keyboardType="email-address"
 								autoCapitalize="none"
 								autoCorrect={false}
@@ -111,10 +151,7 @@ export default class UserSignupScreen extends React.Component {
 								onChangeText={(phone) => this.setState({ phone })}
 							/>
 
-							<TouchableOpacity
-								style={styles.buttonContainer}
-								onPress={async () => await this._register()}
-							>
+							<TouchableOpacity style={styles.buttonContainer} onPress={() => this._onCheck()}>
 								<Text style={styles.buttonText}>SIGNUP</Text>
 							</TouchableOpacity>
 						</View>
@@ -124,6 +161,7 @@ export default class UserSignupScreen extends React.Component {
 		);
 	}
 }
+
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
