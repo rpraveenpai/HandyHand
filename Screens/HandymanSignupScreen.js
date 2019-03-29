@@ -8,7 +8,8 @@ import {
 	KeyboardAvoidingView,
 	TextInput,
 	TouchableOpacity,
-	Picker
+	Picker,
+	SafeAreaView
 } from 'react-native';
 import axios from 'axios';
 
@@ -194,6 +195,7 @@ export default class HandymanSignupScreen extends React.Component {
 		);
 	}
 }
+
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,

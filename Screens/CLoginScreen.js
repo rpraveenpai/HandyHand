@@ -80,7 +80,7 @@ export default class CLoginScreen extends React.Component {
 								<TouchableOpacity
 									style={styles.buttonContainer}
 									onPress={() => {
-										this._onLogin();
+										this.props.navigation.navigate('Home');
 									}}
 								>
 									<Text style={styles.buttonText}>LOGIN</Text>

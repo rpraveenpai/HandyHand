@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
 	AppRegistry,
 	View,
 	Text,
-	Button,
 	StyleSheet,
 	ImageBackground,
 	Image,
 	TouchableOpacity,
 	NetInfo,
 	Alert,
-	BackHandler
+	BackHandler,
+	Icon
 } from 'react-native';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 
-export default class HomeScreen extends React.Component {
+export default class HomeScreen extends Component {
 	static navigationOptions = {
 		title: 'Home'
 	};
@@ -24,10 +25,19 @@ export default class HomeScreen extends React.Component {
 	render() {
 		return (
 			<ImageBackground source={require('../assets/background/bg.jpg')} style={styles.container}>
+				{/*hamburger menu*/}
+				<View style={styles.settingsmenu}>
+					<TouchableOpacity onPress={() => this.props.navigation.navigate('Settings')}>
+						<Image source={require('../assets/icons/list.png')} style={styles.settingslogo} />
+					</TouchableOpacity>
+				</View>
+
+				{/*Handyhand Icon showing infront*/}
 				<View style={styles.top}>
 					<Image source={require('../assets/icons/logo.png')} style={styles.logo} />
 				</View>
 
+				{/*All the handyman services as buttons*/}
 				<View style={styles.menuContainer}>
 					<View style={styles.menuItem}>
 						<TouchableOpacity onPress={() => this.props.navigation.navigate('Electrician')}>
@@ -116,5 +126,18 @@ const styles = StyleSheet.create({
 		height: '100%',
 		width: '100%',
 		resizeMode: 'contain'
+	},
+	settingsmenu: {
+		display: 'flex',
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		justifyContent: 'flex-start',
+		//used to get status bar height to remove overlpapping of menu.
+		paddingTop: getStatusBarHeight()
+	},
+	settingslogo: {
+		height: 30,
+		width: 30,
+		justifyContent: 'flex-start'
 	}
 });
