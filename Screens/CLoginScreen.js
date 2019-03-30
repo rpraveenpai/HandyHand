@@ -10,8 +10,8 @@ import {
 	TouchableOpacity
 } from 'react-native';
 /*import DataStore from '../Store/datastore';
-import { observer } from 'mobx-react';
-import axios from 'axios';*/
+import { observer } from 'mobx-react';*/
+import axios from 'axios';
 
 export default class CLoginScreen extends React.Component {
 	static navigationOptions = {
@@ -19,23 +19,25 @@ export default class CLoginScreen extends React.Component {
 	};
 	constructor(props) {
 		super(props);
-		this.state = { user: '', pass: '', verified: false };
+		this.state = { username: '', password: '', verified: false };
 	}
 
-	/*	_sendRequest = () => {
+	_register = () => {
 		var self = this;
 		axios
-			.post('https://handyhand.herokuapp.com/UserManagement/login.php', {
-				username: this.state.user,
-				password: this.state.pass
+			.post('http://handyhand.herokuapp.com/cust_login.php/', {
+				username: this.state.username,
+				password: this.state.password
 			})
 			.then(function(response) {
-				if (response.data.status == 'true') {
-					//self._getEvents();
-					DataStore.updateUser(self.state.user);
-					self.setState({ user: '', pass: '', verified: false });
-					self.props.navigation.navigate('HomeScreen');
-				} else alert('Invalid Credentials');
+				if (response.data.res == 'success') {
+					alert('Registration Successful');
+					self.props.navigation.navigate('CLogin');
+				} else {
+					alert(response.data.res);
+				}
+
+				//				DataStore.updateUser(self.state.user);
 			})
 			.catch(function(error) {
 				alert(error);
@@ -45,7 +47,7 @@ export default class CLoginScreen extends React.Component {
 	_onLogin = async () => {
 		if (this.state.user == '' || this.state.pass == '') alert('Username and password cannot be empty');
 		else await this._sendRequest();
-	};*/
+	};
 
 	render() {
 		return (
@@ -66,6 +68,7 @@ export default class CLoginScreen extends React.Component {
 									autoCapitalize="none"
 									autoCorrect={false}
 									style={styles.input}
+									onChangeText={(username) => this.setState({ username })}
 								/>
 
 								<TextInput
@@ -75,6 +78,7 @@ export default class CLoginScreen extends React.Component {
 									secureTextEntry
 									style={styles.input}
 									ref={(input) => (this.passwordInput = input)}
+									onChangeText={(password) => this.setState({ password })}
 								/>
 
 								<TouchableOpacity
