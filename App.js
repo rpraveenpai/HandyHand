@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 import { createStackNavigator, createDrawerNavigator, createAppContainer } from 'react-navigation';
 import HomeScreen from './Screens/HomeScreen';
 import CLoginScreen from './Screens/CLoginScreen';
@@ -62,43 +62,78 @@ const AppNavigator = createStackNavigator(
 		Electrician: {
 			screen: ElectricianScreen,
 			navigationOptions: () => ({
-				header: null
+				headerStyle: {
+					backgroundColor: '#f5a623'
+				},
+				headerTitleStyle: {
+					fontWeight: 'bold'
+				}
 			})
 		},
 		Plumber: {
 			screen: PlumberScreen,
 			navigationOptions: () => ({
-				header: null
+				headerStyle: {
+					backgroundColor: '#f5a623'
+				},
+				headerTitleStyle: {
+					fontWeight: 'bold'
+				}
 			})
 		},
 		Painter: {
 			screen: PainterScreen,
 			navigationOptions: () => ({
-				header: null
+				headerStyle: {
+					backgroundColor: '#f5a623'
+				},
+				headerTitleStyle: {
+					fontWeight: 'bold'
+				}
 			})
 		},
 		Gardener: {
 			screen: GardenerScreen,
 			navigationOptions: () => ({
-				header: null
+				headerStyle: {
+					backgroundColor: '#f5a623'
+				},
+				headerTitleStyle: {
+					fontWeight: 'bold'
+				}
 			})
 		},
 		Carpenter: {
 			screen: CarpenterScreen,
 			navigationOptions: () => ({
-				header: null
+				headerStyle: {
+					backgroundColor: '#f5a623'
+				},
+				headerTitleStyle: {
+					fontWeight: 'bold'
+				}
 			})
 		},
 		Cleaner: {
 			screen: CleanerScreen,
 			navigationOptions: () => ({
-				header: null
+				headerStyle: {
+					backgroundColor: '#f5a623'
+				},
+				headerTitleStyle: {
+					fontWeight: 'bold'
+				}
 			})
 		},
 		Settings: {
 			screen: SettingsScreen,
 			navigationOptions: () => ({
-				header: null
+				headerStyle: {
+					backgroundColor: '#f5a623'
+				},
+				headerTitleStyle: {
+					fontWeight: 'bold'
+				}
 			})
 		}
 	},

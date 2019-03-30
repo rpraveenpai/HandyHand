@@ -2,6 +2,9 @@ import React from 'react';
 import { StyleSheet, View, ImageBackground, Text, TouchableOpacity, Picker } from 'react-native';
 
 export default class PainterScreen extends React.Component {
+	static navigationOptions = {
+		title: 'Painter'
+	};
 	constructor() {
 		super();
 

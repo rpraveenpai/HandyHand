@@ -2,6 +2,9 @@ import React from 'react';
 import { StyleSheet, View, ImageBackground, Text, TouchableOpacity, Picker } from 'react-native';
 
 export default class GardenerScreen extends React.Component {
+	static navigationOptions = {
+		title: 'Gardener'
+	};
 	constructor() {
 		super();
 		this.state = {

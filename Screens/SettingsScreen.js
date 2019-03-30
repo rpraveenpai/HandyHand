@@ -65,7 +65,6 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-evenly',
 		alignItems: 'center',
 		paddingTop: getStatusBarHeight()
-		//backgroundColor: '#F5FCFF'
 	},
 	h2text: {
 		//marginTop: 10,

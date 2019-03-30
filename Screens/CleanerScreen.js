@@ -1,7 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, ImageBackground, Text, TouchableOpacity, Picker } from 'react-native';
 
-export default class CleaningScreen extends React.Component {
+export default class CleanerScreen extends React.Component {
+	static navigationOptions = {
+		title: 'Cleaner'
+	};
 	constructor() {
 		super();
 		this.state = {

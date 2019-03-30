@@ -9,32 +9,43 @@ import {
 	TextInput,
 	TouchableOpacity
 } from 'react-native';
-/*import DataStore from '../Store/datastore';
-import { observer } from 'mobx-react';*/
+import DataStore from '../Store/datastore';
+import { observer } from 'mobx-react';
 import axios from 'axios';
 
+@observer
 export default class CLoginScreen extends React.Component {
 	static navigationOptions = {
 		title: 'CLogin'
 	};
 	constructor(props) {
 		super(props);
-		this.state = { username: '', password: '', verified: false };
+		this.state = { username: '', password: '', name: '', email: '', phone: '' };
 	}
 
 	_register = () => {
 		var self = this;
 		axios
-			.post('http://handyhand.herokuapp.com/cust_login.php/', {
+			.post('http://handyhand.herokuapp.com/c_login.php/', {
 				username: this.state.username,
 				password: this.state.password
 			})
 			.then(function(response) {
 				if (response.data.res == 'success') {
-					alert('Registration Successful');
-					self.props.navigation.navigate('CLogin');
+					alert('Login Sucessful');
+					/*self.setState({ name: response.data.name });
+					self.setState({ email: response.data.email });
+					self.setState({ phone: response.data.phone });
+					self.setState({ password: response.data.password });*/
+					//alert(self.state.name);
+					DataStore.updateUser(self.state.username);
+					DataStore.updateName(response.data.name);
+					DataStore.updateEmail(response.data.email);
+					DataStore.updatePhone(response.data.phone);
+					DataStore.updatePass(response.data.password);
+					self.props.navigation.navigate('Home');
 				} else {
-					alert(response.data.res);
+					alert('Login Failed');
 				}
 
 				//				DataStore.updateUser(self.state.user);
@@ -45,8 +56,8 @@ export default class CLoginScreen extends React.Component {
 	};
 
 	_onLogin = async () => {
-		if (this.state.user == '' || this.state.pass == '') alert('Username and password cannot be empty');
-		else await this._sendRequest();
+		if (this.state.username == '' || this.state.password == '') alert('Username and password cannot be empty');
+		else await this._register();
 	};
 
 	render() {
@@ -84,7 +95,7 @@ export default class CLoginScreen extends React.Component {
 								<TouchableOpacity
 									style={styles.buttonContainer}
 									onPress={() => {
-										this.props.navigation.navigate('Home');
+										this._onLogin();
 									}}
 								>
 									<Text style={styles.buttonText}>LOGIN</Text>

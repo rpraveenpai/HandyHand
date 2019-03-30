@@ -2,6 +2,9 @@ import React from 'react';
 import { StyleSheet, View, ImageBackground, Text, TouchableOpacity, Picker } from 'react-native';
 
 export default class CarpenterScreen extends React.Component {
+	static navigationOptions = {
+		title: 'Carpenter'
+	};
 	constructor() {
 		super();
 		this.state = {
