@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, FlatList, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
+import { Text, View, Image, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 export default class SettingsScreen extends Component {
@@ -13,45 +13,20 @@ export default class SettingsScreen extends Component {
 
 	render() {
 		return (
-			<ImageBackground source={require('../assets/background/bg2.png')} style={styles.container}>
-				<View style={styles.container}>
-					<Text style={styles.h2text}>Menu</Text>
-					<FlatList
-						data={[ { key: 'Home' } ]}
-						showsVerticalScrollIndicator={false}
-						renderItem={({ item }) => (
-							<View style={styles.flatview}>
-								<TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
-									<Text style={styles.item}>{item.key}</Text>
-								</TouchableOpacity>
-							</View>
-						)}
-						keyExtractor={(item, index) => index.toString()}
-					/>
-					<FlatList
-						data={[ { key: 'Profile' } ]}
-						showsVerticalScrollIndicator={false}
-						renderItem={({ item }) => (
-							<View style={styles.flatview}>
-								<TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
-									<Text style={styles.item}>{item.key}</Text>
-								</TouchableOpacity>
-							</View>
-						)}
-						keyExtractor={(item, index) => index.toString()}
-					/>
-					<FlatList
-						data={[ { key: 'Logout' } ]}
-						showsVerticalScrollIndicator={false}
-						renderItem={({ item }) => (
-							<View style={styles.flatview}>
-								<TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
-									<Text style={styles.item}>{item.key}</Text>
-								</TouchableOpacity>
-							</View>
-						)}
-						keyExtractor={(item, index) => index.toString()}
-					/>
+			<ImageBackground source={require('../assets/background/bg2.png')} style={styles.menucontainer}>
+				<View style={styles.menucontainer}>
+					<View style={styles.logoContainer}>
+						<Image style={styles.logo} source={require('../assets/icons/logo.png')} />
+					</View>
+					<TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
+						<Text style={styles.menutext}>Home</Text>
+					</TouchableOpacity>
+					<TouchableOpacity onPress={() => this.props.navigation.navigate('Profile')}>
+						<Text style={styles.menutext}>Profile</Text>
+					</TouchableOpacity>
+					<TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
+						<Text style={styles.menutext}>Logout</Text>
+					</TouchableOpacity>
 				</View>
 			</ImageBackground>
 		);
@@ -59,32 +34,30 @@ export default class SettingsScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-	container: {
+	menucontainer: {
 		flex: 1,
-		//marginTop: 50,
-		justifyContent: 'space-evenly',
-		alignItems: 'center',
-		paddingTop: getStatusBarHeight()
+		padding: 2,
+		justifyContent: 'flex-start'
 	},
-	h2text: {
-		//marginTop: 10,
-		//fontFamily: 'Helvetica',
-		backgroundColor: '#f5a623',
-		fontSize: 36,
-		fontWeight: 'bold',
-		padding: 10,
-		justifyContent: 'space-between'
-	},
-	flatview: {
-		//justifyContent: 'space-between',
-		paddingTop: 10,
-		borderRadius: 2,
-		flexDirection: 'row',
-		backgroundColor: 'transparent'
-	},
-	item: {
-		color: '#f5a623',
+	menutext: {
+		color: 'white',
 		fontSize: 25,
-		fontWeight: 'bold'
+		fontWeight: 'bold',
+		flexDirection: 'row',
+		alignItems: 'stretch',
+		padding: 10,
+		borderBottomWidth: 5,
+		backgroundColor: '#f5a623',
+		borderRadius: 10
+	},
+	logoContainer: {
+		alignItems: 'center',
+		flexGrow: 1,
+		justifyContent: 'center'
+	},
+	logo: {
+		width: '100%',
+		height: '50%',
+		resizeMode: 'contain'
 	}
 });
