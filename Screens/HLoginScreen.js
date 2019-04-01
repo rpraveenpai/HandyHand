@@ -9,14 +9,58 @@ import {
 	TextInput,
 	TouchableOpacity
 } from 'react-native';
+import DataStore from '../Store/datastore';
+import { observer } from 'mobx-react';
+import axios from 'axios';
 
+@observer
 export default class HLoginScreen extends React.Component {
 	static navigationOptions = {
 		title: 'HLogin'
 	};
 	constructor(props) {
 		super(props);
+		this.state = { 
+			username: '', 
+			password: '',
+			name: '',
+			email: '',
+			phone: '',
+			service:'',
+			experience:'' };
 	}
+	_getData = () => {
+		var self = this;
+		axios
+			.post('http://handyhand.herokuapp.com/h_login.php/', {
+				username: this.state.username,
+				password: this.state.password
+			})
+			.then(function(response) {
+				if (response.data.res == 'success') {
+					alert('Login Sucessful');
+					DataStore.updateUser(self.state.username);
+					DataStore.updateHName(response.data.name);
+					DataStore.updateHEmail(response.data.email);
+					DataStore.updateHPhone(response.data.phone);
+					DataStore.updateHPass(response.data.password);
+					DataStore.updateHService(response.data.service);
+					DataStore.updateHExp(response.data.experience)
+					self.props.navigation.navigate('Home');
+				} else {
+					alert('Login Failed');
+				}
+			})
+			.catch(function(error) {
+				alert(error);
+			});
+	};
+
+	_onLogin = async () => {
+		if (this.state.username == '' || this.state.password == '') alert('Username and password cannot be empty');
+		else await this._getData();
+	};
+
 
 	render() {
 		return (
@@ -37,6 +81,7 @@ export default class HLoginScreen extends React.Component {
 									autoCapitalize="none"
 									autoCorrect={false}
 									style={styles.input}
+									onChangeText={(username) => this.setState({ username })}
 								/>
 
 								<TextInput
@@ -46,11 +91,12 @@ export default class HLoginScreen extends React.Component {
 									secureTextEntry
 									style={styles.input}
 									ref={(input) => (this.passwordInput = input)}
+									onChangeText={(password) => this.setState({ password })}
 								/>
 
 								<TouchableOpacity
 									style={styles.buttonContainer}
-									onPress={() => this.props.navigation.navigate('Home')}
+									onPress={() => {this._onLogin();}}
 								>
 									<Text style={styles.buttonText}>LOGIN</Text>
 								</TouchableOpacity>

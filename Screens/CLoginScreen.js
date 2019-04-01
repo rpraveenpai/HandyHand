@@ -20,10 +20,16 @@ export default class CLoginScreen extends React.Component {
 	};
 	constructor(props) {
 		super(props);
-		this.state = { username: '', password: '', name: '', email: '', phone: '' };
+		this.state = { 
+			username: '',
+			password: '', 
+			name: '', 
+			email: '',
+			phone: ''
+		 };
 	}
 
-	_register = () => {
+	_getData = () => {
 		var self = this;
 		axios
 			.post('http://handyhand.herokuapp.com/c_login.php/', {
@@ -33,22 +39,15 @@ export default class CLoginScreen extends React.Component {
 			.then(function(response) {
 				if (response.data.res == 'success') {
 					alert('Login Sucessful');
-					/*self.setState({ name: response.data.name });
-					self.setState({ email: response.data.email });
-					self.setState({ phone: response.data.phone });
-					self.setState({ password: response.data.password });*/
-					//alert(self.state.name);
 					DataStore.updateUser(self.state.username);
-					DataStore.updateName(response.data.name);
-					DataStore.updateEmail(response.data.email);
-					DataStore.updatePhone(response.data.phone);
-					DataStore.updatePass(response.data.password);
+					DataStore.updateCName(response.data.name);
+					DataStore.updateCEmail(response.data.email);
+					DataStore.updateCPhone(response.data.phone);
+					DataStore.updateCPass(response.data.password);
 					self.props.navigation.navigate('Home');
 				} else {
 					alert('Login Failed');
 				}
-
-				//				DataStore.updateUser(self.state.user);
 			})
 			.catch(function(error) {
 				alert(error);
@@ -57,7 +56,7 @@ export default class CLoginScreen extends React.Component {
 
 	_onLogin = async () => {
 		if (this.state.username == '' || this.state.password == '') alert('Username and password cannot be empty');
-		else await this._register();
+		else await this._getData();
 	};
 
 	render() {

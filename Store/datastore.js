@@ -1,4 +1,9 @@
-import { observable, action, decorate, computed } from 'mobx';
+import {
+	observable,
+	action,
+	decorate,
+	computed
+} from 'mobx';
 
 class DataStore {
 	session = {
@@ -21,22 +26,48 @@ class DataStore {
 		phone: ''
 	};
 
+	//updating username for session.
 	updateUser(username) {
 		this.session.username = username;
 	}
 
-	updateName(name) {
+	//updating customer details.	
+	updateCName(name) {
 		this.cust_details.name = name;
 	}
-	updatePass(password) {
+	updateCPass(password) {
 		this.cust_details.password = password;
 	}
-	updateEmail(email) {
+	updateCEmail(email) {
 		this.cust_details.email = email;
 	}
-	updatePhone(phone) {
+	updateCPhone(phone) {
 		this.cust_details.phone = phone;
 	}
+
+
+	//updating handyman details.
+	updateHName(name) {
+		this.handy_details.name = name;
+	}
+	updateHPass(password) {
+		this.handy_details.password = password;
+	}
+	updateHEmail(email) {
+		this.handy_details.email = email;
+	}
+	updateHPhone(phone) {
+		this.handy_details.phone = phone;
+	}
+	updateHService(service) {
+		this.handy_details.service = service;
+	}
+	updateHExp(experience) {
+		this.handy_details.experience = experience;
+	}
+
+
+
 }
 
 decorate(DataStore, {
