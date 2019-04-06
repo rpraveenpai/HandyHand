@@ -1,9 +1,4 @@
-import {
-	observable,
-	action,
-	decorate,
-	computed
-} from 'mobx';
+import { observable, action, decorate, computed } from 'mobx';
 
 class DataStore {
 	session = {
@@ -11,6 +6,8 @@ class DataStore {
 	};
 
 	cust_details = {
+		customerID: '',
+		username: '',
 		name: '',
 		password: '',
 		email: '',
@@ -18,6 +15,8 @@ class DataStore {
 	};
 
 	handy_details = {
+		handyID: '',
+		username: '',
 		name: '',
 		password: '',
 		service: '',
@@ -31,7 +30,13 @@ class DataStore {
 		this.session.username = username;
 	}
 
-	//updating customer details.	
+	//updating customer details.
+	updateCID(customerID) {
+		this.cust_details.customerID = customerID;
+	}
+	updateCUser(username) {
+		this.cust_details.cusername = username;
+	}
 	updateCName(name) {
 		this.cust_details.name = name;
 	}
@@ -45,8 +50,13 @@ class DataStore {
 		this.cust_details.phone = phone;
 	}
 
-
 	//updating handyman details.
+	updateHID(handyID) {
+		this.handy_details.handyID = handyID;
+	}
+	updateHUser(username) {
+		this.handy_details.husername = username;
+	}
 	updateHName(name) {
 		this.handy_details.name = name;
 	}
@@ -65,18 +75,23 @@ class DataStore {
 	updateHExp(experience) {
 		this.handy_details.experience = experience;
 	}
-
-
-
 }
 
 decorate(DataStore, {
 	session: observable,
 	updateUser: action,
-	updateName: action,
-	updateEmail: action,
-	updatePhone: action,
-	updatePass: action
+	updateCUser: action,
+	updateCName: action,
+	updateCEmail: action,
+	updateCPhone: action,
+	updateCPass: action,
+	updateHUser: action,
+	updateHName: action,
+	updateHEmail: action,
+	updateHPhone: action,
+	updateHPass: action,
+	updateHExp: action,
+	updateHService: action
 });
 
 export default new DataStore();

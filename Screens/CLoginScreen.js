@@ -20,13 +20,14 @@ export default class CLoginScreen extends React.Component {
 	};
 	constructor(props) {
 		super(props);
-		this.state = { 
+		this.state = {
+			customerID: '',
 			username: '',
-			password: '', 
-			name: '', 
+			password: '',
+			name: '',
 			email: '',
 			phone: ''
-		 };
+		};
 	}
 
 	_getData = () => {
@@ -40,6 +41,7 @@ export default class CLoginScreen extends React.Component {
 				if (response.data.res == 'success') {
 					alert('Login Sucessful');
 					DataStore.updateUser(self.state.username);
+					DataStore.updateCID(response.data.Customer_ID);
 					DataStore.updateCName(response.data.name);
 					DataStore.updateCEmail(response.data.email);
 					DataStore.updateCPhone(response.data.phone);

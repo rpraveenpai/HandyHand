@@ -20,14 +20,15 @@ export default class HLoginScreen extends React.Component {
 	};
 	constructor(props) {
 		super(props);
-		this.state = { 
-			username: '', 
+		this.state = {
+			username: '',
 			password: '',
 			name: '',
 			email: '',
 			phone: '',
-			service:'',
-			experience:'' };
+			service: '',
+			experience: ''
+		};
 	}
 	_getData = () => {
 		var self = this;
@@ -45,7 +46,7 @@ export default class HLoginScreen extends React.Component {
 					DataStore.updateHPhone(response.data.phone);
 					DataStore.updateHPass(response.data.password);
 					DataStore.updateHService(response.data.service);
-					DataStore.updateHExp(response.data.experience)
+					DataStore.updateHExp(response.data.experience);
 					self.props.navigation.navigate('Home');
 				} else {
 					alert('Login Failed');
@@ -60,7 +61,6 @@ export default class HLoginScreen extends React.Component {
 		if (this.state.username == '' || this.state.password == '') alert('Username and password cannot be empty');
 		else await this._getData();
 	};
-
 
 	render() {
 		return (
@@ -96,7 +96,9 @@ export default class HLoginScreen extends React.Component {
 
 								<TouchableOpacity
 									style={styles.buttonContainer}
-									onPress={() => {this._onLogin();}}
+									onPress={() => {
+										this._onLogin();
+									}}
 								>
 									<Text style={styles.buttonText}>LOGIN</Text>
 								</TouchableOpacity>
