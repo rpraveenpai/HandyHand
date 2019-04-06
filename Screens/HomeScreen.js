@@ -1,20 +1,10 @@
 import React, { Component } from 'react';
-import {
-	AppRegistry,
-	View,
-	Text,
-	StyleSheet,
-	ImageBackground,
-	Image,
-	TouchableOpacity,
-	NetInfo,
-	Alert,
-	BackHandler,
-	Icon
-} from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, Image, TouchableOpacity } from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import Datastore from '../Store/datastore';
+import DataStore from '../Store/datastore';
+import { observer } from 'mobx-react';
 
+@observer
 export default class HomeScreen extends Component {
 	static navigationOptions = {
 		title: 'Home'
@@ -28,37 +18,37 @@ export default class HomeScreen extends Component {
 
 	_electrician = () => {
 		this.setState({ service: 'Electrician' });
-		Datastore.updateOService(this.state.service);
+		DataStore.updateOService(this.state.service);
 		this.props.navigation.navigate('Electrician');
 	};
 
 	_plumber = () => {
 		this.setState({ service: 'Plumber' });
-		Datastore.updateOService(this.state.service);
+		DataStore.updateOService(this.state.service);
 		this.props.navigation.navigate('Plumber');
 	};
 
 	_gardener = () => {
 		this.setState({ service: 'Gardener' });
-		Datastore.updateOService(this.state.service);
+		DataStore.updateOService(this.state.service);
 		this.props.navigation.navigate('Gardener');
 	};
 
 	_painter = () => {
 		this.setState({ service: 'Painter' });
-		Datastore.updateOService(this.state.service);
+		DataStore.updateOService(this.state.service);
 		this.props.navigation.navigate('Painter');
 	};
 
 	_carpenter = () => {
 		this.setState({ service: 'Carpenter' });
-		Datastore.updateOService(this.state.service);
+		DataStore.updateOService(this.state.service);
 		this.props.navigation.navigate('Carpenter');
 	};
 
 	_cleaner = () => {
 		this.setState({ service: 'Cleaner' });
-		Datastore.updateOService(this.state.service);
+		DataStore.updateOService(this.state.service);
 		this.props.navigation.navigate('Cleaner');
 	};
 

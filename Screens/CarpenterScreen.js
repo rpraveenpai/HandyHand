@@ -1,6 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, ImageBackground, Text, TouchableOpacity, Picker } from 'react-native';
+import Datastore from '../Store/datastore';
+import { observer } from 'mobx-react';
 
+@observer
 export default class CarpenterScreen extends React.Component {
 	static navigationOptions = {
 		title: 'Carpenter'

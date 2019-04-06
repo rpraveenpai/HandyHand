@@ -29,6 +29,8 @@ class DataStore {
 		orderID: '',
 		customerID: '',
 		HandyID: '',
+		Cname: '',
+		Hname: '',
 		service: '',
 		serviceInfo: '',
 		longitude: '',
@@ -92,6 +94,12 @@ class DataStore {
 	}
 	updateCOID(customerID) {
 		this.order_details.customerID = customerID;
+	}
+	updateCName(Cname) {
+		this.order_details.Cname = Cname;
+	}
+	updateHName(Hname) {
+		this.order_details.Hname = Hname;
 	}
 	updateHOID(HandyID) {
 		this.order_details.HandyID = HandyID;

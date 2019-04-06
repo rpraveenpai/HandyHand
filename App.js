@@ -15,6 +15,7 @@ import CleanerScreen from './Screens/CleanerScreen';
 import HLoginScreen from './Screens/HLoginScreen';
 import SettingsScreen from './Screens/SettingsScreen';
 import ProfileScreen from './Screens/ProfileScreen';
+import AddressScreen from './Screens/AddressScreen';
 
 export default class App extends React.Component {
 	render() {
@@ -147,10 +148,21 @@ const AppNavigator = createStackNavigator(
 					fontWeight: 'bold'
 				}
 			})
+		},
+		Address: {
+			screen: AddressScreen,
+			navigationOptions: () => ({
+				headerStyle: {
+					backgroundColor: '#f5a623'
+				},
+				headerTitleStyle: {
+					fontWeight: 'bold'
+				}
+			})
 		}
 	},
 	{
-		initialRouteName: 'Selection'
+		initialRouteName: 'Address'
 	}
 );
 

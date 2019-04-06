@@ -9,7 +9,6 @@ import {
 	TextInput,
 	TouchableOpacity
 } from 'react-native';
-import axios from 'axios';
 import DataStore from '../Store/datastore';
 import { observer } from 'mobx-react';
 

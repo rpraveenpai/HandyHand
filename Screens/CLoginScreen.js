@@ -70,45 +70,43 @@ export default class CLoginScreen extends React.Component {
 							<Image style={styles.logo} source={require('../assets/icons/logo.png')} />
 						</View>
 
-						<View style={styles.formContainer}>
-							<View style={styles.Logincontainer}>
-								<TextInput
-									placeholder="user"
-									placeholderTextColor="rgba(255,255,255,0.7)"
-									returnKeyType="next"
-									onSubmitEditing={() => this.passwordInput.focus()}
-									autoCapitalize="none"
-									autoCorrect={false}
-									style={styles.input}
-									onChangeText={(username) => this.setState({ username })}
-								/>
+						<View style={styles.Logincontainer}>
+							<TextInput
+								placeholder="user"
+								placeholderTextColor="rgba(255,255,255,0.7)"
+								returnKeyType="next"
+								onSubmitEditing={() => this.passwordInput.focus()}
+								autoCapitalize="none"
+								autoCorrect={false}
+								style={styles.input}
+								onChangeText={(username) => this.setState({ username })}
+							/>
 
-								<TextInput
-									placeholder="password"
-									placeholderTextColor="rgba(255,255,255,0.7)"
-									returnKeyType="go"
-									secureTextEntry
-									style={styles.input}
-									ref={(input) => (this.passwordInput = input)}
-									onChangeText={(password) => this.setState({ password })}
-								/>
+							<TextInput
+								placeholder="password"
+								placeholderTextColor="rgba(255,255,255,0.7)"
+								returnKeyType="go"
+								secureTextEntry
+								style={styles.input}
+								ref={(input) => (this.passwordInput = input)}
+								onChangeText={(password) => this.setState({ password })}
+							/>
 
-								<TouchableOpacity
-									style={styles.buttonContainer}
-									onPress={() => {
-										this._onLogin();
-									}}
-								>
-									<Text style={styles.buttonText}>LOGIN</Text>
-								</TouchableOpacity>
+							<TouchableOpacity
+								style={styles.buttonContainer}
+								onPress={() => {
+									this._onLogin();
+								}}
+							>
+								<Text style={styles.buttonText}>LOGIN</Text>
+							</TouchableOpacity>
 
-								<TouchableOpacity
-									style={styles.buttonContainer}
-									onPress={() => this.props.navigation.navigate('UserSignup')}
-								>
-									<Text style={styles.buttonText}>SIGNUP</Text>
-								</TouchableOpacity>
-							</View>
+							<TouchableOpacity
+								style={styles.buttonContainer}
+								onPress={() => this.props.navigation.navigate('UserSignup')}
+							>
+								<Text style={styles.buttonText}>SIGNUP</Text>
+							</TouchableOpacity>
 						</View>
 					</View>
 				</ImageBackground>
