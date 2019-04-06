@@ -11,7 +11,10 @@ export default class CleanerScreen extends React.Component {
 			CleanerWork: 'Complete Home Cleaning'
 		};
 	}
-
+	_handlePress = () => {
+		Datastore.updateSerInfo(this.state.CleanerWork);
+		this.props.navigation.navigate('Address');
+	};
 	render() {
 		return (
 			<ImageBackground source={require('../assets/background/bg2.png')} style={styles.container}>
@@ -33,7 +36,9 @@ export default class CleanerScreen extends React.Component {
 					<View style={styles.touchcontainer}>
 						<TouchableOpacity
 							style={styles.buttonContainer}
-							onPress={() => this.props.navigation.navigate('Home')}
+							onPress={() => {
+								this._handlePress();
+							}}
 						>
 							<Text style={styles.buttonText}>Continue</Text>
 						</TouchableOpacity>

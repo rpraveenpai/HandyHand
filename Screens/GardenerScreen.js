@@ -11,6 +11,10 @@ export default class GardenerScreen extends React.Component {
 			GardenerWork: 'General Gardener Work'
 		};
 	}
+	_handlePress = () => {
+		Datastore.updateSerInfo(this.state.GardenerWork);
+		this.props.navigation.navigate('Address');
+	};
 
 	render() {
 		return (
@@ -32,7 +36,9 @@ export default class GardenerScreen extends React.Component {
 					<View style={styles.touchcontainer}>
 						<TouchableOpacity
 							style={styles.buttonContainer}
-							onPress={() => this.props.navigation.navigate('Home')}
+							onPress={() => {
+								this._handlePress();
+							}}
 						>
 							<Text style={styles.buttonText}>Continue</Text>
 						</TouchableOpacity>

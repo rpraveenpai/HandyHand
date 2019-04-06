@@ -13,6 +13,7 @@ import {
 	Icon
 } from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
+import Datastore from '../Store/datastore';
 
 export default class HomeScreen extends Component {
 	static navigationOptions = {
@@ -20,7 +21,46 @@ export default class HomeScreen extends Component {
 	};
 	constructor(props) {
 		super(props);
+		this.state = {
+			service: ''
+		};
 	}
+
+	_electrician = () => {
+		this.setState({ service: 'Electrician' });
+		Datastore.updateOService(this.state.service);
+		this.props.navigation.navigate('Electrician');
+	};
+
+	_plumber = () => {
+		this.setState({ service: 'Plumber' });
+		Datastore.updateOService(this.state.service);
+		this.props.navigation.navigate('Plumber');
+	};
+
+	_gardener = () => {
+		this.setState({ service: 'Gardener' });
+		Datastore.updateOService(this.state.service);
+		this.props.navigation.navigate('Gardener');
+	};
+
+	_painter = () => {
+		this.setState({ service: 'Painter' });
+		Datastore.updateOService(this.state.service);
+		this.props.navigation.navigate('Painter');
+	};
+
+	_carpenter = () => {
+		this.setState({ service: 'Carpenter' });
+		Datastore.updateOService(this.state.service);
+		this.props.navigation.navigate('Carpenter');
+	};
+
+	_cleaner = () => {
+		this.setState({ service: 'Cleaner' });
+		Datastore.updateOService(this.state.service);
+		this.props.navigation.navigate('Cleaner');
+	};
 
 	render() {
 		return (
@@ -40,42 +80,66 @@ export default class HomeScreen extends Component {
 				{/*All the handyman services as buttons*/}
 				<View style={styles.menuContainer}>
 					<View style={styles.menuItem}>
-						<TouchableOpacity onPress={() => this.props.navigation.navigate('Electrician')}>
+						<TouchableOpacity
+							onPress={() => {
+								this._electrician();
+							}}
+						>
 							<Image source={require('../assets/icons/electrician.png')} style={styles.image} />
 						</TouchableOpacity>
 						<Text style={styles.menuText}>Electrician</Text>
 					</View>
 
 					<View style={styles.menuItem}>
-						<TouchableOpacity onPress={() => this.props.navigation.navigate('Gardener')}>
+						<TouchableOpacity
+							onPress={() => {
+								this._gardener();
+							}}
+						>
 							<Image source={require('../assets/icons/gardener.png')} style={styles.image} />
 						</TouchableOpacity>
 						<Text style={styles.menuText}>Gardener</Text>
 					</View>
 
 					<View style={styles.menuItem}>
-						<TouchableOpacity onPress={() => this.props.navigation.navigate('Plumber')}>
+						<TouchableOpacity
+							onPress={() => {
+								this._plumber();
+							}}
+						>
 							<Image source={require('../assets/icons/plumber.png')} style={styles.image} />
 						</TouchableOpacity>
 						<Text style={styles.menuText}>Plumber</Text>
 					</View>
 
 					<View style={styles.menuItem}>
-						<TouchableOpacity onPress={() => this.props.navigation.navigate('Cleaner')}>
+						<TouchableOpacity
+							onPress={() => {
+								this._cleaner();
+							}}
+						>
 							<Image source={require('../assets/icons/cleaner.png')} style={styles.image} />
 						</TouchableOpacity>
 						<Text style={styles.menuText}>Cleaner</Text>
 					</View>
 
 					<View style={styles.menuItem}>
-						<TouchableOpacity onPress={() => this.props.navigation.navigate('Carpenter')}>
+						<TouchableOpacity
+							onPress={() => {
+								this._carpenter();
+							}}
+						>
 							<Image source={require('../assets/icons/carpenter.png')} style={styles.image} />
 						</TouchableOpacity>
 						<Text style={styles.menuText}>Carpenter</Text>
 					</View>
 
 					<View style={styles.menuItem}>
-						<TouchableOpacity onPress={() => this.props.navigation.navigate('Painter')}>
+						<TouchableOpacity
+							onPress={() => {
+								this._painter();
+							}}
+						>
 							<Image source={require('../assets/icons/painter.png')} style={styles.image} />
 						</TouchableOpacity>
 						<Text style={styles.menuText}>Painter</Text>

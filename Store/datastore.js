@@ -25,6 +25,16 @@ class DataStore {
 		phone: ''
 	};
 
+	order_details = {
+		orderID: '',
+		customerID: '',
+		HandyID: '',
+		service: '',
+		serviceInfo: '',
+		longitude: '',
+		latitude: '',
+		phone: ''
+	};
 	//updating username for session.
 	updateUser(username) {
 		this.session.username = username;
@@ -35,7 +45,7 @@ class DataStore {
 		this.cust_details.customerID = customerID;
 	}
 	updateCUser(username) {
-		this.cust_details.cusername = username;
+		this.cust_details.username = username;
 	}
 	updateCName(name) {
 		this.cust_details.name = name;
@@ -55,7 +65,7 @@ class DataStore {
 		this.handy_details.handyID = handyID;
 	}
 	updateHUser(username) {
-		this.handy_details.husername = username;
+		this.handy_details.username = username;
 	}
 	updateHName(name) {
 		this.handy_details.name = name;
@@ -75,6 +85,32 @@ class DataStore {
 	updateHExp(experience) {
 		this.handy_details.experience = experience;
 	}
+
+	//updating order details.
+	updateOrderID(orderID) {
+		this.order_details.orderID = orderID;
+	}
+	updateCOID(customerID) {
+		this.order_details.customerID = customerID;
+	}
+	updateHOID(HandyID) {
+		this.order_details.HandyID = HandyID;
+	}
+	updateOService(service) {
+		this.order_details.service = service;
+	}
+	updateSerInfo(serviceInfo) {
+		this.order_details.serviceInfo = serviceInfo;
+	}
+	updateLongitude(longitude) {
+		this.order_details.longitude = longitude;
+	}
+	updateLatitude(latitude) {
+		this.order_details.latitude = latitude;
+	}
+	updateOPhone(phone) {
+		this.order_details.phone = phone;
+	}
 }
 
 decorate(DataStore, {
@@ -91,7 +127,16 @@ decorate(DataStore, {
 	updateHPhone: action,
 	updateHPass: action,
 	updateHExp: action,
-	updateHService: action
+	updateHService: action,
+
+	updateCOID: action,
+	updateHOID: action,
+	updateLatitude: action,
+	updateLongitude: action,
+	updateOPhone: action,
+	updateOService: action,
+	updateSerInfo: action,
+	updateOrderID: action
 });
 
 export default new DataStore();

@@ -12,6 +12,10 @@ export default class PainterScreen extends React.Component {
 			PainterWork: 'General Painter Work'
 		};
 	}
+	_handlePress = () => {
+		Datastore.updateSerInfo(this.state.PainterWork);
+		this.props.navigation.navigate('Address');
+	};
 
 	render() {
 		return (
@@ -31,7 +35,9 @@ export default class PainterScreen extends React.Component {
 					<View style={styles.touchcontainer}>
 						<TouchableOpacity
 							style={styles.buttonContainer}
-							onPress={() => this.props.navigation.navigate('Home')}
+							onPress={() => {
+								this._handlePress();
+							}}
 						>
 							<Text style={styles.buttonText}>Continue</Text>
 						</TouchableOpacity>

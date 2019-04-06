@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, ImageBackground, Text, TouchableOpacity, Picker } from 'react-native';
+import Datastore from '../Store/datastore';
 
 export default class PlumberScreen extends React.Component {
 	static navigationOptions = {
@@ -11,6 +12,11 @@ export default class PlumberScreen extends React.Component {
 			PlumberWork: 'General Plumber Work'
 		};
 	}
+
+	_handlePress = () => {
+		Datastore.updateSerInfo(this.state.PlumberWork);
+		this.props.navigation.navigate('Address');
+	};
 
 	render() {
 		return (
@@ -33,7 +39,9 @@ export default class PlumberScreen extends React.Component {
 					<View style={styles.touchcontainer}>
 						<TouchableOpacity
 							style={styles.buttonContainer}
-							onPress={() => this.props.navigation.navigate('Home')}
+							onPress={() => {
+								this._handlePress();
+							}}
 						>
 							<Text style={styles.buttonText}>Continue</Text>
 						</TouchableOpacity>

@@ -11,6 +11,10 @@ export default class ElectricianScreen extends React.Component {
 			ElectricianWork: 'General Electrical Work'
 		};
 	}
+	_handlePress = () => {
+		Datastore.updateSerInfo(this.state.ElectricianWork);
+		this.props.navigation.navigate('Address');
+	};
 
 	render() {
 		return (
@@ -33,7 +37,9 @@ export default class ElectricianScreen extends React.Component {
 					<View style={styles.touchcontainer}>
 						<TouchableOpacity
 							style={styles.buttonContainer}
-							onPress={() => this.props.navigation.navigate('Home')}
+							onPress={() => {
+								this._handlePress();
+							}}
 						>
 							<Text style={styles.buttonText}>Continue</Text>
 						</TouchableOpacity>
