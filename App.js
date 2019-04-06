@@ -169,7 +169,7 @@ const AppNavigator = createStackNavigator(
 		}
 	},
 	{
-		initialRouteName: 'Plumber'
+		initialRouteName: 'Location'
 	}
 );
 
