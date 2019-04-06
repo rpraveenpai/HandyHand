@@ -29,7 +29,7 @@ export default class AddressScreen extends React.Component {
 	_next = () => {
 		DataStore.updateOPhone(this.state.phone);
 		DataStore.updateCName(this.state.name);
-		this.props.navigation.navigate('Home');
+		this.props.navigation.navigate('Location');
 	};
 
 	render() {

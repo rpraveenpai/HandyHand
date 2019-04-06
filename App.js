@@ -16,6 +16,7 @@ import HLoginScreen from './Screens/HLoginScreen';
 import SettingsScreen from './Screens/SettingsScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import AddressScreen from './Screens/AddressScreen';
+import LocationScreen from './Screens/LocationScreen';
 
 export default class App extends React.Component {
 	render() {
@@ -159,10 +160,16 @@ const AppNavigator = createStackNavigator(
 					fontWeight: 'bold'
 				}
 			})
+		},
+		Location: {
+			screen: LocationScreen,
+			navigationOptions: () => ({
+				header: null
+			})
 		}
 	},
 	{
-		initialRouteName: 'Address'
+		initialRouteName: 'Location'
 	}
 );
 
