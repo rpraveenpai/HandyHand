@@ -129,12 +129,12 @@ const styles = StyleSheet.create({
 		padding: 20
 	},
 	input: {
-		height: 40,
+		height: 50,
 		backgroundColor: 'rgba(255,255,255,0.2)',
 		marginBottom: 10,
 		color: '#FFF',
 		paddingHorizontal: 10,
-		borderRadius: 5
+		borderRadius: 2
 	},
 	logoContainer: {
 		alignItems: 'center',
@@ -156,8 +156,12 @@ const styles = StyleSheet.create({
 	buttonContainer: {
 		backgroundColor: '#f5a623',
 		paddingVertical: 15,
-		borderRadius: 5,
-		marginBottom: 10
+		borderRadius: 2,
+		marginBottom: 10,
+		shadowColor: '#000000',
+		elevation: 7,
+		shadowRadius: 5,
+		shadowOpacity: 1.0
 	},
 	buttonText: {
 		textAlign: 'center',

@@ -22,12 +22,13 @@ export default class LocationScreen extends React.Component {
 
 	_getALocationAsync = async () => {
 		let providers = await Location.getProviderStatusAsync();
+
 		if (providers.locationServicesEnabled == false) {
+			await IntentLauncherAndroid.startActivityAsync(IntentLauncherAndroid.ACTION_LOCATION_SOURCE_SETTINGS);
+
 			let { status } = await Permissions.askAsync(Permissions.LOCATION);
 			if (status !== 'granted') {
 				console.log('Permission to access location was denied.');
-			} else {
-				await IntentLauncherAndroid.startActivityAsync(IntentLauncherAndroid.ACTION_LOCATION_SOURCE_SETTINGS);
 			}
 		}
 

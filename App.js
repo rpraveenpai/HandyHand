@@ -169,7 +169,7 @@ const AppNavigator = createStackNavigator(
 		}
 	},
 	{
-		initialRouteName: 'Location'
+		initialRouteName: 'Home'
 	}
 );
 

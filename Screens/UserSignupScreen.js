@@ -93,11 +93,8 @@ export default class UserSignupScreen extends React.Component {
 			<KeyboardAvoidingView behavior="padding" style={styles.container}>
 				<ImageBackground source={require('../assets/background/bg2.png')} style={styles.container}>
 					<View style={styles.container}>
-						<View style={styles.logoContainer}>
-							<Image style={styles.logo} source={require('../assets/icons/logo.png')} />
-						</View>
-
 						<View style={styles.Signupcontainer}>
+							<Text style={styles.title}>REGISTER</Text>
 							<TextInput
 								placeholder="name"
 								placeholderTextColor="rgba(255,255,255,0.7)"
@@ -155,6 +152,12 @@ export default class UserSignupScreen extends React.Component {
 							<TouchableOpacity style={styles.buttonContainer} onPress={() => this._onCheck()}>
 								<Text style={styles.buttonText}>SIGNUP</Text>
 							</TouchableOpacity>
+							<TouchableOpacity
+								style={styles.buttonContainer}
+								onPress={() => this.props.navigation.navigate('CLogin')}
+							>
+								<Text style={styles.buttonText}>BACK</Text>
+							</TouchableOpacity>
 						</View>
 					</View>
 				</ImageBackground>
@@ -170,42 +173,39 @@ const styles = StyleSheet.create({
 		height: '100%'
 	},
 	Signupcontainer: {
-		padding: 20
+		paddingHorizontal: 40,
+		marginTop: 50,
+		justifyContent: 'space-around'
 	},
 	input: {
-		height: 40,
+		height: 50,
 		backgroundColor: 'rgba(255,255,255,0.2)',
 		marginBottom: 10,
 		color: '#FFF',
 		paddingHorizontal: 10,
-		borderRadius: 5
+		borderRadius: 2
 	},
-	logoContainer: {
-		alignItems: 'center',
-		flexGrow: 1,
-		justifyContent: 'center'
-	},
-	logo: {
-		width: '100%',
-		height: '50%',
-		resizeMode: 'contain'
-	},
-	title: {
-		color: '#FFF',
-		marginTop: 10,
-		width: 180,
-		textAlign: 'center',
-		opacity: 0.9
-	},
+
 	buttonContainer: {
 		backgroundColor: '#f5a623',
 		paddingVertical: 15,
-		borderRadius: 5,
-		marginBottom: 10
+		borderRadius: 2,
+		marginBottom: 10,
+		shadowColor: '#000000',
+		elevation: 7,
+		shadowRadius: 5,
+		shadowOpacity: 1.0
 	},
 	buttonText: {
 		textAlign: 'center',
 		color: '#FFFFFF',
 		fontWeight: '500'
+	},
+	title: {
+		color: '#f5a623',
+		fontWeight: 'bold',
+		textAlign: 'center',
+		padding: 10,
+		fontSize: 30
 	}
 });

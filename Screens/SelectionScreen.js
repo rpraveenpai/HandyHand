@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
 		height: '50%'
 	},
 	menuContainer: {
-		height: '40%',
+		//height: '40%',
 		alignItems: 'center',
 		flexDirection: 'row',
 		justifyContent: 'center',
@@ -64,14 +64,14 @@ const styles = StyleSheet.create({
 	},
 	menuItem: {
 		width: '33.333333%',
-		height: '50%'
+		height: '40%'
 	},
 	image: {
 		width: '100%',
 		height: '100%',
 		opacity: 0.8,
 		borderColor: '#fff',
-		borderWidth: 3,
-		borderRadius: 90
+		borderWidth: 3
+		//borderRadius: 90
 	}
 });

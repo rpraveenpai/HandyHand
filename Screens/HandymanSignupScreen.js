@@ -9,7 +9,7 @@ import {
 	TextInput,
 	TouchableOpacity,
 	Picker,
-	SafeAreaView
+	ActivityIndicator
 } from 'react-native';
 import axios from 'axios';
 
@@ -27,7 +27,8 @@ export default class HandymanSignupScreen extends React.Component {
 			password: '',
 			phone: '',
 			service: '',
-			experience: ''
+			experience: '',
+			fontLoaded: true
 		};
 	}
 
@@ -51,8 +52,6 @@ export default class HandymanSignupScreen extends React.Component {
 				} else {
 					alert(response.data.res);
 				}
-
-				//				DataStore.updateUser(self.state.user);
 			})
 			.catch(function(error) {
 				alert(error);
@@ -203,16 +202,17 @@ const styles = StyleSheet.create({
 		height: '100%'
 	},
 	Signupcontainer: {
-		padding: 50,
-		marginTop: 50
+		paddingHorizontal: 40,
+		marginTop: 50,
+		justifyContent: 'space-around'
 	},
 	input: {
-		height: 40,
+		height: 50,
 		backgroundColor: 'rgba(255,255,255,0.2)',
 		marginBottom: 10,
 		color: '#FFF',
 		paddingHorizontal: 10,
-		borderRadius: 5
+		borderRadius: 2
 	},
 	logo: {
 		width: '100%',
@@ -226,8 +226,12 @@ const styles = StyleSheet.create({
 	buttonContainer: {
 		backgroundColor: '#f5a623',
 		paddingVertical: 15,
-		borderRadius: 5,
-		marginBottom: 10
+		borderRadius: 2,
+		marginBottom: 10,
+		shadowColor: '#000000',
+		elevation: 7,
+		shadowRadius: 5,
+		shadowOpacity: 1.0
 	},
 
 	buttonText: {
@@ -245,6 +249,6 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		textAlign: 'center',
 		padding: 10,
-		fontSize: 20
+		fontSize: 30
 	}
 });
