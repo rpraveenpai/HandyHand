@@ -95,10 +95,10 @@ class DataStore {
 	updateCOID(customerID) {
 		this.order_details.customerID = customerID;
 	}
-	updateCName(Cname) {
+	updateOCName(Cname) {
 		this.order_details.Cname = Cname;
 	}
-	updateHName(Hname) {
+	updateOHName(Hname) {
 		this.order_details.Hname = Hname;
 	}
 	updateHOID(HandyID) {
@@ -129,6 +129,7 @@ decorate(DataStore, {
 	updateCEmail: action,
 	updateCPhone: action,
 	updateCPass: action,
+
 	updateHUser: action,
 	updateHName: action,
 	updateHEmail: action,

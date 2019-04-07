@@ -17,6 +17,7 @@ import SettingsScreen from './Screens/SettingsScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import AddressScreen from './Screens/AddressScreen';
 import LocationScreen from './Screens/LocationScreen';
+import CorderScreen from './Screens/CorderScreen';
 
 export default class App extends React.Component {
 	render() {
@@ -131,12 +132,7 @@ const AppNavigator = createStackNavigator(
 		Settings: {
 			screen: SettingsScreen,
 			navigationOptions: () => ({
-				headerStyle: {
-					backgroundColor: '#f5a623'
-				},
-				headerTitleStyle: {
-					fontWeight: 'bold'
-				}
+				header: null
 			})
 		},
 		Profile: {
@@ -166,10 +162,16 @@ const AppNavigator = createStackNavigator(
 			navigationOptions: () => ({
 				header: null
 			})
+		},
+		COrders: {
+			screen: CorderScreen,
+			navigationOptions: () => {
+				header: null;
+			}
 		}
 	},
 	{
-		initialRouteName: 'Home'
+		initialRouteName: 'Profile'
 	}
 );
 

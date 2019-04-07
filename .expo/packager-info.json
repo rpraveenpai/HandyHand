@@ -1,9 +1,9 @@
 {
-  "packagerPort": 19001,
-  "packagerPid": 7944,
+  "packagerPort": null,
+  "packagerPid": null,
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "expoServerNgrokUrl": "https://d2-n4d.rpraveenpai.handyhand.exp.direct",
-  "packagerNgrokUrl": "https://packager.d2-n4d.rpraveenpai.handyhand.exp.direct",
-  "ngrokPid": 9956
+  "expoServerPort": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }

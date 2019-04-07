@@ -91,13 +91,13 @@ export default class UserSignupScreen extends React.Component {
 	render() {
 		return (
 			<KeyboardAvoidingView behavior="padding" style={styles.container}>
-				<ImageBackground source={require('../assets/background/bg2.png')} style={styles.container}>
+				<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.container}>
 					<View style={styles.container}>
 						<View style={styles.Signupcontainer}>
 							<Text style={styles.title}>REGISTER</Text>
 							<TextInput
 								placeholder="name"
-								placeholderTextColor="rgba(255,255,255,0.7)"
+								placeholderTextColor="rgba(0,0,0,0.5)"
 								returnKeyType="next"
 								onSubmitEditing={() => this.emailInput.focus()}
 								style={styles.input}
@@ -106,7 +106,7 @@ export default class UserSignupScreen extends React.Component {
 
 							<TextInput
 								placeholder="email"
-								placeholderTextColor="rgba(255,255,255,0.7)"
+								placeholderTextColor="rgba(0,0,0,0.5)"
 								returnKeyType="next"
 								ref={(input) => (this.emailInput = input)}
 								onSubmitEditing={() => this.userInput.focus()}
@@ -118,7 +118,7 @@ export default class UserSignupScreen extends React.Component {
 							/>
 							<TextInput
 								placeholder="username"
-								placeholderTextColor="rgba(255,255,255,0.7)"
+								placeholderTextColor="rgba(0,0,0,0.5)"
 								returnKeyType="next"
 								ref={(input) => (this.userInput = input)}
 								onSubmitEditing={() => this.passwordInput.focus()}
@@ -130,7 +130,7 @@ export default class UserSignupScreen extends React.Component {
 
 							<TextInput
 								placeholder="password"
-								placeholderTextColor="rgba(255,255,255,0.7)"
+								placeholderTextColor="rgba(0,0,0,0.5)"
 								returnKeyType="next"
 								secureTextEntry
 								style={styles.input}
@@ -141,7 +141,7 @@ export default class UserSignupScreen extends React.Component {
 
 							<TextInput
 								placeholder="phone number"
-								placeholderTextColor="rgba(255,255,255,0.7)"
+								placeholderTextColor="rgba(0,0,0,0.5)"
 								returnKeyType="go"
 								keyboardType="phone-pad"
 								style={styles.input}
@@ -174,16 +174,19 @@ const styles = StyleSheet.create({
 	},
 	Signupcontainer: {
 		paddingHorizontal: 40,
-		marginTop: 50,
-		justifyContent: 'space-around'
+		marginTop: 50
 	},
 	input: {
 		height: 50,
-		backgroundColor: 'rgba(255,255,255,0.2)',
+		backgroundColor: 'rgba(255,255,255,0.5)',
 		marginBottom: 10,
-		color: '#FFF',
+		color: 'rgba(0,0,0,0.8)',
 		paddingHorizontal: 10,
-		borderRadius: 2
+		borderRadius: 2,
+		borderColor: '#f5a623',
+		borderRadius: 2,
+		borderWidth: 2,
+		fontWeight: 'bold'
 	},
 
 	buttonContainer: {

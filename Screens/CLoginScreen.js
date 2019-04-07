@@ -64,16 +64,17 @@ export default class CLoginScreen extends React.Component {
 	render() {
 		return (
 			<KeyboardAvoidingView behavior="padding" style={styles.container}>
-				<ImageBackground source={require('../assets/background/bg2.png')} style={styles.container}>
+				<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.container}>
 					<View style={styles.container}>
 						<View style={styles.logoContainer}>
-							<Image style={styles.logo} source={require('../assets/icons/logo.png')} />
+							<Image style={styles.logo} source={require('../assets/icons/user.png')} />
+							<Text style={styles.title}>Customer</Text>
 						</View>
 
 						<View style={styles.Logincontainer}>
 							<TextInput
-								placeholder="user"
-								placeholderTextColor="rgba(255,255,255,0.7)"
+								placeholder="username"
+								placeholderTextColor="rgba(0,0,0,0.5)"
 								returnKeyType="next"
 								onSubmitEditing={() => this.passwordInput.focus()}
 								autoCapitalize="none"
@@ -84,7 +85,7 @@ export default class CLoginScreen extends React.Component {
 
 							<TextInput
 								placeholder="password"
-								placeholderTextColor="rgba(255,255,255,0.7)"
+								placeholderTextColor="rgba(0,0,0,0.5)"
 								returnKeyType="go"
 								secureTextEntry
 								style={styles.input}
@@ -125,11 +126,19 @@ const styles = StyleSheet.create({
 	},
 	input: {
 		height: 50,
-		backgroundColor: 'rgba(255,255,255,0.2)',
+		backgroundColor: 'rgba(255,255,255,0.5)',
 		marginBottom: 10,
-		color: '#FFF',
+		color: 'rgba(0,0,0,0.8)',
 		paddingHorizontal: 10,
-		borderRadius: 2
+		borderColor: '#f5a623',
+		borderRadius: 2,
+		borderWidth: 2,
+		fontWeight: 'bold'
+	},
+	title: {
+		color: '#f5a623',
+		fontWeight: 'bold',
+		fontSize: 35
 	},
 	logoContainer: {
 		alignItems: 'center',
@@ -140,13 +149,6 @@ const styles = StyleSheet.create({
 		width: '100%',
 		height: '50%',
 		resizeMode: 'contain'
-	},
-	title: {
-		color: '#FFF',
-		marginTop: 10,
-		width: 180,
-		textAlign: 'center',
-		opacity: 0.9
 	},
 	buttonContainer: {
 		backgroundColor: '#f5a623',

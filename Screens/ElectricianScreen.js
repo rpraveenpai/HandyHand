@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, Text, TouchableOpacity, Picker } from 'react-native';
+import { StyleSheet, View, ImageBackground, Image, Text, TouchableOpacity, Picker } from 'react-native';
 import Datastore from '../Store/datastore';
 import { observer } from 'mobx-react';
 
@@ -21,9 +21,8 @@ export default class ElectricianScreen extends React.Component {
 
 	render() {
 		return (
-			<ImageBackground source={require('../assets/background/bg2.png')} style={styles.container}>
+			<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.container}>
 				<View style={styles.container}>
-					<Text style={styles.title}>Electrician</Text>
 					<View style={styles.PickerContainer}>
 						<Picker
 							selectedValue={this.state.ElectricianWork}
@@ -46,6 +45,9 @@ export default class ElectricianScreen extends React.Component {
 						>
 							<Text style={styles.buttonText}>Continue</Text>
 						</TouchableOpacity>
+					</View>
+					<View style={styles.logoContainer}>
+						<Image style={styles.logo} source={require('../assets/icons/electrician.png')} />
 					</View>
 				</View>
 			</ImageBackground>
@@ -73,22 +75,26 @@ const styles = StyleSheet.create({
 		color: '#FFFFFF',
 		fontWeight: '500'
 	},
-	title: {
-		fontSize: 25,
-		textAlign: 'center',
-		color: '#ffffff',
-		marginTop: 20,
-		fontWeight: 'bold',
-		padding: 30
-	},
+
 	PickerContainer: {
 		flexDirection: 'column',
 		alignItems: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		paddingTop: 20
 	},
 	pickerstyle: {
-		height: 50,
+		height: 70,
 		width: '100%',
-		color: '#f5a623'
+		color: '#2a363b'
+	},
+	logoContainer: {
+		alignItems: 'center',
+		flexGrow: 1,
+		justifyContent: 'center'
+	},
+	logo: {
+		width: '40%',
+		height: '40%',
+		resizeMode: 'contain'
 	}
 });

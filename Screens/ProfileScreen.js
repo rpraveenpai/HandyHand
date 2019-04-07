@@ -33,13 +33,13 @@ export default class ProfileScreen extends React.Component {
 	render() {
 		return (
 			<KeyboardAvoidingView behavior="padding" style={styles.container}>
-				<ImageBackground source={require('../assets/background/bg2.png')} style={styles.container}>
+				<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.container}>
 					<View style={styles.container}>
 						<View style={styles.profilecontainer}>
 							<Text style={styles.textstyle}>Username</Text>
 							<TextInput
 								placeholder="username"
-								placeholderTextColor="rgba(255,255,255,0.7)"
+								placeholderTextColor="rgba(0,0,0,0.5)"
 								returnKeyType="next"
 								autoCapitalize="none"
 								autoCorrect={false}
@@ -50,7 +50,7 @@ export default class ProfileScreen extends React.Component {
 							<Text style={styles.textstyle}>Name</Text>
 							<TextInput
 								placeholder="name"
-								placeholderTextColor="rgba(255,255,255,0.7)"
+								placeholderTextColor="rgba(0,0,0,0.5)"
 								returnKeyType="next"
 								style={styles.input}
 								value={this.state.name}
@@ -59,7 +59,7 @@ export default class ProfileScreen extends React.Component {
 							<Text style={styles.textstyle}>Email</Text>
 							<TextInput
 								placeholder="email"
-								placeholderTextColor="rgba(255,255,255,0.7)"
+								placeholderTextColor="rgba(0,0,0,0.5)"
 								returnKeyType="next"
 								keyboardType="email-address"
 								autoCapitalize="none"
@@ -71,7 +71,7 @@ export default class ProfileScreen extends React.Component {
 							<Text style={styles.textstyle}>Password</Text>
 							<TextInput
 								placeholder="password"
-								placeholderTextColor="rgba(255,255,255,0.7)"
+								placeholderTextColor="rgba(0,0,0,0.5)"
 								returnKeyType="next"
 								secureTextEntry
 								style={styles.input}
@@ -82,7 +82,7 @@ export default class ProfileScreen extends React.Component {
 							<Text style={styles.textstyle}>Phone Number</Text>
 							<TextInput
 								placeholder="phone number"
-								placeholderTextColor="rgba(255,255,255,0.7)"
+								placeholderTextColor="rgba(0,0,0,0.5)"
 								returnKeyType="go"
 								keyboardType="phone-pad"
 								style={styles.input}
@@ -113,43 +113,36 @@ const styles = StyleSheet.create({
 	profilecontainer: {
 		padding: 20,
 		flexDirection: 'column'
-		//justifyContent: "space-evenly"
 	},
 	textstyle: {
-		fontSize: 20,
+		fontSize: 15,
 		fontWeight: 'bold',
-		color: 'white'
+		color: '#2a363b'
 	},
 	input: {
 		height: 40,
-		backgroundColor: 'rgba(255,255,255,0.2)',
+		backgroundColor: 'rgba(255,255,255,0.5)',
 		marginBottom: 10,
-		color: '#FFF',
+		color: 'rgba(0,0,0,0.8)',
 		paddingHorizontal: 10,
-		borderRadius: 5
+		borderColor: '#f5a623',
+		borderRadius: 4,
+		borderWidth: 2,
+		fontWeight: 'bold'
 	},
-	logoContainer: {
-		alignItems: 'center',
-		flexGrow: 1,
-		justifyContent: 'center'
-	},
-	logo: {
-		width: '100%',
-		height: '50%',
-		resizeMode: 'contain'
-	},
-	title: {
-		color: '#FFF',
-		marginTop: 10,
-		width: 180,
-		textAlign: 'center',
-		opacity: 0.9
-	},
+
 	buttonContainer: {
 		backgroundColor: '#f5a623',
 		paddingVertical: 15,
 		borderRadius: 5,
-		marginBottom: 10
+		marginBottom: 10,
+		justifyContent: 'space-around',
+		alignItems: 'center',
+		shadowColor: '#000000',
+		elevation: 7,
+		shadowRadius: 5,
+		shadowOpacity: 1.0,
+		height: 50
 	},
 	buttonText: {
 		textAlign: 'center',

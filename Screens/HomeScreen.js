@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ImageBackground, Image, TouchableOpacity } from
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import DataStore from '../Store/datastore';
 import { observer } from 'mobx-react';
+import { MenuButton } from '../components/MenuButton';
 
 @observer
 export default class HomeScreen extends Component {
@@ -54,13 +55,13 @@ export default class HomeScreen extends Component {
 
 	render() {
 		return (
-			<ImageBackground source={require('../assets/background/bg.jpg')} style={styles.container}>
+			<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.container}>
 				{/*hamburger menu*/}
-				<View style={styles.settingsmenu}>
-					<TouchableOpacity onPress={() => this.props.navigation.navigate('Settings')}>
-						<Image source={require('../assets/icons/list.png')} style={styles.settingslogo} />
-					</TouchableOpacity>
-				</View>
+				<MenuButton
+					cb={() => {
+						this.props.navigation.navigate('Settings');
+					}}
+				/>
 
 				{/*Handyhand Icon showing infront*/}
 				<View style={styles.top}>
@@ -154,14 +155,12 @@ const styles = StyleSheet.create({
 	image: {
 		width: '100%',
 		height: '100%',
-		opacity: 0.8,
-		borderColor: '#fff',
+		borderRadius: 50,
 		borderWidth: 3,
-		borderRadius: 90
+		borderColor: 'black'
 	},
 	menuContainer: {
 		height: '40%',
-		flexDirection: 'column',
 		flexWrap: 'wrap'
 	},
 	menuItem: {
@@ -171,7 +170,7 @@ const styles = StyleSheet.create({
 	},
 	menuText: {
 		fontSize: 15,
-		color: 'white',
+		color: '#2a363b',
 		fontWeight: 'bold',
 		textAlign: 'center'
 	},
@@ -180,18 +179,5 @@ const styles = StyleSheet.create({
 		height: '100%',
 		width: '100%',
 		resizeMode: 'contain'
-	},
-	settingsmenu: {
-		display: 'flex',
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		justifyContent: 'flex-start',
-		//used to get status bar height to remove overlpapping of menu.
-		paddingTop: getStatusBarHeight()
-	},
-	settingslogo: {
-		height: 30,
-		width: 30,
-		justifyContent: 'flex-start'
 	}
 });

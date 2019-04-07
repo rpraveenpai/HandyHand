@@ -34,13 +34,13 @@ export default class AddressScreen extends React.Component {
 
 	render() {
 		return (
-			<ImageBackground source={require('../assets/background/bg2.png')} style={styles.container}>
+			<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.container}>
 				<View style={styles.container}>
 					<View style={styles.formContainer}>
 						<Text style={styles.textstyle}>Name</Text>
 						<TextInput
 							placeholder="Name"
-							placeholderTextColor="rgba(255,255,255,0.7)"
+							placeholderTextColor="rgba(0,0,0,0.5)"
 							returnKeyType="next"
 							onSubmitEditing={() => this.PhoneInput.focus()}
 							autoCapitalize="none"
@@ -52,7 +52,7 @@ export default class AddressScreen extends React.Component {
 						<Text style={styles.textstyle}>Phone Number</Text>
 						<TextInput
 							placeholder="Phone Number"
-							placeholderTextColor="rgba(255,255,255,0.7)"
+							placeholderTextColor="rgba(0,0,0,0.5)"
 							returnKeyType="go"
 							keyboardType="phone-pad"
 							style={styles.input}
@@ -82,9 +82,9 @@ const styles = StyleSheet.create({
 		height: '100%'
 	},
 	textstyle: {
-		fontSize: 15,
+		fontSize: 20,
 		fontWeight: 'bold',
-		color: 'white'
+		color: '#2a363b'
 	},
 	formContainer: {
 		justifyContent: 'space-around',
@@ -93,24 +93,29 @@ const styles = StyleSheet.create({
 	},
 	input: {
 		height: 40,
-		backgroundColor: 'rgba(255,255,255,0.2)',
+		backgroundColor: 'rgba(255,255,255,0.5)',
 		marginBottom: 10,
-		color: '#FFF',
+		color: 'rgba(0,0,0,0.8)',
 		paddingHorizontal: 10,
-		borderRadius: 5
+		borderColor: '#f5a623',
+		borderRadius: 4,
+		borderWidth: 2,
+		fontWeight: 'bold'
 	},
-
 	logo: {
 		width: '100%',
 		height: '50%',
 		resizeMode: 'contain'
 	},
-
 	buttonContainer: {
 		backgroundColor: '#f5a623',
 		paddingVertical: 15,
-		borderRadius: 5,
-		marginBottom: 10
+		borderRadius: 2,
+		marginBottom: 10,
+		shadowColor: '#000000',
+		elevation: 7,
+		shadowRadius: 5,
+		shadowOpacity: 1.0
 	},
 	buttonText: {
 		textAlign: 'center',

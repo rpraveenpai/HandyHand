@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Image, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
+import { Text, View, Image, StyleSheet, TouchableOpacity, ImageBackground, Dimensions } from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 export default class SettingsScreen extends Component {
@@ -13,18 +13,22 @@ export default class SettingsScreen extends Component {
 
 	render() {
 		return (
-			<ImageBackground source={require('../assets/background/bg2.png')} style={styles.menucontainer}>
+			<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.menucontainer}>
 				<View style={styles.menucontainer}>
 					<View style={styles.logoContainer}>
 						<Image style={styles.logo} source={require('../assets/icons/logo.png')} />
 					</View>
-					<TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
+
+					<TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Home')}>
 						<Text style={styles.menutext}>Home</Text>
 					</TouchableOpacity>
-					<TouchableOpacity onPress={() => this.props.navigation.navigate('Profile')}>
+					<TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Profile')}>
 						<Text style={styles.menutext}>Profile</Text>
 					</TouchableOpacity>
-					<TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
+					<TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Corder')}>
+						<Text style={styles.menutext}>Orders</Text>
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Home')}>
 						<Text style={styles.menutext}>Logout</Text>
 					</TouchableOpacity>
 				</View>
@@ -36,19 +40,14 @@ export default class SettingsScreen extends Component {
 const styles = StyleSheet.create({
 	menucontainer: {
 		flex: 1,
-		padding: 2,
-		justifyContent: 'flex-start'
+		justifyContent: 'flex-start',
+		paddingHorizontal: 10
 	},
 	menutext: {
-		color: 'white',
-		fontSize: 25,
+		color: '#2a363b',
+		fontSize: 20,
 		fontWeight: 'bold',
-		flexDirection: 'row',
-		alignItems: 'stretch',
-		padding: 10,
-		borderBottomWidth: 5,
-		backgroundColor: '#f5a623',
-		borderRadius: 10
+		flexDirection: 'row'
 	},
 	logoContainer: {
 		alignItems: 'center',
@@ -59,5 +58,18 @@ const styles = StyleSheet.create({
 		width: '100%',
 		height: '50%',
 		resizeMode: 'contain'
+	},
+	button: {
+		backgroundColor: '#f5a623',
+		paddingVertical: 15,
+		borderRadius: 5,
+		marginBottom: 10,
+		justifyContent: 'space-around',
+		alignItems: 'center',
+		shadowColor: '#000000',
+		elevation: 7,
+		shadowRadius: 5,
+		shadowOpacity: 1.0,
+		height: 50
 	}
 });

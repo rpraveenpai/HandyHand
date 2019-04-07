@@ -7,7 +7,7 @@ export default class SelectionScreen extends React.Component {
 	};
 	render() {
 		return (
-			<ImageBackground source={require('../assets/background/bg2.png')} style={styles.container}>
+			<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.container}>
 				<View style={styles.container}>
 					<View style={styles.logoContainer}>
 						<Image style={styles.logo} source={require('../assets/icons/logo.png')} />
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 	},
 	buttonText: {
 		textAlign: 'center',
-		color: '#FFFFFF',
+		color: '#2a363b',
 		fontWeight: '700',
 		fontSize: 20
 	},
@@ -69,9 +69,8 @@ const styles = StyleSheet.create({
 	image: {
 		width: '100%',
 		height: '100%',
-		opacity: 0.8,
-		borderColor: '#fff',
-		borderWidth: 3
-		//borderRadius: 90
+		opacity: 0.8
+		//borderColor: '#2a363b',
+		//borderWidth: 3
 	}
 });

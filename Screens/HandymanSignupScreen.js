@@ -100,14 +100,14 @@ export default class HandymanSignupScreen extends React.Component {
 	render() {
 		return (
 			<KeyboardAvoidingView behavior="padding" style={styles.container}>
-				<ImageBackground source={require('../assets/background/bg2.png')} style={styles.container}>
+				<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.container}>
 					<View style={styles.container}>
 						<View style={styles.Signupcontainer}>
 							<Text style={styles.title}>REGISTER</Text>
 
 							<TextInput
 								placeholder="name"
-								placeholderTextColor="rgba(255,255,255,0.7)"
+								placeholderTextColor="rgba(0,0,0,0.5)"
 								returnKeyType="next"
 								onSubmitEditing={() => this.userInput.focus()}
 								autoCorrect={false}
@@ -117,7 +117,7 @@ export default class HandymanSignupScreen extends React.Component {
 
 							<TextInput
 								placeholder="username"
-								placeholderTextColor="rgba(255,255,255,0.7)"
+								placeholderTextColor="rgba(0,0,0,0.5)"
 								returnKeyType="next"
 								ref={(input) => (this.userInput = input)}
 								onSubmitEditing={() => this.emailInput.focus()}
@@ -129,7 +129,7 @@ export default class HandymanSignupScreen extends React.Component {
 
 							<TextInput
 								placeholder="email"
-								placeholderTextColor="rgba(255,255,255,0.7)"
+								placeholderTextColor="rgba(0,0,0,0.5)"
 								returnKeyType="next"
 								ref={(input) => (this.emailInput = input)}
 								onSubmitEditing={() => this.passwordInput.focus()}
@@ -142,7 +142,7 @@ export default class HandymanSignupScreen extends React.Component {
 
 							<TextInput
 								placeholder="password"
-								placeholderTextColor="rgba(255,255,255,0.7)"
+								placeholderTextColor="rgba(0,0,0,0.5)"
 								returnKeyType="next"
 								secureTextEntry
 								style={styles.input}
@@ -153,7 +153,7 @@ export default class HandymanSignupScreen extends React.Component {
 
 							<TextInput
 								placeholder="phone number"
-								placeholderTextColor="rgba(255,255,255,0.7)"
+								placeholderTextColor="rgba(0,0,0,0.5)"
 								returnKeyType="next"
 								keyboardType="phone-pad"
 								style={styles.input}
@@ -187,6 +187,12 @@ export default class HandymanSignupScreen extends React.Component {
 							<TouchableOpacity style={styles.buttonContainer} onPress={() => this._onCheck()}>
 								<Text style={styles.buttonText}>SIGNUP</Text>
 							</TouchableOpacity>
+							<TouchableOpacity
+								style={styles.buttonContainer}
+								onPress={() => this.props.navigation.navigate('HLogin')}
+							>
+								<Text style={styles.buttonText}>BACK</Text>
+							</TouchableOpacity>
 						</View>
 					</View>
 				</ImageBackground>
@@ -203,16 +209,19 @@ const styles = StyleSheet.create({
 	},
 	Signupcontainer: {
 		paddingHorizontal: 40,
-		marginTop: 50,
-		justifyContent: 'space-around'
+		marginTop: 30
 	},
 	input: {
 		height: 50,
-		backgroundColor: 'rgba(255,255,255,0.2)',
+		backgroundColor: 'rgba(255,255,255,0.5)',
 		marginBottom: 10,
-		color: '#FFF',
+		color: 'rgba(0,0,0,0.8)',
 		paddingHorizontal: 10,
-		borderRadius: 2
+		borderRadius: 2,
+		borderColor: '#f5a623',
+		borderRadius: 2,
+		borderWidth: 2,
+		fontWeight: 'bold'
 	},
 	logo: {
 		width: '100%',
@@ -220,7 +229,7 @@ const styles = StyleSheet.create({
 		resizeMode: 'contain'
 	},
 	text: {
-		color: '#FFF',
+		color: '#000000',
 		fontWeight: 'bold'
 	},
 	buttonContainer: {
@@ -233,7 +242,6 @@ const styles = StyleSheet.create({
 		shadowRadius: 5,
 		shadowOpacity: 1.0
 	},
-
 	buttonText: {
 		textAlign: 'center',
 		color: '#FFFFFF',
@@ -242,7 +250,7 @@ const styles = StyleSheet.create({
 	pickerText: {
 		height: 50,
 		width: '100%',
-		color: '#FFF'
+		color: '#000000'
 	},
 	title: {
 		color: '#f5a623',

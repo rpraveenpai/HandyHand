@@ -5,7 +5,6 @@ import { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { IntentLauncherAndroid } from 'expo';
 import { CurrentLocationButton } from '../components/CurrentLocationButton';
 import { BookButton } from '../components/BookButton';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 export default class LocationScreen extends React.Component {
 	static navigationOptions = {
