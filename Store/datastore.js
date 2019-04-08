@@ -28,13 +28,14 @@ class DataStore {
 	order_details = {
 		orderID: '',
 		customerID: '',
-		HandyID: '',
-		Cname: '',
-		Hname: '',
+		handyID: '',
+		cname: '',
+		hname: '',
 		service: '',
 		serviceInfo: '',
-		longitude: '',
-		latitude: '',
+		//longitude: '',
+		//latitude: '',
+		region: '',
 		phone: ''
 	};
 	//updating username for session.
@@ -95,14 +96,14 @@ class DataStore {
 	updateCOID(customerID) {
 		this.order_details.customerID = customerID;
 	}
-	updateOCName(Cname) {
-		this.order_details.Cname = Cname;
+	updateOCName(cname) {
+		this.order_details.cname = cname;
 	}
-	updateOHName(Hname) {
-		this.order_details.Hname = Hname;
+	updateOHName(hname) {
+		this.order_details.hname = hname;
 	}
-	updateHOID(HandyID) {
-		this.order_details.HandyID = HandyID;
+	updateHOID(handyID) {
+		this.order_details.handyID = handyID;
 	}
 	updateOService(service) {
 		this.order_details.service = service;
@@ -110,12 +111,17 @@ class DataStore {
 	updateSerInfo(serviceInfo) {
 		this.order_details.serviceInfo = serviceInfo;
 	}
-	updateLongitude(longitude) {
+
+	/*	updateLongitude(longitude) {
 		this.order_details.longitude = longitude;
 	}
 	updateLatitude(latitude) {
 		this.order_details.latitude = latitude;
+	}*/
+	updateRegion(region) {
+		this.order_details.region = region;
 	}
+
 	updateOPhone(phone) {
 		this.order_details.phone = phone;
 	}
@@ -140,8 +146,9 @@ decorate(DataStore, {
 
 	updateCOID: action,
 	updateHOID: action,
-	updateLatitude: action,
-	updateLongitude: action,
+	updateRegion: action,
+	updateOCName: action,
+	updateOHName: action,
 	updateOPhone: action,
 	updateOService: action,
 	updateSerInfo: action,

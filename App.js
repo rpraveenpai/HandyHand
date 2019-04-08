@@ -163,7 +163,7 @@ const AppNavigator = createStackNavigator(
 				header: null
 			})
 		},
-		COrders: {
+		Corder: {
 			screen: CorderScreen,
 			navigationOptions: () => {
 				header: null;
@@ -171,8 +171,9 @@ const AppNavigator = createStackNavigator(
 		}
 	},
 	{
-		initialRouteName: 'Profile'
+		initialRouteName: 'Address'
 	}
 );
 
 const AppContainer = createAppContainer(AppNavigator);
+``;

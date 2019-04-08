@@ -5,9 +5,16 @@ import { Ionicons } from '@expo/vector-icons';
 const WIDTH = Dimensions.get('window').width;
 
 export const BookButton = function(props) {
+	const cb = props.cb ? props.cb : () => console.log('Callback function not passed to CurrentLocatiion Button');
+
 	return (
-		<TouchableOpacity onPress={() => {}} style={styles.container}>
-			<Text>Book</Text>
+		<TouchableOpacity
+			onPress={() => {
+				cb();
+			}}
+			style={styles.container}
+		>
+			<Text style={styles.Text}>Book</Text>
 		</TouchableOpacity>
 	);
 };
@@ -30,5 +37,10 @@ const styles = StyleSheet.create({
 		shadowRadius: 5,
 		shadowOpacity: 1.0,
 		justifyContent: 'center'
+	},
+	Text: {
+		fontSize: 15,
+		fontWeight: 'bold',
+		color: 'white'
 	}
 });

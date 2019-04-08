@@ -6,11 +6,14 @@ import {
 	Image,
 	ImageBackground,
 	KeyboardAvoidingView,
+	Alert,
 	TextInput,
 	TouchableOpacity
 } from 'react-native';
+import { MapView, Permissions, Location } from 'expo';
 import DataStore from '../Store/datastore';
 import { observer } from 'mobx-react';
+import { IntentLauncherAndroid } from 'expo';
 
 @observer
 export default class AddressScreen extends React.Component {
@@ -21,15 +24,35 @@ export default class AddressScreen extends React.Component {
 		super(props);
 		this.state = {
 			name: DataStore.cust_details.name,
-			phone: DataStore.cust_details.phone,
-			customerID: DataStore.cust_details.customerID
+			phone: DataStore.cust_details.phone
 		};
 	}
 
 	_next = () => {
 		DataStore.updateOPhone(this.state.phone);
-		DataStore.updateCName(this.state.name);
+		DataStore.updateOCName(this.state.name);
 		this.props.navigation.navigate('Location');
+	};
+
+	_check = async () => {
+		let providers = await Location.getProviderStatusAsync();
+
+		if (providers.locationServicesEnabled == true) {
+			this._next();
+		} else {
+			Alert.alert('Location Services must be on to proceed further', 'Please turn on location', [
+				{
+					text: 'Cancel',
+					onPress: () => this.props.navigation.navigate('Address'),
+					style: 'cancel'
+				},
+				{
+					text: 'OK',
+					onPress: () =>
+						IntentLauncherAndroid.startActivityAsync(IntentLauncherAndroid.ACTION_LOCATION_SOURCE_SETTINGS)
+				}
+			]);
+		}
 	};
 
 	render() {
@@ -64,7 +87,7 @@ export default class AddressScreen extends React.Component {
 						<TouchableOpacity
 							style={styles.buttonContainer}
 							onPress={() => {
-								this._next();
+								this._check();
 							}}
 						>
 							<Text style={styles.buttonText}>Next</Text>

@@ -27,8 +27,7 @@ export default class HandymanSignupScreen extends React.Component {
 			password: '',
 			phone: '',
 			service: '',
-			experience: '',
-			fontLoaded: true
+			experience: ''
 		};
 	}
 
