@@ -18,38 +18,32 @@ export default class HomeScreen extends Component {
 	}
 
 	_electrician = () => {
-		this.setState({ service: 'Electrician' });
-		DataStore.updateOService(this.state.service);
+		DataStore.updateOService('Electrician');
 		this.props.navigation.navigate('Electrician');
 	};
 
 	_plumber = () => {
-		this.setState({ service: 'Plumber' });
-		DataStore.updateOService(this.state.service);
+		DataStore.updateOService('Plumber');
 		this.props.navigation.navigate('Plumber');
 	};
 
 	_gardener = () => {
-		this.setState({ service: 'Gardener' });
-		DataStore.updateOService(this.state.service);
+		DataStore.updateOService('Gardener');
 		this.props.navigation.navigate('Gardener');
 	};
 
 	_painter = () => {
-		this.setState({ service: 'Painter' });
-		DataStore.updateOService(this.state.service);
+		DataStore.updateOService('Painter');
 		this.props.navigation.navigate('Painter');
 	};
 
 	_carpenter = () => {
-		this.setState({ service: 'Carpenter' });
-		DataStore.updateOService(this.state.service);
+		DataStore.updateOService('Carpenter');
 		this.props.navigation.navigate('Carpenter');
 	};
 
 	_cleaner = () => {
-		this.setState({ service: 'Cleaner' });
-		DataStore.updateOService(this.state.service);
+		DataStore.updateOService('Cleaner');
 		this.props.navigation.navigate('Cleaner');
 	};
 

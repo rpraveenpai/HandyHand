@@ -157,7 +157,7 @@ decorate(DataStore, {
 	updateHExp: action,
 	updateHService: action,
 
-	updateCOID: action,
+	updateOCID: action,
 	updateHOID: action,
 	updateLatitude: action,
 	updateLatitudeDelta: action,
