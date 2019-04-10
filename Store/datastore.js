@@ -32,11 +32,10 @@ class DataStore {
 		cname: '',
 		hname: '',
 		service: '',
-		serviceInfo: '',
-		//longitude: '',
-		//latitude: '',
+		serviceInfo: '',		
 		region: '',
-		phone: ''
+		phone: '',
+		date:''
 	};
 	//updating username for session.
 	updateUser(username) {
@@ -111,13 +110,10 @@ class DataStore {
 	updateSerInfo(serviceInfo) {
 		this.order_details.serviceInfo = serviceInfo;
 	}
-
-	/*	updateLongitude(longitude) {
-		this.order_details.longitude = longitude;
+	updateDate(date) {
+		this.order_details.date = date;
 	}
-	updateLatitude(latitude) {
-		this.order_details.latitude = latitude;
-	}*/
+	
 	updateRegion(region) {
 		this.order_details.region = region;
 	}
@@ -152,7 +148,8 @@ decorate(DataStore, {
 	updateOPhone: action,
 	updateOService: action,
 	updateSerInfo: action,
-	updateOrderID: action
+	updateOrderID: action,
+	updateDate:action
 });
 
 export default new DataStore();
