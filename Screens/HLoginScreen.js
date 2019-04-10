@@ -35,8 +35,8 @@ export default class HLoginScreen extends React.Component {
 		var self = this;
 		axios
 			.post('http://handyhand.herokuapp.com/h_login.php/', {
-				username: this.state.username,
-				password: this.state.password
+				username: self.state.username,
+				password: self.state.password
 			})
 			.then(function(response) {
 				if (response.data.res == 'success') {

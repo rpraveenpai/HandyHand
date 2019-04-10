@@ -41,7 +41,6 @@ export default class LocationScreen extends React.Component {
 			longitudeDelta: 0.0421
 		};
 		this.setState({ region: region });
-		alert(this.state.service);
 	};
 
 	centerMap() {
@@ -58,30 +57,29 @@ export default class LocationScreen extends React.Component {
 		var self = this;
 		axios
 			.post('http://handyhand.herokuapp.com/order_registration.php/', {
-				customerID: this.state.customerID,
-				name: this.state.name,
-				service: this.state.service,
-				serviceInfo: this.state.serviceInfo,
-				phone: this.state.phone,
-				latitude: this.state.region.latitude,
-				longitude: this.state.region.longitude,
-				latitudeDelta: this.state.region.latitudeDelta,
-				longitudeDelta: this.state.region.longitudeDelta
+				customerID: self.state.customerID,
+				name: self.state.name,
+				service: self.state.service,
+				serviceInfo: self.state.serviceInfo,
+				phone: self.state.phone,
+				latitude: self.state.region.latitude,
+				longitude: self.state.region.longitude,
+				latitudeDelta: self.state.region.latitudeDelta,
+				longitudeDelta: self.state.region.longitudeDelta
 			})
 			.then(function(response) {
-				alert(JSON.stringify(response.data));
 				if (response.data.res == 'success') {
 					alert('Order Successful');
-					DataStore.updateOCID(this.state.customerID);
-					DataStore.updateOCName(this.state.name);
-					DataStore.updateOPhone(this.state.phone);
-					DataStore.updateOService(this.state.service);
-					DataStore.updateSerInfo(this.state.serviceInfo);
+					DataStore.updateOCID(self.state.customerID);
+					DataStore.updateOCName(self.state.name);
+					DataStore.updateOPhone(self.state.phone);
+					DataStore.updateOService(self.state.service);
+					DataStore.updateSerInfo(self.state.serviceInfo);
 					DataStore.updateOrderID(response.data.orderID);
-					DataStore.updateLatitude(this.state.region.latitude);
-					DataStore.updateLongitude(this.state.region.longitude);
-					DataStore.updateLatitudeDelta(this.state.region.latitudeDelta);
-					DataStore.updateLongitudeDelta(this.state.region.longitudeDelta);
+					DataStore.updateLatitude(self.state.region.latitude);
+					DataStore.updateLongitude(self.state.region.longitude);
+					DataStore.updateLatitudeDelta(self.state.region.latitudeDelta);
+					DataStore.updateLongitudeDelta(self.state.region.longitudeDelta);
 					self.props.navigation.navigate('Corder');
 				} else {
 					alert(response.data.res);
@@ -90,10 +88,6 @@ export default class LocationScreen extends React.Component {
 			.catch(function(error) {
 				alert(error);
 			});
-		/*alert('Your Order has been Booked');
-		DataStore.updateRegion(this.state.region);
-		alert(JSON.stringify(DataStore.order_details.region));
-		this.props.navigation.navigate('Home');*/
 	}
 
 	render() {

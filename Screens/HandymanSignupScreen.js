@@ -36,13 +36,13 @@ export default class HandymanSignupScreen extends React.Component {
 		var self = this;
 		axios
 			.post('http://handyhand.herokuapp.com/handy_registration.php/', {
-				username: this.state.username,
-				password: this.state.password,
-				name: this.state.name,
-				phone: this.state.phone,
-				email: this.state.email,
-				experience: this.state.experience,
-				service: this.state.service
+				username: self.state.username,
+				password: self.state.password,
+				name: self.state.name,
+				phone: self.state.phone,
+				email: self.state.email,
+				experience: self.state.experience,
+				service: self.state.service
 			})
 			.then(function(response) {
 				if (response.data.res == 'success') {

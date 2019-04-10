@@ -32,11 +32,11 @@ export default class UserSignupScreen extends React.Component {
 		var self = this;
 		axios
 			.post('http://handyhand.herokuapp.com/cust_registration.php/', {
-				username: this.state.username,
-				password: this.state.password,
-				name: this.state.name,
-				phone: this.state.phone,
-				email: this.state.email
+				username: self.state.username,
+				password: self.state.password,
+				name: self.state.name,
+				phone: self.state.phone,
+				email: self.state.email
 			})
 			.then(function(response) {
 				if (response.data.res == 'success') {
