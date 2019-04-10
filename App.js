@@ -171,9 +171,8 @@ const AppNavigator = createStackNavigator(
 		}
 	},
 	{
-		initialRouteName: 'Address'
+		initialRouteName: 'Selection'
 	}
 );
 
 const AppContainer = createAppContainer(AppNavigator);
-``;

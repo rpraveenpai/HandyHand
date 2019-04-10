@@ -33,11 +33,14 @@ class DataStore {
 		hname: '',
 		service: '',
 		serviceInfo: '',
-		//longitude: '',
-		//latitude: '',
-		region: '',
+		longitude: '',
+		latitude: '',
+		latitudeDelta: '',
+		longitudeDelta: '',
+		orderdate: '',
 		phone: ''
 	};
+
 	//updating username for session.
 	updateUser(username) {
 		this.session.username = username;
@@ -112,16 +115,23 @@ class DataStore {
 		this.order_details.serviceInfo = serviceInfo;
 	}
 
-	/*	updateLongitude(longitude) {
+	updateLongitude(longitude) {
 		this.order_details.longitude = longitude;
 	}
 	updateLatitude(latitude) {
 		this.order_details.latitude = latitude;
-	}*/
-	updateRegion(region) {
-		this.order_details.region = region;
+	}
+	updateLatitudeDelta(latitudeDelta) {
+		this.order_details.latitudeDelta = latitudeDelta;
 	}
 
+	updateLongitudeDelta(longitudeDelta) {
+		this.order_details.longitudeDelta = longitudeDelta;
+	}
+
+	updateDate(orderdate) {
+		this.order_details.orderdate = orderdate;
+	}
 	updateOPhone(phone) {
 		this.order_details.phone = phone;
 	}
@@ -129,6 +139,9 @@ class DataStore {
 
 decorate(DataStore, {
 	session: observable,
+	handy_details: observable,
+	cust_details: observable,
+	order_details: observable,
 	updateUser: action,
 	updateCUser: action,
 	updateCName: action,
@@ -146,13 +159,17 @@ decorate(DataStore, {
 
 	updateCOID: action,
 	updateHOID: action,
-	updateRegion: action,
+	updateLatitude: action,
+	updateLatitudeDelta: action,
+	updateLongitude: action,
+	updateLongitudeDelta: action,
 	updateOCName: action,
 	updateOHName: action,
 	updateOPhone: action,
 	updateOService: action,
 	updateSerInfo: action,
-	updateOrderID: action
+	updateOrderID: action,
+	updateDate: action
 });
 
 export default new DataStore();

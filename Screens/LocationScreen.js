@@ -6,6 +6,7 @@ import { CurrentLocationButton } from '../components/CurrentLocationButton';
 import { BookButton } from '../components/BookButton';
 import DataStore from '../Store/datastore';
 import { observer } from 'mobx-react';
+import axios from 'axios';
 
 @observer
 export default class LocationScreen extends React.Component {
@@ -40,6 +41,7 @@ export default class LocationScreen extends React.Component {
 			longitudeDelta: 0.0421
 		};
 		this.setState({ region: region });
+		alert(this.state.service);
 	};
 
 	centerMap() {
@@ -57,13 +59,17 @@ export default class LocationScreen extends React.Component {
 		axios
 			.post('http://handyhand.herokuapp.com/order_registration.php/', {
 				customerID: this.state.customerID,
-				region: this.state.region,
 				name: this.state.name,
-				phone: this.state.phone,
 				service: this.state.service,
-				serviceInfo: this.state.serviceInfo
+				serviceInfo: this.state.serviceInfo,
+				phone: this.state.phone,
+				latitude: this.state.region.latitude,
+				longitude: this.state.region.longitude,
+				latitudeDelta: this.state.region.latitudeDelta,
+				longitudeDelta: this.state.region.longitudeDelta
 			})
 			.then(function(response) {
+				alert(JSON.stringify(response.data));
 				if (response.data.res == 'success') {
 					alert('Order Successful');
 					DataStore.updateOCID(this.state.customerID);
@@ -72,7 +78,10 @@ export default class LocationScreen extends React.Component {
 					DataStore.updateOService(this.state.service);
 					DataStore.updateSerInfo(this.state.serviceInfo);
 					DataStore.updateOrderID(response.data.orderID);
-					DataStore.updateRegion(this.state.region);
+					DataStore.updateLatitude(this.state.region.latitude);
+					DataStore.updateLongitude(this.state.region.longitude);
+					DataStore.updateLatitudeDelta(this.state.region.latitudeDelta);
+					DataStore.updateLongitudeDelta(this.state.region.longitudeDelta);
 					self.props.navigation.navigate('Corder');
 				} else {
 					alert(response.data.res);
