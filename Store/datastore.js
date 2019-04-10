@@ -93,7 +93,7 @@ class DataStore {
 	updateOrderID(orderID) {
 		this.order_details.orderID = orderID;
 	}
-	updateCOID(customerID) {
+	updateOCID(customerID) {
 		this.order_details.customerID = customerID;
 	}
 	updateOCName(cname) {
