@@ -171,7 +171,7 @@ const AppNavigator = createStackNavigator(
 		}
 	},
 	{
-		initialRouteName: 'OrderSuccess'
+		initialRouteName: 'Selection'
 	}
 );
 
