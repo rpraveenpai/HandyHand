@@ -80,7 +80,7 @@ export default class LocationScreen extends React.Component {
 					DataStore.updateLongitude(self.state.region.longitude);
 					DataStore.updateLatitudeDelta(self.state.region.latitudeDelta);
 					DataStore.updateLongitudeDelta(self.state.region.longitudeDelta);
-					self.props.navigation.navigate('Corder');
+					self.props.navigation.navigate('OrderSuccess');
 				} else {
 					alert(response.data.res);
 				}

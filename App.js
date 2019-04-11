@@ -17,7 +17,7 @@ import SettingsScreen from './Screens/SettingsScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import AddressScreen from './Screens/AddressScreen';
 import LocationScreen from './Screens/LocationScreen';
-import CorderScreen from './Screens/CorderScreen';
+import OrderSuccess from './Screens/OrderSucess';
 
 export default class App extends React.Component {
 	render() {
@@ -163,15 +163,15 @@ const AppNavigator = createStackNavigator(
 				header: null
 			})
 		},
-		Corder: {
-			screen: CorderScreen,
+		OrderSuccess: {
+			screen: OrderSuccess,
 			navigationOptions: () => {
 				header: null;
 			}
 		}
 	},
 	{
-		initialRouteName: 'Selection'
+		initialRouteName: 'OrderSuccess'
 	}
 );
 
