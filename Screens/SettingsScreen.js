@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, Image, StyleSheet, TouchableOpacity, ImageBackground, Dimensions } from 'react-native';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
+import axios from 'axios';
 
 export default class SettingsScreen extends Component {
 	static navigationOptions = {
@@ -10,6 +10,22 @@ export default class SettingsScreen extends Component {
 	constructor(props) {
 		super(props);
 	}
+
+	_logout = () => {
+		var self = this;
+		axios
+			.post('http://handyhand.herokuapp.com/logout.php/')
+			.then(function(response) {
+				if (response.data == 'Logged Out') {
+					self.props.navigation.navigate('Selection');
+				} else {
+					alert('Failed');
+				}
+			})
+			.catch(function(error) {
+				alert(error);
+			});
+	};
 
 	render() {
 		return (
@@ -28,7 +44,12 @@ export default class SettingsScreen extends Component {
 					<TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Corder')}>
 						<Text style={styles.menutext}>Orders</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Home')}>
+					<TouchableOpacity
+						style={styles.button}
+						onPress={() => {
+							this._logout();
+						}}
+					>
 						<Text style={styles.menutext}>Logout</Text>
 					</TouchableOpacity>
 				</View>

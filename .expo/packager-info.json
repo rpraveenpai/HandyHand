@@ -3,7 +3,7 @@
   "packagerPid": null,
   "devToolsPort": 19002,
   "expoServerPort": null,
-  "expoServerNgrokUrl": "https://d2-n4d.rpraveenpai.handyhand.exp.direct",
-  "packagerNgrokUrl": "https://packager.d2-n4d.rpraveenpai.handyhand.exp.direct",
-  "ngrokPid": 10028
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
