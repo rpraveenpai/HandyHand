@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, ToastAndroid } from 'react-native';
 import { MapView, Permissions, Location } from 'expo';
 import { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { CurrentLocationButton } from '../components/CurrentLocationButton';
@@ -69,7 +69,7 @@ export default class LocationScreen extends React.Component {
 			})
 			.then(function(response) {
 				if (response.data.res == 'success') {
-					alert('Order Successful');
+					ToastAndroid.show('Order Registered', ToastAndroid.SHORT);
 					DataStore.updateOCID(self.state.customerID);
 					DataStore.updateOCName(self.state.name);
 					DataStore.updateOPhone(self.state.phone);

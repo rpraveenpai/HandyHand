@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View, Image, StyleSheet, TouchableOpacity, ImageBackground, Dimensions } from 'react-native';
 import axios from 'axios';
+import DataStore from '../Store/datastore';
+import { observer } from 'mobx-react';
 
 export default class SettingsScreen extends Component {
 	static navigationOptions = {
@@ -41,7 +43,7 @@ export default class SettingsScreen extends Component {
 					<TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Profile')}>
 						<Text style={styles.menutext}>Profile</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Corder')}>
+					<TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('COrder')}>
 						<Text style={styles.menutext}>Orders</Text>
 					</TouchableOpacity>
 					<TouchableOpacity

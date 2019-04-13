@@ -7,7 +7,8 @@ import {
 	ImageBackground,
 	KeyboardAvoidingView,
 	TextInput,
-	TouchableOpacity
+	TouchableOpacity,
+	ToastAndroid
 } from 'react-native';
 import DataStore from '../Store/datastore';
 import { observer } from 'mobx-react';
@@ -39,7 +40,7 @@ export default class CLoginScreen extends React.Component {
 			})
 			.then(function(response) {
 				if (response.data.res == 'success') {
-					alert('Login Sucessful');
+					ToastAndroid.show('Login Successful', ToastAndroid.SHORT);
 					DataStore.updateUser(self.state.username);
 					DataStore.updateCID(response.data.Customer_ID);
 					DataStore.updateCName(response.data.name);

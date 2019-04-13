@@ -18,6 +18,7 @@ import ProfileScreen from './Screens/ProfileScreen';
 import AddressScreen from './Screens/AddressScreen';
 import LocationScreen from './Screens/LocationScreen';
 import OrderSuccess from './Screens/OrderSucess';
+import COrderScreen from './Screens/COrderScreen';
 
 export default class App extends React.Component {
 	render() {
@@ -168,6 +169,18 @@ const AppNavigator = createStackNavigator(
 			navigationOptions: () => {
 				header: null;
 			}
+		},
+
+		COrder: {
+			screen: COrderScreen,
+			navigationOptions: () => ({
+				headerStyle: {
+					backgroundColor: '#f5a623'
+				},
+				headerTitleStyle: {
+					fontWeight: 'bold'
+				}
+			})
 		}
 	},
 	{
