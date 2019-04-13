@@ -5,6 +5,9 @@ class DataStore {
 		username: ''
 	};
 
+	order = {
+		corder: undefined
+	};
 	cust_details = {
 		customerID: '',
 		username: '',
@@ -135,6 +138,10 @@ class DataStore {
 	updateOPhone(phone) {
 		this.order_details.phone = phone;
 	}
+
+	updateCorder(corder) {
+		this.order.corder = corder;
+	}
 }
 
 decorate(DataStore, {
@@ -169,7 +176,9 @@ decorate(DataStore, {
 	updateOService: action,
 	updateSerInfo: action,
 	updateOrderID: action,
-	updateDate: action
+	updateDate: action,
+
+	updateCorder: action
 });
 
 export default new DataStore();

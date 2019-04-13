@@ -11,7 +11,27 @@ export default class SettingsScreen extends Component {
 
 	constructor(props) {
 		super(props);
+		this.state = {
+			//isLoading: true,
+			customerID: DataStore.cust_details.customerID
+		};
 	}
+
+	_getData = () => {
+		var self = this;
+		axios
+			.post('http://handyhand.herokuapp.com/customerorder.php/', {
+				customerID: self.state.customerID
+			})
+			.then(function(response) {
+				DataStore.updateCorder(response.data);
+				self.props.navigation.navigate('COrder');
+				//alert(self.state.data);
+			})
+			.catch(function(error) {
+				alert(error);
+			});
+	};
 
 	_logout = () => {
 		var self = this;
@@ -43,7 +63,7 @@ export default class SettingsScreen extends Component {
 					<TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Profile')}>
 						<Text style={styles.menutext}>Profile</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('COrder')}>
+					<TouchableOpacity style={styles.button} onPress={() => this._getData()}>
 						<Text style={styles.menutext}>Orders</Text>
 					</TouchableOpacity>
 					<TouchableOpacity
