@@ -6,7 +6,8 @@ class DataStore {
 	};
 
 	order = {
-		corder: []
+		corder: [],
+		horder: []
 	};
 	cust_details = {
 		customerID: '',
@@ -42,6 +43,13 @@ class DataStore {
 		longitudeDelta: '',
 		orderdate: '',
 		phone: ''
+	};
+
+	HandyLocation = {
+		longitude: '',
+		latitude: '',
+		latitudeDelta: '',
+		longitudeDelta: ''
 	};
 
 	//updating username for session.
@@ -142,6 +150,24 @@ class DataStore {
 	updateCorder(corder) {
 		this.order.corder = corder;
 	}
+
+	updateHorder(horder) {
+		this.order.horder = horder;
+	}
+
+	updateHLongitude(longitude) {
+		this.HandyLocation.longitude = longitude;
+	}
+	updateHLatitude(latitude) {
+		this.HandyLocation.latitude = latitude;
+	}
+	updateHLatitudeDelta(latitudeDelta) {
+		this.HandyLocation.latitudeDelta = latitudeDelta;
+	}
+
+	updateHLongitudeDelta(longitudeDelta) {
+		this.HandyLocation.longitudeDelta = longitudeDelta;
+	}
 }
 
 decorate(DataStore, {
@@ -149,6 +175,10 @@ decorate(DataStore, {
 	handy_details: observable,
 	cust_details: observable,
 	order_details: observable,
+	order: observable,
+	HandyLocation: observable,
+
+	updateCID: action,
 	updateUser: action,
 	updateCUser: action,
 	updateCName: action,
@@ -156,6 +186,7 @@ decorate(DataStore, {
 	updateCPhone: action,
 	updateCPass: action,
 
+	updateHID: action,
 	updateHUser: action,
 	updateHName: action,
 	updateHEmail: action,
@@ -178,7 +209,12 @@ decorate(DataStore, {
 	updateOrderID: action,
 	updateDate: action,
 
-	updateCorder: action
+	updateCorder: action,
+	updateHorder: action,
+	updateHLongitude: action,
+	updateHLatitude: action,
+	updateHLatitudeDelta: action,
+	updateHLongitudeDelta: action
 });
 
 export default new DataStore();

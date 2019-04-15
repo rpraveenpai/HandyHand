@@ -19,6 +19,11 @@ import AddressScreen from './Screens/AddressScreen';
 import LocationScreen from './Screens/LocationScreen';
 import OrderSuccess from './Screens/OrderSucess';
 import COrderScreen from './Screens/COrderScreen';
+import HandyHomeScreen from './Screens/HandyHomeScreen';
+import HSettingsScreen from './Screens/HSettingsScreen';
+import HOrderScreen from './Screens/HOrderScreen';
+import HProfileScreen from './Screens/HProfileScreen';
+import HLocationScreen from './Screens/HLocationScreen';
 
 export default class App extends React.Component {
 	render() {
@@ -164,11 +169,12 @@ const AppNavigator = createStackNavigator(
 				header: null
 			})
 		},
+
 		OrderSuccess: {
 			screen: OrderSuccess,
-			navigationOptions: () => {
-				header: null;
-			}
+			navigationOptions: () => ({
+				header: null
+			})
 		},
 
 		COrder: {
@@ -180,6 +186,46 @@ const AppNavigator = createStackNavigator(
 				headerTitleStyle: {
 					fontWeight: 'bold'
 				}
+			})
+		},
+		HandyHome: {
+			screen: HandyHomeScreen,
+			navigationOptions: () => ({
+				header: null
+			})
+		},
+		HSettings: {
+			screen: HSettingsScreen,
+			navigationOptions: () => ({
+				header: null
+			})
+		},
+		HOrder: {
+			screen: HOrderScreen,
+			navigationOptions: () => ({
+				headerStyle: {
+					backgroundColor: '#f5a623'
+				},
+				headerTitleStyle: {
+					fontWeight: 'bold'
+				}
+			})
+		},
+		HProfile: {
+			screen: HProfileScreen,
+			navigationOptions: () => ({
+				headerStyle: {
+					backgroundColor: '#f5a623'
+				},
+				headerTitleStyle: {
+					fontWeight: 'bold'
+				}
+			})
+		},
+		HLocation: {
+			screen: HLocationScreen,
+			navigationOptions: () => ({
+				header: null
 			})
 		}
 	},

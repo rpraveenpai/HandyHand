@@ -5,7 +5,7 @@ import DataStore from '../Store/datastore';
 import { observer } from 'mobx-react';
 
 @observer
-export default class SettingsScreen extends Component {
+export default class HSettingsScreen extends Component {
 	static navigationOptions = {
 		title: 'Settings'
 	};
@@ -13,25 +13,10 @@ export default class SettingsScreen extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			customerID: DataStore.cust_details.customerID
+			//isLoading: true,
+			HandyID: DataStore.handy_details.HandyID
 		};
 	}
-
-	_getData = () => {
-		var self = this;
-		axios
-			.post('http://handyhand.herokuapp.com/customerorder.php/', {
-				customerID: self.state.customerID
-			})
-			.then(function(response) {
-				DataStore.updateCorder(JSON.parse(response.data));
-				self.props.navigation.navigate('COrder');
-				//alert(self.state.data);
-			})
-			.catch(function(error) {
-				alert(error);
-			});
-	};
 
 	_logout = () => {
 		var self = this;
@@ -57,14 +42,11 @@ export default class SettingsScreen extends Component {
 						<Image style={styles.logo} source={require('../assets/icons/logo.png')} />
 					</View>
 
-					<TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Home')}>
+					<TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('HandyHome')}>
 						<Text style={styles.menutext}>Home</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Profile')}>
+					<TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('HProfile')}>
 						<Text style={styles.menutext}>Profile</Text>
-					</TouchableOpacity>
-					<TouchableOpacity style={styles.button} onPress={() => this._getData()}>
-						<Text style={styles.menutext}>Orders</Text>
 					</TouchableOpacity>
 					<TouchableOpacity
 						style={styles.button}

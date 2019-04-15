@@ -51,8 +51,6 @@ export default class LocationScreen extends React.Component {
 			longitudeDelta,
 			latitudeDelta
 		});
-		alert(this.state.region.latitude);
-		alert(this.state.region.longitude);
 	}
 
 	_book() {

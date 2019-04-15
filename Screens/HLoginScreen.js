@@ -49,7 +49,7 @@ export default class HLoginScreen extends React.Component {
 					DataStore.updateHPass(response.data.password);
 					DataStore.updateHService(response.data.service);
 					DataStore.updateHExp(response.data.experience);
-					self.props.navigation.navigate('Home');
+					self.props.navigation.navigate('HandyHome');
 				} else {
 					alert('Login Failed');
 				}

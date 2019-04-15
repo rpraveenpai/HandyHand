@@ -12,7 +12,7 @@ import DataStore from '../Store/datastore';
 import { observer } from 'mobx-react';
 
 @observer
-export default class ProfileScreen extends React.Component {
+export default class HProfileScreen extends React.Component {
 	static navigationOptions = {
 		title: 'Profile'
 	};
@@ -20,12 +20,12 @@ export default class ProfileScreen extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			customerID: DataStore.cust_details.customerID,
-			name: DataStore.cust_details.name,
-			email: DataStore.cust_details.email,
+			HandyID: DataStore.handy_details.HandyID,
+			name: DataStore.handy_details.name,
+			email: DataStore.handy_details.email,
 			username: DataStore.session.username,
-			password: DataStore.cust_details.password,
-			phone: DataStore.cust_details.phone
+			service: DataStore.handy_details.service,
+			phone: DataStore.handy_details.phone
 		};
 	}
 
@@ -67,14 +67,13 @@ export default class ProfileScreen extends React.Component {
 								value={this.state.email}
 								editable={false}
 							/>
-							<Text style={styles.textstyle}>Password</Text>
+							<Text style={styles.textstyle}>Service</Text>
 							<TextInput
-								placeholder="password"
+								placeholder="service"
 								placeholderTextColor="rgba(0,0,0,0.5)"
 								returnKeyType="next"
-								secureTextEntry
 								style={styles.input}
-								value={this.state.password}
+								value={this.state.service}
 								editable={false}
 							/>
 
@@ -91,7 +90,7 @@ export default class ProfileScreen extends React.Component {
 
 							<TouchableOpacity
 								style={styles.buttonContainer}
-								onPress={() => this.props.navigation.navigate('Settings')}
+								onPress={() => this.props.navigation.navigate('HSettings')}
 							>
 								<Text style={styles.buttonText}>Back</Text>
 							</TouchableOpacity>
