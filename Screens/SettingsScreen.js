@@ -24,7 +24,7 @@ export default class SettingsScreen extends Component {
 				customerID: self.state.customerID
 			})
 			.then(function(response) {
-				DataStore.updateCorder(response.data);
+				DataStore.updateCorder(JSON.parse(response.data));
 				self.props.navigation.navigate('COrder');
 				//alert(self.state.data);
 			})

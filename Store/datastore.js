@@ -6,7 +6,7 @@ class DataStore {
 	};
 
 	order = {
-		corder: undefined
+		corder: []
 	};
 	cust_details = {
 		customerID: '',

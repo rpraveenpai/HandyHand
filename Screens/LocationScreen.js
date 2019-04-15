@@ -51,21 +51,23 @@ export default class LocationScreen extends React.Component {
 			longitudeDelta,
 			latitudeDelta
 		});
+		alert(this.state.region.latitude);
+		alert(this.state.region.longitude);
 	}
 
 	_book() {
 		var self = this;
 		axios
 			.post('http://handyhand.herokuapp.com/order_registration.php/', {
-				customerID: self.state.customerID,
-				name: self.state.name,
-				service: self.state.service,
-				serviceInfo: self.state.serviceInfo,
-				phone: self.state.phone,
-				latitude: self.state.region.latitude,
-				longitude: self.state.region.longitude,
-				latitudeDelta: self.state.region.latitudeDelta,
-				longitudeDelta: self.state.region.longitudeDelta
+				customerID: this.state.customerID,
+				name: this.state.name,
+				service: this.state.service,
+				serviceInfo: this.state.serviceInfo,
+				phone: this.state.phone,
+				latitude: this.state.region.latitude,
+				longitude: this.state.region.longitude,
+				latitudeDelta: this.state.region.latitudeDelta,
+				longitudeDelta: this.state.region.longitudeDelta
 			})
 			.then(function(response) {
 				if (response.data.res == 'success') {
