@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ImageBackground, Image, TouchableOpacity } from 'react-native';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
+import { View, Text, StyleSheet, ImageBackground, Image, TouchableOpacity, BackHandler } from 'react-native';
 import DataStore from '../Store/datastore';
 import { observer } from 'mobx-react';
 import { MenuButton } from '../components/MenuButton';
@@ -15,6 +14,19 @@ export default class HomeScreen extends Component {
 		this.state = {
 			service: ''
 		};
+	}
+
+	//Code to disable hardware back button
+	componentDidMount() {
+		BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+	}
+
+	componentWillUnmount() {
+		BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+	}
+
+	handleBackButton() {
+		return true;
 	}
 
 	_electrician = () => {

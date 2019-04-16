@@ -1,5 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ImageBackground, Image } from 'react-native';
+import {
+	StyleSheet,
+	Text,
+	View,
+	TouchableOpacity,
+	ImageBackground,
+	BackHandler,
+	ToastAndroid,
+	Image
+} from 'react-native';
 import { MenuButton } from '../components/MenuButton';
 import axios from 'axios';
 import DataStore from '../Store/datastore';
@@ -10,11 +19,26 @@ export default class SelectionScreen extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			service: DataStore.handy_details.service
+			service: DataStore.handy_details.service,
+			handyid: DataStore.handy_details.handyID
 		};
 	}
 
-	_getData = () => {
+	//Code to disable hardware back button
+	componentDidMount() {
+		BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+	}
+
+	componentWillUnmount() {
+		BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+	}
+
+	handleBackButton() {
+		return true;
+	}
+
+	//function to get orders to display in order page.
+	_getOrderData = () => {
 		var self = this;
 		axios
 			.post('http://handyhand.herokuapp.com/handymanorder.php/', {
@@ -22,7 +46,30 @@ export default class SelectionScreen extends React.Component {
 			})
 			.then(function(response) {
 				DataStore.updateHorder(JSON.parse(response.data));
-				self.props.navigation.navigate('HOrder');
+				if (DataStore.order.horder == null) {
+					ToastAndroid.show('There are no orders.', ToastAndroid.SHORT);
+				} else {
+					self.props.navigation.navigate('HOrder');
+				}
+			})
+			.catch(function(error) {
+				alert(error);
+			});
+	};
+
+	_getAcceptedData = () => {
+		var self = this;
+		axios
+			.post('http://handyhand.herokuapp.com/getaccepted_order.php/', {
+				handyid: self.state.handyid
+			})
+			.then(function(response) {
+				DataStore.updateAcceptedorder(JSON.parse(response.data));
+				if (DataStore.order.acceptedorder == null) {
+					ToastAndroid.show('There are no accepted orders.', ToastAndroid.SHORT);
+				} else {
+					self.props.navigation.navigate('AcceptedOrder');
+				}
 			})
 			.catch(function(error) {
 				alert(error);
@@ -49,7 +96,7 @@ export default class SelectionScreen extends React.Component {
 					<View style={styles.menuItem}>
 						<TouchableOpacity
 							onPress={() => {
-								this._getData();
+								this._getOrderData();
 							}}
 						>
 							<Image source={require('../assets/icons/orders.png')} style={styles.image} />
@@ -58,7 +105,11 @@ export default class SelectionScreen extends React.Component {
 					</View>
 
 					<View style={styles.menuItem}>
-						<TouchableOpacity>
+						<TouchableOpacity
+							onPress={() => {
+								this._getAcceptedData();
+							}}
+						>
 							<Image source={require('../assets/icons/accepted.png')} style={styles.image} />
 						</TouchableOpacity>
 						<Text style={styles.menuText}>Accepted Orders</Text>

@@ -1,5 +1,14 @@
 import React from 'react';
-import { ImageBackground, Alert, Button, StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import {
+	ImageBackground,
+	KeyboardAvoidingView,
+	TextInput,
+	StyleSheet,
+	TouchableOpacity,
+	Text,
+	View,
+	BackHandler
+} from 'react-native';
 import DataStore from '../Store/datastore';
 import { observer } from 'mobx-react';
 import { OpenMapDirections } from 'react-native-navigation-directions';
@@ -23,6 +32,21 @@ export default class App extends React.Component {
 		//this._checkLocation();
 	}
 
+	//Code to disable hardware back button
+	componentDidMount() {
+		BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+	}
+
+	componentWillUnmount() {
+		BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+	}
+
+	handleBackButton() {
+		ToastAndroid.show('Press Proceed to continue', ToastAndroid.SHORT);
+		return true;
+	}
+
+	//fucntion to get current location.
 	_getALocationAsync = async () => {
 		let { status } = await Permissions.askAsync(Permissions.LOCATION);
 		if (status !== 'granted') {
@@ -39,6 +63,7 @@ export default class App extends React.Component {
 		this.setState({ region: region });
 	};
 
+	//function to open google maps and show direction to user location.
 	_callShowDirections = () => {
 		if (this.state.region.longitude == this.state.longitude || this.state.region.latitude == this.state.longitude) {
 			alert("You are at customer's location");
@@ -70,27 +95,79 @@ export default class App extends React.Component {
 
 	render() {
 		return (
-			<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.container}>
-				<View style={styles.container}>
-					<View style={styles.orderContainer}>
-						<Text style={styles.title}>ORDER SUCCESS</Text>
-						<Text style={styles.orderText}>Order ID: {this.state.orderID}</Text>
-						<Text style={styles.orderText}>Name: {this.state.name}</Text>
-						<Text style={styles.orderText}>Phone: {this.state.phone}</Text>
-						<Text style={styles.orderText}>Service Info: {this.state.serInfo}</Text>
-						<Text style={styles.orderText}>Date: {this.state.date}</Text>
+			<KeyboardAvoidingView behavior="padding" style={styles.container}>
+				<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.container}>
+					<View style={styles.container}>
+						<View style={styles.profilecontainer}>
+							<Text style={styles.title}>Order Success</Text>
+							<Text style={styles.textstyle}>Order ID</Text>
+							<TextInput
+								placeholder="orderid"
+								placeholderTextColor="rgba(0,0,0,0.5)"
+								returnKeyType="next"
+								autoCapitalize="none"
+								autoCorrect={false}
+								style={styles.input}
+								value={this.state.orderID}
+								editable={false}
+							/>
+							<Text style={styles.textstyle}>Name</Text>
+							<TextInput
+								placeholder="name"
+								placeholderTextColor="rgba(0,0,0,0.5)"
+								returnKeyType="next"
+								style={styles.input}
+								value={this.state.name}
+								editable={this.state.editable}
+							/>
+							<Text style={styles.textstyle}>Phone</Text>
+							<TextInput
+								placeholder="Phone"
+								placeholderTextColor="rgba(0,0,0,0.5)"
+								returnKeyType="next"
+								autoCapitalize="none"
+								autoCorrect={false}
+								style={styles.input}
+								value={this.state.phone}
+								editable={false}
+							/>
+							<Text style={styles.textstyle}>Service Info</Text>
+							<TextInput
+								placeholder="service"
+								placeholderTextColor="rgba(0,0,0,0.5)"
+								style={styles.input}
+								value={this.state.serInfo}
+								editable={false}
+							/>
 
-						<TouchableOpacity
-							style={styles.buttonContainer}
-							onPress={() => {
-								this._callShowDirections();
-							}}
-						>
-							<Text style={styles.buttonText}>Okay</Text>
-						</TouchableOpacity>
+							<Text style={styles.textstyle}>Date</Text>
+							<TextInput
+								placeholder="date"
+								placeholderTextColor="rgba(0,0,0,0.5)"
+								style={styles.input}
+								value={this.state.date}
+								editable={false}
+							/>
+
+							<TouchableOpacity
+								style={styles.buttonContainer}
+								onPress={() => {
+									this._callShowDirections();
+								}}
+							>
+								<Text style={styles.buttonText}>Proceed</Text>
+							</TouchableOpacity>
+
+							<TouchableOpacity
+								style={styles.buttonContainer}
+								onPress={() => this.props.navigation.navigate('HandyHome')}
+							>
+								<Text style={styles.buttonText}>Back</Text>
+							</TouchableOpacity>
+						</View>
 					</View>
-				</View>
-			</ImageBackground>
+				</ImageBackground>
+			</KeyboardAvoidingView>
 		);
 	}
 }
@@ -99,44 +176,53 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		width: '100%',
-		height: '100%',
+		height: '100%'
+	},
+	profilecontainer: {
+		padding: 20,
+		flexDirection: 'column',
 		justifyContent: 'center'
 	},
-	title: {
-		fontSize: 35,
-		fontWeight: 'bold',
-		padding: 10,
-		color: '#fff'
-	},
-	orderContainer: {
-		flexDirection: 'column',
-		alignItems: 'center',
-		borderRadius: 10,
-		backgroundColor: '#f5a623',
-		marginVertical: 20,
-		marginHorizontal: 30
-	},
-	orderText: {
+	textstyle: {
 		fontSize: 15,
 		fontWeight: 'bold',
-		padding: 5,
-		color: '#000'
+		color: '#2a363b'
 	},
-	buttonContainer: {
-		backgroundColor: '#fff',
-		paddingVertical: 15,
-		width: 60,
-		borderRadius: 2,
+	title: {
+		fontSize: 25,
+		alignItems: 'center',
+		paddingTop: 10,
+		justifyContent: 'center',
+		marginBottom: 20
+	},
+	input: {
+		height: 40,
+		backgroundColor: 'rgba(255,255,255,0.5)',
 		marginBottom: 10,
+		color: 'rgba(0,0,0,0.8)',
+		paddingHorizontal: 10,
+		borderColor: '#f5a623',
+		borderRadius: 4,
+		borderWidth: 2,
+		fontWeight: 'bold'
+	},
+
+	buttonContainer: {
+		backgroundColor: '#f5a623',
+		paddingVertical: 15,
+		borderRadius: 5,
+		marginBottom: 10,
+		justifyContent: 'space-around',
+		alignItems: 'center',
 		shadowColor: '#000000',
 		elevation: 7,
 		shadowRadius: 5,
-		shadowOpacity: 1.0
+		shadowOpacity: 1.0,
+		height: 50
 	},
 	buttonText: {
 		textAlign: 'center',
-		color: '#f5a623',
-		fontWeight: 'bold',
-		fontSize: 20
+		color: '#FFFFFF',
+		fontWeight: '500'
 	}
 });

@@ -24,6 +24,7 @@ import HSettingsScreen from './Screens/HSettingsScreen';
 import HOrderScreen from './Screens/HOrderScreen';
 import HProfileScreen from './Screens/HProfileScreen';
 import HLocationScreen from './Screens/HLocationScreen';
+import AcceptedOrderScreen from './Screens/AcceptedOrderScreen';
 
 export default class App extends React.Component {
 	render() {
@@ -226,6 +227,17 @@ const AppNavigator = createStackNavigator(
 			screen: HLocationScreen,
 			navigationOptions: () => ({
 				header: null
+			})
+		},
+		AcceptedOrder: {
+			screen: AcceptedOrderScreen,
+			navigationOptions: () => ({
+				headerStyle: {
+					backgroundColor: '#f5a623'
+				},
+				headerTitleStyle: {
+					fontWeight: 'bold'
+				}
 			})
 		}
 	},

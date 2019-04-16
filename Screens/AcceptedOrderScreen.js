@@ -3,47 +3,71 @@ import { ImageBackground, Alert, StyleSheet, FlatList, Text, View, ToastAndroid,
 import DataStore from '../Store/datastore';
 import { observer } from 'mobx-react';
 import { IntentLauncherAndroid } from 'expo';
-import { Location } from 'expo';
-import axios from 'axios';
+import { MapView, Permissions, Location } from 'expo';
+import { OpenMapDirections } from 'react-native-navigation-directions';
 
 @observer
-export default class HOrderScreen extends Component {
+export default class AcceptedOrderScreen extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			data: DataStore.order.horder,
+			data: DataStore.order.acceptedorder,
 			orderid: '',
-			handyid: DataStore.handy_details.handyID,
-			hname: DataStore.handy_details.name
+			region: null,
+			latitude: '',
+			longitude: ''
 		};
+		this._getALocationAsync();
+		alert(JSON.stringify(this.state.data));
 	}
 
-	//updating HandyId and handy Name on order_info.
-	_acceptOrder = () => {
-		var self = this;
-		axios
-			.post('http://handyhand.herokuapp.com/accept_order.php/', {
-				orderid: self.state.orderid,
-				handyid: self.state.handyid,
-				hname: self.state.hname
-			})
-			.then(function(response) {
-				if (response.data.res == 'success') {
-					ToastAndroid.show('Order Has been accepted', ToastAndroid.SHORT);
-					self.props.navigation.navigate('HLocation');
-				} else {
-					alert('Order Failed');
-				}
-			})
-			.catch(function(error) {
-				alert(error);
+	//fucntion to get current location.
+	_getALocationAsync = async () => {
+		let { status } = await Permissions.askAsync(Permissions.LOCATION);
+		if (status !== 'granted') {
+			console.log('Permission to access location was denied.');
+		}
+
+		let location = await Location.getCurrentPositionAsync({ enableHighAccuracy: true });
+		let region = {
+			longitude: location.coords.longitude,
+			latitude: location.coords.latitude,
+			latitudeDelta: 0.0922,
+			longitudeDelta: 0.0421
+		};
+		this.setState({ region: region });
+	};
+
+	//function to open google maps and show direction to user location.
+	_callShowDirections = () => {
+		if (this.state.region.longitude == this.state.longitude || this.state.region.latitude == this.state.longitude) {
+			alert("You are at customer's location");
+		} else {
+			const startPoint = {
+				longitude: this.state.region.longitude,
+				latitude: this.state.region.latitude
+			};
+
+			const endPoint = {
+				longitude: this.state.longitude,
+				latitude: this.state.latitude
+			};
+
+			const transportPlan = 'd';
+
+			OpenMapDirections(startPoint, endPoint, transportPlan).then((res) => {
+				console.log(res);
 			});
+		}
 	};
 
 	//function to store specified data from the whole array.
 	_StoreLocation = async (item) => {
 		DataStore.updateHLatitude(item.Latitude);
+		alert(item.Latitude);
+		this.setState({ latitude: item.Latitude });
 		DataStore.updateHLongitude(item.Longitude);
+		this.setState({ longitude: item.Longitude });
 		DataStore.updateHLatitudeDelta(item.LatitudeDelta);
 		DataStore.updateLongitudeDelta(item.LongitudeDela);
 		DataStore.updateOrderID(item.Order_ID);
@@ -56,16 +80,16 @@ export default class HOrderScreen extends Component {
 		let providers = await Location.getProviderStatusAsync();
 
 		if (providers.locationServicesEnabled == true) {
-			Alert.alert('Do you want to accept this order?', 'Click Yes to proceed.', [
+			Alert.alert('Do you want to get direction?', 'Click Yes to proceed.', [
 				{
 					text: 'Cancel',
-					onPress: () => this.props.navigation.navigate('HOrder'),
+					onPress: () => this.props.navigation.navigate('AcceptedOrder'),
 					style: 'cancel'
 				},
 				{
 					text: 'Yes',
 					onPress: () => {
-						this._acceptOrder();
+						this._callShowDirections();
 					}
 				}
 			]);

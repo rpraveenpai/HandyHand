@@ -7,7 +7,8 @@ class DataStore {
 
 	order = {
 		corder: [],
-		horder: []
+		horder: [],
+		acceptedorder: []
 	};
 	cust_details = {
 		customerID: '',
@@ -155,6 +156,10 @@ class DataStore {
 		this.order.horder = horder;
 	}
 
+	updateAcceptedorder(acceptedorder) {
+		this.order.acceptedorder = acceptedorder;
+	}
+
 	updateHLongitude(longitude) {
 		this.HandyLocation.longitude = longitude;
 	}
@@ -211,6 +216,8 @@ decorate(DataStore, {
 
 	updateCorder: action,
 	updateHorder: action,
+	updateAcceptedorder: action,
+
 	updateHLongitude: action,
 	updateHLatitude: action,
 	updateHLatitudeDelta: action,

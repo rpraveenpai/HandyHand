@@ -43,7 +43,7 @@ export default class HLoginScreen extends React.Component {
 					alert('Login Sucessful');
 					DataStore.updateUser(self.state.username);
 					DataStore.updateHName(response.data.name);
-					DataStore.updateHID(response.data.handy_ID);
+					DataStore.updateHID(response.data.handyID);
 					DataStore.updateHEmail(response.data.email);
 					DataStore.updateHPhone(response.data.phone);
 					DataStore.updateHPass(response.data.password);
