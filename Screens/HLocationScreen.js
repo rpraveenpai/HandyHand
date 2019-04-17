@@ -7,7 +7,8 @@ import {
 	TouchableOpacity,
 	Text,
 	View,
-	BackHandler
+	BackHandler,
+	ToastAndroid
 } from 'react-native';
 import DataStore from '../Store/datastore';
 import { observer } from 'mobx-react';
@@ -29,6 +30,7 @@ export default class App extends React.Component {
 			date: DataStore.order_details.orderdate
 		};
 		this._getALocationAsync();
+		alert(this.state.latitude);
 		//this._checkLocation();
 	}
 
@@ -74,8 +76,8 @@ export default class App extends React.Component {
 			};
 
 			const endPoint = {
-				longitude: this.state.longitude,
-				latitude: this.state.latitude
+				longitude: parseFloat(this.state.longitude),
+				latitude: parseFloat(this.state.latitude)
 			};
 
 			const transportPlan = 'd';

@@ -27,7 +27,6 @@ export default class HProfileScreen extends React.Component {
 			service: DataStore.handy_details.service,
 			phone: DataStore.handy_details.phone
 		};
-		alert(this.state.HandyID);
 	}
 
 	render() {

@@ -3,7 +3,7 @@ import { View, StyleSheet, Dimensions, Text, TouchableOpacity } from 'react-nati
 
 const WIDTH = Dimensions.get('window').width;
 
-export const BookButton = function(props) {
+export const BackButton = function(props) {
 	const cb = props.cb ? props.cb : () => console.log('Callback function not passed to CurrentLocatiion Button');
 
 	return (
@@ -13,7 +13,7 @@ export const BookButton = function(props) {
 			}}
 			style={styles.container}
 		>
-			<Text style={styles.Text}>Book</Text>
+			<Text style={styles.Text}>Back</Text>
 		</TouchableOpacity>
 	);
 };
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		width: WIDTH - 40,
 		height: 50,
-		bottom: 140,
+		bottom: 80,
 		left: 20,
 		borderRadius: 10,
 		backgroundColor: '#f5a623',

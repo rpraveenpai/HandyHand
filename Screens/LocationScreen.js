@@ -4,6 +4,7 @@ import { MapView, Permissions, Location } from 'expo';
 import { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { CurrentLocationButton } from '../components/CurrentLocationButton';
 import { BookButton } from '../components/BookButton';
+import { BackButton } from '../components/BackButton';
 import DataStore from '../Store/datastore';
 import { observer } from 'mobx-react';
 import axios from 'axios';
@@ -96,6 +97,11 @@ export default class LocationScreen extends React.Component {
 				<BookButton
 					cb={() => {
 						this._book();
+					}}
+				/>
+				<BackButton
+					cb={() => {
+						this.props.navigation.navigate('Address');
 					}}
 				/>
 				<CurrentLocationButton
