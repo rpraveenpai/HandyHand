@@ -8,7 +8,8 @@ class DataStore {
 	order = {
 		corder: [],
 		horder: [],
-		acceptedorder: []
+		acceptedorder: [],
+		completedorder: []
 	};
 	cust_details = {
 		customerID: '',
@@ -160,6 +161,10 @@ class DataStore {
 		this.order.acceptedorder = acceptedorder;
 	}
 
+	updateCompletedorder(completedorder) {
+		this.order.completedorder = completedorder;
+	}
+
 	updateHLongitude(longitude) {
 		this.HandyLocation.longitude = longitude;
 	}
@@ -169,7 +174,6 @@ class DataStore {
 	updateHLatitudeDelta(latitudeDelta) {
 		this.HandyLocation.latitudeDelta = latitudeDelta;
 	}
-
 	updateHLongitudeDelta(longitudeDelta) {
 		this.HandyLocation.longitudeDelta = longitudeDelta;
 	}
@@ -217,6 +221,7 @@ decorate(DataStore, {
 	updateCorder: action,
 	updateHorder: action,
 	updateAcceptedorder: action,
+	updateCompletedorder: action,
 
 	updateHLongitude: action,
 	updateHLatitude: action,

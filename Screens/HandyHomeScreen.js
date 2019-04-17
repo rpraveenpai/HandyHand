@@ -57,6 +57,7 @@ export default class SelectionScreen extends React.Component {
 			});
 	};
 
+	//function to fetch all the accepted of the handyman based on handy_id
 	_getAcceptedData = () => {
 		var self = this;
 		axios
@@ -69,6 +70,26 @@ export default class SelectionScreen extends React.Component {
 					ToastAndroid.show('There are no accepted orders.', ToastAndroid.SHORT);
 				} else {
 					self.props.navigation.navigate('AcceptedOrder');
+				}
+			})
+			.catch(function(error) {
+				alert(error);
+			});
+	};
+
+	//function to fetch completed orders of the handyman based on handy_id.
+	_getCompletedData = () => {
+		var self = this;
+		axios
+			.post('http://handyhand.herokuapp.com/completed_order.php/', {
+				handyid: self.state.handyid
+			})
+			.then(function(response) {
+				DataStore.updateCompletedorder(JSON.parse(response.data));
+				if (DataStore.order.completedorder == null) {
+					ToastAndroid.show('You have not completed any orders.', ToastAndroid.SHORT);
+				} else {
+					self.props.navigation.navigate('CompletedOrder');
 				}
 			})
 			.catch(function(error) {
@@ -116,7 +137,11 @@ export default class SelectionScreen extends React.Component {
 					</View>
 
 					<View style={styles.menuItem}>
-						<TouchableOpacity>
+						<TouchableOpacity
+							onPress={() => {
+								this._getCompletedData();
+							}}
+						>
 							<Image source={require('../assets/icons/completed.png')} style={styles.image} />
 						</TouchableOpacity>
 						<Text style={styles.menuText}>Completed Orders</Text>

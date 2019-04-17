@@ -62,19 +62,8 @@ export default class AcceptedOrderScreen extends Component {
 
 	//function to store specified data from the whole array.
 	_StoreLocation = async (item) => {
-		//DataStore.updateHLatitude(item.Latitude);
-
-		this.setState({ latitude: item.Latitude });
-		//DataStore.updateHLongitude(item.Longitude);
 		this.setState({ longitude: item.Longitude });
-		//	DataStore.updateHLatitudeDelta(item.LatitudeDelta);
-		//DataStore.updateLongitudeDelta(item.LongitudeDela);
-		//DataStore.updateOrderID(item.Order_ID);
 		this.setState({ orderid: item.Order_ID });
-		//DataStore.updateOCName(item.Cname);
-		//DataStore.updateOPhone(item.PhoneNumber);
-		//DataStore.updateSerInfo(item.ServiceInfo);
-		//DataStore.updateDate(item.Order_Date);
 
 		let providers = await Location.getProviderStatusAsync();
 
