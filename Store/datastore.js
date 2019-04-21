@@ -9,7 +9,8 @@ class DataStore {
 		corder: [],
 		horder: [],
 		acceptedorder: [],
-		completedorder: []
+		completedorder: [],
+		region: []
 	};
 	cust_details = {
 		customerID: '',
@@ -165,6 +166,9 @@ class DataStore {
 		this.order.completedorder = completedorder;
 	}
 
+	updateRegion(region) {
+		this.order.region = region;
+	}
 	updateHLongitude(longitude) {
 		this.HandyLocation.longitude = longitude;
 	}
@@ -222,6 +226,7 @@ decorate(DataStore, {
 	updateHorder: action,
 	updateAcceptedorder: action,
 	updateCompletedorder: action,
+	updateRegion: action,
 
 	updateHLongitude: action,
 	updateHLatitude: action,

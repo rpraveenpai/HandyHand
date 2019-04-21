@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Image, StyleSheet, TouchableOpacity, ImageBackground, Dimensions } from 'react-native';
+import { Text, View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import DataStore from '../Store/datastore';
 import { observer } from 'mobx-react';
@@ -17,6 +17,7 @@ export default class SettingsScreen extends Component {
 		};
 	}
 
+	//function to get order data.
 	_getData = () => {
 		var self = this;
 		axios
@@ -33,6 +34,7 @@ export default class SettingsScreen extends Component {
 			});
 	};
 
+	//logout functionality using axios.
 	_logout = () => {
 		var self = this;
 		axios
@@ -51,31 +53,29 @@ export default class SettingsScreen extends Component {
 
 	render() {
 		return (
-			<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.menucontainer}>
-				<View style={styles.menucontainer}>
-					<View style={styles.logoContainer}>
-						<Image style={styles.logo} source={require('../assets/icons/logo.png')} />
-					</View>
-
-					<TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Home')}>
-						<Text style={styles.menutext}>Home</Text>
-					</TouchableOpacity>
-					<TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Profile')}>
-						<Text style={styles.menutext}>Profile</Text>
-					</TouchableOpacity>
-					<TouchableOpacity style={styles.button} onPress={() => this._getData()}>
-						<Text style={styles.menutext}>Orders</Text>
-					</TouchableOpacity>
-					<TouchableOpacity
-						style={styles.button}
-						onPress={() => {
-							this._logout();
-						}}
-					>
-						<Text style={styles.menutext}>Logout</Text>
-					</TouchableOpacity>
+			<View style={styles.menucontainer}>
+				<View style={styles.logoContainer}>
+					<Image style={styles.logo} source={require('../assets/icons/logo.png')} />
 				</View>
-			</ImageBackground>
+
+				<TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Home')}>
+					<Text style={styles.menutext}>Home</Text>
+				</TouchableOpacity>
+				<TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Profile')}>
+					<Text style={styles.menutext}>Profile</Text>
+				</TouchableOpacity>
+				<TouchableOpacity style={styles.button} onPress={() => this._getData()}>
+					<Text style={styles.menutext}>Orders</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+					style={styles.button}
+					onPress={() => {
+						this._logout();
+					}}
+				>
+					<Text style={styles.menutext}>Logout</Text>
+				</TouchableOpacity>
+			</View>
 		);
 	}
 }
@@ -84,10 +84,11 @@ const styles = StyleSheet.create({
 	menucontainer: {
 		flex: 1,
 		justifyContent: 'flex-start',
-		paddingHorizontal: 10
+		paddingHorizontal: 10,
+		backgroundColor: '#eeeeee'
 	},
 	menutext: {
-		color: '#2a363b',
+		color: '#eeeeee',
 		fontSize: 20,
 		fontWeight: 'bold',
 		flexDirection: 'row'
@@ -103,7 +104,7 @@ const styles = StyleSheet.create({
 		resizeMode: 'contain'
 	},
 	button: {
-		backgroundColor: '#f5a623',
+		backgroundColor: '#0092ca',
 		paddingVertical: 15,
 		borderRadius: 5,
 		marginBottom: 10,

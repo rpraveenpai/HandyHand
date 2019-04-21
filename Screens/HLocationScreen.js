@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-	ImageBackground,
 	KeyboardAvoidingView,
 	TextInput,
 	StyleSheet,
@@ -13,7 +12,6 @@ import {
 import DataStore from '../Store/datastore';
 import { observer } from 'mobx-react';
 import { OpenMapDirections } from 'react-native-navigation-directions';
-import { MapView, Permissions, Location } from 'expo';
 
 @observer
 export default class App extends React.Component {
@@ -22,15 +20,14 @@ export default class App extends React.Component {
 		this.state = {
 			latitude: DataStore.HandyLocation.latitude,
 			longitude: DataStore.HandyLocation.longitude,
-			region: null,
+			region: DataStore.order.region,
 			orderID: DataStore.order_details.orderID,
 			name: DataStore.order_details.cname,
 			phone: DataStore.order_details.phone,
 			serInfo: DataStore.order_details.serviceInfo,
 			date: DataStore.order_details.orderdate
 		};
-		this._getALocationAsync();
-		alert(this.state.latitude);
+		//	console.log(this.state.region);
 		//this._checkLocation();
 	}
 
@@ -47,23 +44,6 @@ export default class App extends React.Component {
 		ToastAndroid.show('Press Proceed to continue', ToastAndroid.SHORT);
 		return true;
 	}
-
-	//fucntion to get current location.
-	_getALocationAsync = async () => {
-		let { status } = await Permissions.askAsync(Permissions.LOCATION);
-		if (status !== 'granted') {
-			console.log('Permission to access location was denied.');
-		}
-
-		let location = await Location.getCurrentPositionAsync({ enableHighAccuracy: true });
-		let region = {
-			longitude: location.coords.longitude,
-			latitude: location.coords.latitude,
-			latitudeDelta: 0.0922,
-			longitudeDelta: 0.0421
-		};
-		this.setState({ region: region });
-	};
 
 	//function to open google maps and show direction to user location.
 	_callShowDirections = () => {
@@ -98,77 +78,75 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<KeyboardAvoidingView behavior="padding" style={styles.container}>
-				<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.container}>
-					<View style={styles.container}>
-						<View style={styles.profilecontainer}>
-							<Text style={styles.title}>Order Success</Text>
-							<Text style={styles.textstyle}>Order ID</Text>
-							<TextInput
-								placeholder="orderid"
-								placeholderTextColor="rgba(0,0,0,0.5)"
-								returnKeyType="next"
-								autoCapitalize="none"
-								autoCorrect={false}
-								style={styles.input}
-								value={this.state.orderID}
-								editable={false}
-							/>
-							<Text style={styles.textstyle}>Name</Text>
-							<TextInput
-								placeholder="name"
-								placeholderTextColor="rgba(0,0,0,0.5)"
-								returnKeyType="next"
-								style={styles.input}
-								value={this.state.name}
-								editable={this.state.editable}
-							/>
-							<Text style={styles.textstyle}>Phone</Text>
-							<TextInput
-								placeholder="Phone"
-								placeholderTextColor="rgba(0,0,0,0.5)"
-								returnKeyType="next"
-								autoCapitalize="none"
-								autoCorrect={false}
-								style={styles.input}
-								value={this.state.phone}
-								editable={false}
-							/>
-							<Text style={styles.textstyle}>Service Info</Text>
-							<TextInput
-								placeholder="service"
-								placeholderTextColor="rgba(0,0,0,0.5)"
-								style={styles.input}
-								value={this.state.serInfo}
-								editable={false}
-							/>
+				<View style={styles.container}>
+					<View style={styles.profilecontainer}>
+						<Text style={styles.title}>Order Success</Text>
+						<Text style={styles.textstyle}>Order ID</Text>
+						<TextInput
+							placeholder="orderid"
+							placeholderTextColor="rgba(0,0,0,0.5)"
+							returnKeyType="next"
+							autoCapitalize="none"
+							autoCorrect={false}
+							style={styles.input}
+							value={this.state.orderID}
+							editable={false}
+						/>
+						<Text style={styles.textstyle}>Name</Text>
+						<TextInput
+							placeholder="name"
+							placeholderTextColor="rgba(0,0,0,0.5)"
+							returnKeyType="next"
+							style={styles.input}
+							value={this.state.name}
+							editable={this.state.editable}
+						/>
+						<Text style={styles.textstyle}>Phone</Text>
+						<TextInput
+							placeholder="Phone"
+							placeholderTextColor="rgba(0,0,0,0.5)"
+							returnKeyType="next"
+							autoCapitalize="none"
+							autoCorrect={false}
+							style={styles.input}
+							value={this.state.phone}
+							editable={false}
+						/>
+						<Text style={styles.textstyle}>Service Info</Text>
+						<TextInput
+							placeholder="service"
+							placeholderTextColor="rgba(0,0,0,0.5)"
+							style={styles.input}
+							value={this.state.serInfo}
+							editable={false}
+						/>
 
-							<Text style={styles.textstyle}>Date</Text>
-							<TextInput
-								placeholder="date"
-								placeholderTextColor="rgba(0,0,0,0.5)"
-								style={styles.input}
-								value={this.state.date}
-								editable={false}
-							/>
+						<Text style={styles.textstyle}>Date</Text>
+						<TextInput
+							placeholder="date"
+							placeholderTextColor="rgba(0,0,0,0.5)"
+							style={styles.input}
+							value={this.state.date}
+							editable={false}
+						/>
 
-							<TouchableOpacity
-								style={styles.buttonContainer}
-								onPress={() => {
-									this._callShowDirections();
-								}}
-							>
-								<Text style={styles.buttonText}>Proceed</Text>
-							</TouchableOpacity>
+						<TouchableOpacity
+							style={styles.buttonContainer}
+							onPress={() => {
+								this._callShowDirections();
+							}}
+						>
+							<Text style={styles.buttonText}>Proceed</Text>
+						</TouchableOpacity>
 
-							<TouchableOpacity
-								style={styles.buttonContainer}
-								onPress={() => this.props.navigation.navigate('HandyHome')}
-							>
-								<Text style={styles.buttonText}>Back</Text>
-							</TouchableOpacity>
-						</View>
+						<TouchableOpacity
+							style={styles.buttonContainer}
+							onPress={() => this.props.navigation.navigate('HandyHome')}
+						>
+							<Text style={styles.buttonText}>Back</Text>
+						</TouchableOpacity>
 					</View>
-				</ImageBackground>
+				</View>
 			</KeyboardAvoidingView>
 		);
 	}
@@ -178,7 +156,8 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		width: '100%',
-		height: '100%'
+		height: '100%',
+		backgroundColor: '#eeeeee'
 	},
 	profilecontainer: {
 		padding: 20,
@@ -188,7 +167,7 @@ const styles = StyleSheet.create({
 	textstyle: {
 		fontSize: 15,
 		fontWeight: 'bold',
-		color: '#2a363b'
+		color: '#222831'
 	},
 	title: {
 		fontSize: 25,
@@ -203,14 +182,14 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 		color: 'rgba(0,0,0,0.8)',
 		paddingHorizontal: 10,
-		borderColor: '#f5a623',
+		borderColor: '#0092ca',
 		borderRadius: 4,
 		borderWidth: 2,
 		fontWeight: 'bold'
 	},
 
 	buttonContainer: {
-		backgroundColor: '#f5a623',
+		backgroundColor: '#0092ca',
 		paddingVertical: 15,
 		borderRadius: 5,
 		marginBottom: 10,
@@ -224,7 +203,7 @@ const styles = StyleSheet.create({
 	},
 	buttonText: {
 		textAlign: 'center',
-		color: '#FFFFFF',
+		color: '#eeeeee',
 		fontWeight: '500'
 	}
 });

@@ -1,19 +1,10 @@
 import React from 'react';
-import {
-	StyleSheet,
-	Text,
-	View,
-	Image,
-	ImageBackground,
-	KeyboardAvoidingView,
-	Alert,
-	TextInput,
-	TouchableOpacity
-} from 'react-native';
-import { MapView, Permissions, Location } from 'expo';
+import { StyleSheet, Text, View, Alert, TextInput, TouchableOpacity } from 'react-native';
+import { Location } from 'expo';
 import DataStore from '../Store/datastore';
 import { observer } from 'mobx-react';
 import { IntentLauncherAndroid } from 'expo';
+import axios from 'axios';
 
 @observer
 export default class AddressScreen extends React.Component {
@@ -23,17 +14,37 @@ export default class AddressScreen extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			customerID: DataStore.cust_details.customerID,
 			name: DataStore.cust_details.name,
 			phone: DataStore.cust_details.phone
 		};
 	}
 
+	//function to check if user booked max number of service.
 	_next = () => {
-		DataStore.updateOPhone(this.state.phone);
-		DataStore.updateOCName(this.state.name);
-		this.props.navigation.navigate('Location');
+		var self = this;
+		axios
+			.post('http://handyhand.herokuapp.com/cus_ordercheck.php/', {
+				customerID: self.state.customerID
+			})
+			.then(function(response) {
+				if (response.data.res == 'success') {
+					DataStore.updateOPhone(self.state.phone);
+					DataStore.updateOCName(self.state.name);
+					self.props.navigation.navigate('Location');
+				} else if (response.data.res == 'issue') {
+					alert('You cannot book anymore services today.');
+					self.props.navigation.navigate('Home');
+				} else {
+					alert('Fail');
+				}
+			})
+			.catch(function(error) {
+				alert(error);
+			});
 	};
 
+	//function to enable/check if location services are turned on.
 	_check = async () => {
 		let providers = await Location.getProviderStatusAsync();
 
@@ -57,44 +68,42 @@ export default class AddressScreen extends React.Component {
 
 	render() {
 		return (
-			<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.container}>
-				<View style={styles.container}>
-					<View style={styles.formContainer}>
-						<Text style={styles.textstyle}>Name</Text>
-						<TextInput
-							placeholder="Name"
-							placeholderTextColor="rgba(0,0,0,0.5)"
-							returnKeyType="next"
-							onSubmitEditing={() => this.PhoneInput.focus()}
-							autoCapitalize="none"
-							autoCorrect={false}
-							style={styles.input}
-							value={this.state.name}
-							onChangeText={(name) => this.setState({ name })}
-						/>
-						<Text style={styles.textstyle}>Phone Number</Text>
-						<TextInput
-							placeholder="Phone Number"
-							placeholderTextColor="rgba(0,0,0,0.5)"
-							returnKeyType="go"
-							keyboardType="phone-pad"
-							style={styles.input}
-							value={this.state.phone}
-							ref={(input) => (this.PhoneInput = input)}
-							onChangeText={(phone) => this.setState({ phone })}
-						/>
+			<View style={styles.container}>
+				<View style={styles.formContainer}>
+					<Text style={styles.textstyle}>Name</Text>
+					<TextInput
+						placeholder="Name"
+						placeholderTextColor="rgba(0,0,0,0.5)"
+						returnKeyType="next"
+						onSubmitEditing={() => this.PhoneInput.focus()}
+						autoCapitalize="none"
+						autoCorrect={false}
+						style={styles.input}
+						value={this.state.name}
+						onChangeText={(name) => this.setState({ name })}
+					/>
+					<Text style={styles.textstyle}>Phone Number</Text>
+					<TextInput
+						placeholder="Phone Number"
+						placeholderTextColor="rgba(0,0,0,0.5)"
+						returnKeyType="go"
+						keyboardType="phone-pad"
+						style={styles.input}
+						value={this.state.phone}
+						ref={(input) => (this.PhoneInput = input)}
+						onChangeText={(phone) => this.setState({ phone })}
+					/>
 
-						<TouchableOpacity
-							style={styles.buttonContainer}
-							onPress={() => {
-								this._check();
-							}}
-						>
-							<Text style={styles.buttonText}>Next</Text>
-						</TouchableOpacity>
-					</View>
+					<TouchableOpacity
+						style={styles.buttonContainer}
+						onPress={() => {
+							this._check();
+						}}
+					>
+						<Text style={styles.buttonText}>Next</Text>
+					</TouchableOpacity>
 				</View>
-			</ImageBackground>
+			</View>
 		);
 	}
 }
@@ -102,12 +111,13 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		width: '100%',
-		height: '100%'
+		height: '100%',
+		backgroundColor: '#eeeeee'
 	},
 	textstyle: {
 		fontSize: 20,
 		fontWeight: 'bold',
-		color: '#2a363b'
+		color: '#222831'
 	},
 	formContainer: {
 		justifyContent: 'space-around',
@@ -120,7 +130,7 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 		color: 'rgba(0,0,0,0.8)',
 		paddingHorizontal: 10,
-		borderColor: '#f5a623',
+		borderColor: '#0092ca',
 		borderRadius: 4,
 		borderWidth: 2,
 		fontWeight: 'bold'
@@ -131,7 +141,7 @@ const styles = StyleSheet.create({
 		resizeMode: 'contain'
 	},
 	buttonContainer: {
-		backgroundColor: '#f5a623',
+		backgroundColor: '#0092ca',
 		paddingVertical: 15,
 		borderRadius: 2,
 		marginBottom: 10,
@@ -142,7 +152,7 @@ const styles = StyleSheet.create({
 	},
 	buttonText: {
 		textAlign: 'center',
-		color: '#FFFFFF',
+		color: '#eeeeee',
 		fontWeight: '500'
 	}
 });

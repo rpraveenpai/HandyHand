@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { ImageBackground, Alert, StyleSheet, FlatList, Text, View, ToastAndroid, TouchableOpacity } from 'react-native';
+import { Alert, StyleSheet, FlatList, Text, View, ToastAndroid, TouchableOpacity } from 'react-native';
 import DataStore from '../Store/datastore';
 import { observer } from 'mobx-react';
 import { IntentLauncherAndroid } from 'expo';
-import { Location } from 'expo';
+import { Location, Permissions } from 'expo';
 import axios from 'axios';
 
 @observer
@@ -18,6 +18,27 @@ export default class HOrderScreen extends Component {
 		};
 	}
 
+	componentDidMount() {
+		this._getALocationAsync(); //getting current location of handyman
+	}
+
+	//function to get current location.
+	_getALocationAsync = async () => {
+		let { status } = await Permissions.askAsync(Permissions.LOCATION);
+		if (status !== 'granted') {
+			console.log('Permission to access location was denied.');
+		}
+
+		let location = await Location.getCurrentPositionAsync({ enableHighAccuracy: true });
+		let region = {
+			longitude: location.coords.longitude,
+			latitude: location.coords.latitude,
+			latitudeDelta: 0.0922,
+			longitudeDelta: 0.0421
+		};
+		DataStore.updateRegion(region); //storing region in datastore.
+	};
+
 	//updating HandyId and handy Name on order_info.
 	_acceptOrder = () => {
 		var self = this;
@@ -31,6 +52,9 @@ export default class HOrderScreen extends Component {
 				if (response.data.res == 'success') {
 					ToastAndroid.show('Order Has been accepted', ToastAndroid.SHORT);
 					self.props.navigation.navigate('HLocation');
+				} else if (response.data.res == 'issue') {
+					alert('You have already accepted one order. Complete it to book another order');
+					self.props.navigation.navigate('HOrder');
 				} else {
 					alert('Order Failed');
 				}
@@ -92,31 +116,29 @@ export default class HOrderScreen extends Component {
 
 	//line to seperate list items.
 	renderSeperator = () => {
-		return <View style={{ height: 1, width: '100%', backgroundColor: '#000' }} />;
+		return <View style={{ height: 1, width: '100%', backgroundColor: '#222831' }} />;
 	};
 	render() {
 		return (
-			<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.container}>
-				<View style={styles.container}>
-					<FlatList
-						data={this.state.data}
-						renderItem={this.renderItem}
-						keyExtractor={(item, index) => index.toString()}
-						ItemSeparatorComponent={this.renderSeperator}
-					/>
+			<View style={styles.container}>
+				<FlatList
+					data={this.state.data}
+					renderItem={this.renderItem}
+					keyExtractor={(item, index) => index.toString()}
+					ItemSeparatorComponent={this.renderSeperator}
+				/>
 
-					<View style={styles.button}>
-						<TouchableOpacity
-							style={styles.buttonContainer}
-							onPress={() => {
-								this.props.navigation.navigate('HandyHome');
-							}}
-						>
-							<Text style={styles.buttonText}>Back</Text>
-						</TouchableOpacity>
-					</View>
+				<View style={styles.button}>
+					<TouchableOpacity
+						style={styles.buttonContainer}
+						onPress={() => {
+							this.props.navigation.navigate('HandyHome');
+						}}
+					>
+						<Text style={styles.buttonText}>Back</Text>
+					</TouchableOpacity>
 				</View>
-			</ImageBackground>
+			</View>
 		);
 	}
 }
@@ -125,23 +147,24 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		width: '100%',
-		height: '100%'
+		height: '100%',
+		backgroundColor: '#eeeeee'
 	},
 	button: {
 		padding: 20
 	},
 	title: {
 		fontSize: 18,
-		color: '#000',
+		color: '#222831',
 		fontWeight: 'bold',
 		marginBottom: 5
 	},
 	subtitle: {
 		fontSize: 16,
-		color: '#f5a623'
+		color: '#0092ca'
 	},
 	buttonContainer: {
-		backgroundColor: '#f5a623',
+		backgroundColor: '#0092ca',
 		paddingVertical: 15,
 		paddingHorizontal: 20,
 		borderRadius: 2,
@@ -153,7 +176,7 @@ const styles = StyleSheet.create({
 	},
 	buttonText: {
 		textAlign: 'center',
-		color: '#FFFFFF',
+		color: '#eeeeee',
 		fontWeight: '500'
 	}
 });

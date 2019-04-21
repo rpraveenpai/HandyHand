@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { ImageBackground, Alert, StyleSheet, FlatList, Text, View, ToastAndroid, TouchableOpacity } from 'react-native';
+import { Alert, StyleSheet, FlatList, Text, View, TouchableOpacity } from 'react-native';
 import DataStore from '../Store/datastore';
 import { observer } from 'mobx-react';
 import { IntentLauncherAndroid } from 'expo';
-import { MapView, Permissions, Location } from 'expo';
+import { Location } from 'expo';
 import { OpenMapDirections } from 'react-native-navigation-directions';
 
 @observer
@@ -13,29 +13,9 @@ export default class AcceptedOrderScreen extends Component {
 		this.state = {
 			data: DataStore.order.acceptedorder,
 			orderid: '',
-			region: null,
-			clatitude: '',
-			clongitude: ''
+			region: DataStore.order.region //current location of handyman
 		};
-		this._getALocationAsync();
 	}
-
-	//fucntion to get current location.
-	_getALocationAsync = async () => {
-		let { status } = await Permissions.askAsync(Permissions.LOCATION);
-		if (status !== 'granted') {
-			console.log('Permission to access location was denied.');
-		}
-
-		let location = await Location.getCurrentPositionAsync({ enableHighAccuracy: true });
-		let region = {
-			longitude: location.coords.longitude,
-			latitude: location.coords.latitude,
-			latitudeDelta: 0.0922,
-			longitudeDelta: 0.0421
-		};
-		this.setState({ region: region });
-	};
 
 	//function to open google maps and show direction to user location.
 	_callShowDirections = () => {
@@ -63,7 +43,7 @@ export default class AcceptedOrderScreen extends Component {
 	//function to store specified data from the whole array.
 	_StoreLocation = async (item) => {
 		this.setState({ longitude: item.Longitude });
-		this.setState({ orderid: item.Order_ID });
+		this.setState({ latitude: item.Latitude });
 
 		let providers = await Location.getProviderStatusAsync();
 
@@ -104,31 +84,29 @@ export default class AcceptedOrderScreen extends Component {
 
 	//line to seperate list items.
 	renderSeperator = () => {
-		return <View style={{ height: 1, width: '100%', backgroundColor: '#000' }} />;
+		return <View style={{ height: 1, width: '100%', backgroundColor: '#222831' }} />;
 	};
 	render() {
 		return (
-			<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.container}>
-				<View style={styles.container}>
-					<FlatList
-						data={this.state.data}
-						renderItem={this.renderItem}
-						keyExtractor={(item, index) => index.toString()}
-						ItemSeparatorComponent={this.renderSeperator}
-					/>
+			<View style={styles.container}>
+				<FlatList
+					data={this.state.data}
+					renderItem={this.renderItem}
+					keyExtractor={(item, index) => index.toString()}
+					ItemSeparatorComponent={this.renderSeperator}
+				/>
 
-					<View style={styles.button}>
-						<TouchableOpacity
-							style={styles.buttonContainer}
-							onPress={() => {
-								this.props.navigation.navigate('HandyHome');
-							}}
-						>
-							<Text style={styles.buttonText}>Back</Text>
-						</TouchableOpacity>
-					</View>
+				<View style={styles.button}>
+					<TouchableOpacity
+						style={styles.buttonContainer}
+						onPress={() => {
+							this.props.navigation.navigate('HandyHome');
+						}}
+					>
+						<Text style={styles.buttonText}>Back</Text>
+					</TouchableOpacity>
 				</View>
-			</ImageBackground>
+			</View>
 		);
 	}
 }
@@ -137,23 +115,24 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		width: '100%',
-		height: '100%'
+		height: '100%',
+		backgroundColor: '#eeeeee'
 	},
 	button: {
 		padding: 20
 	},
 	title: {
 		fontSize: 18,
-		color: '#000',
+		color: '#222831',
 		fontWeight: 'bold',
 		marginBottom: 5
 	},
 	subtitle: {
 		fontSize: 16,
-		color: '#f5a623'
+		color: '#0092ca'
 	},
 	buttonContainer: {
-		backgroundColor: '#f5a623',
+		backgroundColor: '#0092ca',
 		paddingVertical: 15,
 		paddingHorizontal: 20,
 		borderRadius: 2,
@@ -165,7 +144,7 @@ const styles = StyleSheet.create({
 	},
 	buttonText: {
 		textAlign: 'center',
-		color: '#FFFFFF',
+		color: '#eeeeee',
 		fontWeight: '500'
 	}
 });

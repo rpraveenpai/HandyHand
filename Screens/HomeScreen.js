@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ImageBackground, Image, TouchableOpacity, BackHandler } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, BackHandler } from 'react-native';
 import DataStore from '../Store/datastore';
 import { observer } from 'mobx-react';
 import { MenuButton } from '../components/MenuButton';
@@ -61,7 +61,7 @@ export default class HomeScreen extends Component {
 
 	render() {
 		return (
-			<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.container}>
+			<View style={styles.container}>
 				{/*hamburger menu*/}
 				<MenuButton
 					cb={() => {
@@ -142,7 +142,7 @@ export default class HomeScreen extends Component {
 						<Text style={styles.menuText}>Painter</Text>
 					</View>
 				</View>
-			</ImageBackground>
+			</View>
 		);
 	}
 }
@@ -151,7 +151,8 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		width: '100%',
-		height: '100%'
+		height: '100%',
+		backgroundColor: '#eeeeee'
 	},
 	top: {
 		height: '50%',
@@ -163,7 +164,7 @@ const styles = StyleSheet.create({
 		height: '100%',
 		borderRadius: 50,
 		borderWidth: 3,
-		borderColor: 'black'
+		borderColor: '#222831'
 	},
 	menuContainer: {
 		height: '40%',
@@ -182,8 +183,8 @@ const styles = StyleSheet.create({
 	},
 	logo: {
 		flex: 1,
-		height: '100%',
-		width: '100%',
+		height: '80%',
+		width: '80%',
 		resizeMode: 'contain'
 	}
 });

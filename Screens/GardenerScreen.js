@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, Image, Text, TouchableOpacity, Picker } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity, Picker } from 'react-native';
 import Datastore from '../Store/datastore';
 import { observer } from 'mobx-react';
 
@@ -21,35 +21,33 @@ export default class GardenerScreen extends React.Component {
 
 	render() {
 		return (
-			<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.container}>
-				<View style={styles.container}>
-					<View style={styles.PickerContainer}>
-						<Picker
-							selectedValue={this.state.GardenerWork}
-							style={styles.pickerstyle}
-							onValueChange={(itemValue) => this.setState({ GardenerWork: itemValue })}
-						>
-							<Picker.Item label="General Gardening Work" value="General Gardening Work" />
-							<Picker.Item label="Weed Control" value="Weed Control" />
-							<Picker.Item label="Pesticide Spraying" value="Pesticide Spraying" />
-							<Picker.Item label="Others" value="Others" />
-						</Picker>
-					</View>
-					<View style={styles.touchcontainer}>
-						<TouchableOpacity
-							style={styles.buttonContainer}
-							onPress={() => {
-								this._handlePress();
-							}}
-						>
-							<Text style={styles.buttonText}>Continue</Text>
-						</TouchableOpacity>
-					</View>
-					<View style={styles.logoContainer}>
-						<Image style={styles.logo} source={require('../assets/icons/gardener.png')} />
-					</View>
+			<View style={styles.container}>
+				<View style={styles.PickerContainer}>
+					<Picker
+						selectedValue={this.state.GardenerWork}
+						style={styles.pickerstyle}
+						onValueChange={(itemValue) => this.setState({ GardenerWork: itemValue })}
+					>
+						<Picker.Item label="General Gardening Work" value="General Gardening Work" />
+						<Picker.Item label="Weed Control" value="Weed Control" />
+						<Picker.Item label="Pesticide Spraying" value="Pesticide Spraying" />
+						<Picker.Item label="Others" value="Others" />
+					</Picker>
 				</View>
-			</ImageBackground>
+				<View style={styles.touchcontainer}>
+					<TouchableOpacity
+						style={styles.buttonContainer}
+						onPress={() => {
+							this._handlePress();
+						}}
+					>
+						<Text style={styles.buttonText}>Continue</Text>
+					</TouchableOpacity>
+				</View>
+				<View style={styles.logoContainer}>
+					<Image style={styles.logo} source={require('../assets/icons/gardener.png')} />
+				</View>
+			</View>
 		);
 	}
 }
@@ -58,20 +56,21 @@ const styles = StyleSheet.create({
 	container: {
 		width: '100%',
 		height: '100%',
-		flex: 1
+		flex: 1,
+		backgroundColor: '#eeeeee'
 	},
 	touchcontainer: {
 		padding: 20
 	},
 	buttonContainer: {
-		backgroundColor: '#f5a623',
+		backgroundColor: '#0092ca',
 		paddingVertical: 15,
 		borderRadius: 5,
 		marginBottom: 10
 	},
 	buttonText: {
 		textAlign: 'center',
-		color: '#FFFFFF',
+		color: '#eeeeee',
 		fontWeight: '500'
 	},
 	PickerContainer: {
@@ -83,7 +82,7 @@ const styles = StyleSheet.create({
 	pickerstyle: {
 		height: 70,
 		width: '100%',
-		color: '#2a363b'
+		color: '#222831'
 	},
 	logoContainer: {
 		alignItems: 'center',

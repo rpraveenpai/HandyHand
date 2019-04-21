@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-	StyleSheet,
-	Text,
-	View,
-	TouchableOpacity,
-	ImageBackground,
-	BackHandler,
-	ToastAndroid,
-	Image
-} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, BackHandler, ToastAndroid, Image } from 'react-native';
 import { MenuButton } from '../components/MenuButton';
 import axios from 'axios';
 import DataStore from '../Store/datastore';
@@ -99,7 +90,7 @@ export default class SelectionScreen extends React.Component {
 
 	render() {
 		return (
-			<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.container}>
+			<View style={styles.container}>
 				{/*hamburger menu*/}
 				<MenuButton
 					cb={() => {
@@ -147,7 +138,7 @@ export default class SelectionScreen extends React.Component {
 						<Text style={styles.menuText}>Completed Orders</Text>
 					</View>
 				</View>
-			</ImageBackground>
+			</View>
 		);
 	}
 }
@@ -156,7 +147,8 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		width: '100%',
-		height: '100%'
+		height: '100%',
+		backgroundColor: '#eeeeee'
 	},
 	top: {
 		height: '50%',
@@ -182,14 +174,14 @@ const styles = StyleSheet.create({
 	},
 	menuText: {
 		fontSize: 15,
-		color: '#2a363b',
+		color: '#222831',
 		fontWeight: 'bold',
 		textAlign: 'center'
 	},
 	logo: {
 		flex: 1,
-		height: '100%',
-		width: '100%',
+		height: '80%',
+		width: '80%',
 		resizeMode: 'contain'
 	}
 });

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Text, View, StyleSheet, ToastAndroid } from 'react-native';
+import { View, StyleSheet, ToastAndroid } from 'react-native';
 import { MapView, Permissions, Location } from 'expo';
-import { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
+import { PROVIDER_GOOGLE } from 'react-native-maps';
 import { CurrentLocationButton } from '../components/CurrentLocationButton';
 import { BookButton } from '../components/BookButton';
 import { BackButton } from '../components/BackButton';
@@ -28,6 +28,7 @@ export default class LocationScreen extends React.Component {
 		this._getALocationAsync();
 	}
 
+	//function to get current location.
 	_getALocationAsync = async () => {
 		let { status } = await Permissions.askAsync(Permissions.LOCATION);
 		if (status !== 'granted') {
@@ -44,6 +45,7 @@ export default class LocationScreen extends React.Component {
 		this.setState({ region: region });
 	};
 
+	//function to center the map
 	centerMap() {
 		const { latitude, longitude, latitudeDelta, longitudeDelta } = this.state.region;
 		this.map.animateToRegion({
@@ -54,7 +56,8 @@ export default class LocationScreen extends React.Component {
 		});
 	}
 
-	_book() {
+	//function to book order
+	_book = () => {
 		var self = this;
 		axios
 			.post('http://handyhand.herokuapp.com/order_registration.php/', {
@@ -89,7 +92,7 @@ export default class LocationScreen extends React.Component {
 			.catch(function(error) {
 				alert(error);
 			});
-	}
+	};
 
 	render() {
 		return (
@@ -129,7 +132,6 @@ export default class LocationScreen extends React.Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#fff'
-		//paddingTop: getStatusBarHeight()
+		backgroundColor: '#eeeeee'
 	}
 });

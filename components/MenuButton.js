@@ -12,7 +12,7 @@ export const MenuButton = function(props) {
 		<View style={[ styles.container ]}>
 			<MaterialIcons
 				name="menu"
-				color="#f5a623"
+				color="#0092ca"
 				size={25}
 				onPress={() => {
 					cb();

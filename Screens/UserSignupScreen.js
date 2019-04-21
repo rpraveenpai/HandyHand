@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-	StyleSheet,
-	Text,
-	View,
-	Image,
-	ImageBackground,
-	KeyboardAvoidingView,
-	TextInput,
-	TouchableOpacity
-} from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 
 export default class UserSignupScreen extends React.Component {
@@ -27,7 +18,7 @@ export default class UserSignupScreen extends React.Component {
 		};
 	}
 
-	//axios data handling.
+	//registration functionality using axios
 	_register = () => {
 		var self = this;
 		axios
@@ -91,76 +82,74 @@ export default class UserSignupScreen extends React.Component {
 	render() {
 		return (
 			<KeyboardAvoidingView behavior="padding" style={styles.container}>
-				<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.container}>
-					<View style={styles.container}>
-						<View style={styles.Signupcontainer}>
-							<Text style={styles.title}>REGISTER</Text>
-							<TextInput
-								placeholder="name"
-								placeholderTextColor="rgba(0,0,0,0.5)"
-								returnKeyType="next"
-								onSubmitEditing={() => this.emailInput.focus()}
-								style={styles.input}
-								onChangeText={(name) => this.setState({ name })}
-							/>
+				<View style={styles.container}>
+					<View style={styles.Signupcontainer}>
+						<Text style={styles.title}>REGISTER</Text>
+						<TextInput
+							placeholder="name"
+							placeholderTextColor="rgba(0,0,0,0.5)"
+							returnKeyType="next"
+							onSubmitEditing={() => this.emailInput.focus()}
+							style={styles.input}
+							onChangeText={(name) => this.setState({ name })}
+						/>
 
-							<TextInput
-								placeholder="email"
-								placeholderTextColor="rgba(0,0,0,0.5)"
-								returnKeyType="next"
-								ref={(input) => (this.emailInput = input)}
-								onSubmitEditing={() => this.userInput.focus()}
-								keyboardType="email-address"
-								autoCapitalize="none"
-								autoCorrect={false}
-								style={styles.input}
-								onChangeText={(email) => this.setState({ email })}
-							/>
-							<TextInput
-								placeholder="username"
-								placeholderTextColor="rgba(0,0,0,0.5)"
-								returnKeyType="next"
-								ref={(input) => (this.userInput = input)}
-								onSubmitEditing={() => this.passwordInput.focus()}
-								autoCapitalize="none"
-								autoCorrect={false}
-								style={styles.input}
-								onChangeText={(username) => this.setState({ username })}
-							/>
+						<TextInput
+							placeholder="email"
+							placeholderTextColor="rgba(0,0,0,0.5)"
+							returnKeyType="next"
+							ref={(input) => (this.emailInput = input)}
+							onSubmitEditing={() => this.userInput.focus()}
+							keyboardType="email-address"
+							autoCapitalize="none"
+							autoCorrect={false}
+							style={styles.input}
+							onChangeText={(email) => this.setState({ email })}
+						/>
+						<TextInput
+							placeholder="username"
+							placeholderTextColor="rgba(0,0,0,0.5)"
+							returnKeyType="next"
+							ref={(input) => (this.userInput = input)}
+							onSubmitEditing={() => this.passwordInput.focus()}
+							autoCapitalize="none"
+							autoCorrect={false}
+							style={styles.input}
+							onChangeText={(username) => this.setState({ username })}
+						/>
 
-							<TextInput
-								placeholder="password"
-								placeholderTextColor="rgba(0,0,0,0.5)"
-								returnKeyType="next"
-								secureTextEntry
-								style={styles.input}
-								ref={(input) => (this.passwordInput = input)}
-								onSubmitEditing={() => this.PhoneInput.focus()}
-								onChangeText={(password) => this.setState({ password })}
-							/>
+						<TextInput
+							placeholder="password"
+							placeholderTextColor="rgba(0,0,0,0.5)"
+							returnKeyType="next"
+							secureTextEntry
+							style={styles.input}
+							ref={(input) => (this.passwordInput = input)}
+							onSubmitEditing={() => this.PhoneInput.focus()}
+							onChangeText={(password) => this.setState({ password })}
+						/>
 
-							<TextInput
-								placeholder="phone number"
-								placeholderTextColor="rgba(0,0,0,0.5)"
-								returnKeyType="go"
-								keyboardType="phone-pad"
-								style={styles.input}
-								ref={(input) => (this.PhoneInput = input)}
-								onChangeText={(phone) => this.setState({ phone })}
-							/>
+						<TextInput
+							placeholder="phone number"
+							placeholderTextColor="rgba(0,0,0,0.5)"
+							returnKeyType="go"
+							keyboardType="phone-pad"
+							style={styles.input}
+							ref={(input) => (this.PhoneInput = input)}
+							onChangeText={(phone) => this.setState({ phone })}
+						/>
 
-							<TouchableOpacity style={styles.buttonContainer} onPress={() => this._onCheck()}>
-								<Text style={styles.buttonText}>SIGNUP</Text>
-							</TouchableOpacity>
-							<TouchableOpacity
-								style={styles.buttonContainer}
-								onPress={() => this.props.navigation.navigate('CLogin')}
-							>
-								<Text style={styles.buttonText}>BACK</Text>
-							</TouchableOpacity>
-						</View>
+						<TouchableOpacity style={styles.buttonContainer} onPress={() => this._onCheck()}>
+							<Text style={styles.buttonText}>SIGNUP</Text>
+						</TouchableOpacity>
+						<TouchableOpacity
+							style={styles.buttonContainer}
+							onPress={() => this.props.navigation.navigate('CLogin')}
+						>
+							<Text style={styles.buttonText}>BACK</Text>
+						</TouchableOpacity>
 					</View>
-				</ImageBackground>
+				</View>
 			</KeyboardAvoidingView>
 		);
 	}
@@ -170,7 +159,8 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		width: '100%',
-		height: '100%'
+		height: '100%',
+		backgroundColor: '#eeeeee'
 	},
 	Signupcontainer: {
 		paddingHorizontal: 40,
@@ -183,14 +173,14 @@ const styles = StyleSheet.create({
 		color: 'rgba(0,0,0,0.8)',
 		paddingHorizontal: 10,
 		borderRadius: 2,
-		borderColor: '#f5a623',
+		borderColor: '#0092ca',
 		borderRadius: 2,
 		borderWidth: 2,
 		fontWeight: 'bold'
 	},
 
 	buttonContainer: {
-		backgroundColor: '#f5a623',
+		backgroundColor: '#0092ca',
 		paddingVertical: 15,
 		borderRadius: 2,
 		marginBottom: 10,
@@ -201,11 +191,11 @@ const styles = StyleSheet.create({
 	},
 	buttonText: {
 		textAlign: 'center',
-		color: '#FFFFFF',
+		color: '#eeeeee',
 		fontWeight: '500'
 	},
 	title: {
-		color: '#f5a623',
+		color: '#0092ca',
 		fontWeight: 'bold',
 		textAlign: 'center',
 		padding: 10,

@@ -4,7 +4,6 @@ import {
 	Text,
 	View,
 	Image,
-	ImageBackground,
 	KeyboardAvoidingView,
 	TextInput,
 	TouchableOpacity,
@@ -32,6 +31,8 @@ export default class HLoginScreen extends React.Component {
 			experience: ''
 		};
 	}
+
+	//login functionality using axios, updating handymand etails to datastore.
 	_getData = () => {
 		var self = this;
 		axios
@@ -60,6 +61,7 @@ export default class HLoginScreen extends React.Component {
 			});
 	};
 
+	//checking if fields are empty.
 	_onLogin = async () => {
 		if (this.state.username == '' || this.state.password == '') alert('Username and password cannot be empty');
 		else await this._getData();
@@ -68,55 +70,53 @@ export default class HLoginScreen extends React.Component {
 	render() {
 		return (
 			<KeyboardAvoidingView behavior="padding" style={styles.container}>
-				<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.container}>
-					<View style={styles.container}>
-						<View style={styles.logoContainer}>
-							<Image style={styles.logo} source={require('../assets/icons/handyman.png')} />
-							<Text style={styles.title}>Handyman</Text>
-						</View>
+				<View style={styles.container}>
+					<View style={styles.logoContainer}>
+						<Image style={styles.logo} source={require('../assets/icons/handyman.png')} />
+						<Text style={styles.title}>Handyman</Text>
+					</View>
 
-						<View style={styles.formContainer}>
-							<View style={styles.Logincontainer}>
-								<TextInput
-									placeholder="username"
-									placeholderTextColor="rgba(0,0,0,0.5)"
-									returnKeyType="next"
-									onSubmitEditing={() => this.passwordInput.focus()}
-									autoCapitalize="none"
-									autoCorrect={false}
-									style={styles.input}
-									onChangeText={(username) => this.setState({ username })}
-								/>
+					<View style={styles.formContainer}>
+						<View style={styles.Logincontainer}>
+							<TextInput
+								placeholder="username"
+								placeholderTextColor="rgba(0,0,0,0.5)"
+								returnKeyType="next"
+								onSubmitEditing={() => this.passwordInput.focus()}
+								autoCapitalize="none"
+								autoCorrect={false}
+								style={styles.input}
+								onChangeText={(username) => this.setState({ username })}
+							/>
 
-								<TextInput
-									placeholder="password"
-									placeholderTextColor="rgba(0,0,0,0.5)"
-									returnKeyType="go"
-									secureTextEntry
-									style={styles.input}
-									ref={(input) => (this.passwordInput = input)}
-									onChangeText={(password) => this.setState({ password })}
-								/>
+							<TextInput
+								placeholder="password"
+								placeholderTextColor="rgba(0,0,0,0.5)"
+								returnKeyType="go"
+								secureTextEntry
+								style={styles.input}
+								ref={(input) => (this.passwordInput = input)}
+								onChangeText={(password) => this.setState({ password })}
+							/>
 
-								<TouchableOpacity
-									style={styles.buttonContainer}
-									onPress={() => {
-										this._onLogin();
-									}}
-								>
-									<Text style={styles.buttonText}>LOGIN</Text>
-								</TouchableOpacity>
+							<TouchableOpacity
+								style={styles.buttonContainer}
+								onPress={() => {
+									this._onLogin();
+								}}
+							>
+								<Text style={styles.buttonText}>LOGIN</Text>
+							</TouchableOpacity>
 
-								<TouchableOpacity
-									style={styles.buttonContainer}
-									onPress={() => this.props.navigation.navigate('HandymanSignup')}
-								>
-									<Text style={styles.buttonText}>SIGNUP</Text>
-								</TouchableOpacity>
-							</View>
+							<TouchableOpacity
+								style={styles.buttonContainer}
+								onPress={() => this.props.navigation.navigate('HandymanSignup')}
+							>
+								<Text style={styles.buttonText}>SIGNUP</Text>
+							</TouchableOpacity>
 						</View>
 					</View>
-				</ImageBackground>
+				</View>
 			</KeyboardAvoidingView>
 		);
 	}
@@ -125,7 +125,8 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		width: '100%',
-		height: '100%'
+		height: '100%',
+		backgroundColor: '#eeeeee'
 	},
 	Logincontainer: {
 		padding: 20
@@ -136,7 +137,7 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 		color: 'rgba(0,0,0,0.8)',
 		paddingHorizontal: 10,
-		borderColor: '#f5a623',
+		borderColor: '#0092ca',
 		borderRadius: 2,
 		borderWidth: 2,
 		fontWeight: 'bold'
@@ -152,12 +153,12 @@ const styles = StyleSheet.create({
 		resizeMode: 'contain'
 	},
 	title: {
-		color: '#f5a623',
+		color: '#0092ca',
 		fontWeight: 'bold',
 		fontSize: 35
 	},
 	buttonContainer: {
-		backgroundColor: '#f5a623',
+		backgroundColor: '#0092ca',
 		paddingVertical: 15,
 		borderRadius: 2,
 		marginBottom: 10,
@@ -168,7 +169,7 @@ const styles = StyleSheet.create({
 	},
 	buttonText: {
 		textAlign: 'center',
-		color: '#FFFFFF',
+		color: '#eeeeee',
 		fontWeight: '500'
 	}
 });

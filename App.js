@@ -71,11 +71,12 @@ const AppNavigator = createStackNavigator(
 				header: null
 			})
 		},
+
 		Electrician: {
 			screen: ElectricianScreen,
 			navigationOptions: () => ({
 				headerStyle: {
-					backgroundColor: '#f5a623'
+					backgroundColor: '#0092ca'
 				},
 				headerTitleStyle: {
 					fontWeight: 'bold'
@@ -86,7 +87,7 @@ const AppNavigator = createStackNavigator(
 			screen: PlumberScreen,
 			navigationOptions: () => ({
 				headerStyle: {
-					backgroundColor: '#f5a623'
+					backgroundColor: '#0092ca'
 				},
 				headerTitleStyle: {
 					fontWeight: 'bold'
@@ -97,7 +98,7 @@ const AppNavigator = createStackNavigator(
 			screen: PainterScreen,
 			navigationOptions: () => ({
 				headerStyle: {
-					backgroundColor: '#f5a623'
+					backgroundColor: '#0092ca'
 				},
 				headerTitleStyle: {
 					fontWeight: 'bold'
@@ -108,7 +109,7 @@ const AppNavigator = createStackNavigator(
 			screen: GardenerScreen,
 			navigationOptions: () => ({
 				headerStyle: {
-					backgroundColor: '#f5a623'
+					backgroundColor: '#0092ca'
 				},
 				headerTitleStyle: {
 					fontWeight: 'bold'
@@ -119,7 +120,7 @@ const AppNavigator = createStackNavigator(
 			screen: CarpenterScreen,
 			navigationOptions: () => ({
 				headerStyle: {
-					backgroundColor: '#f5a623'
+					backgroundColor: '#0092ca'
 				},
 				headerTitleStyle: {
 					fontWeight: 'bold'
@@ -130,7 +131,7 @@ const AppNavigator = createStackNavigator(
 			screen: CleanerScreen,
 			navigationOptions: () => ({
 				headerStyle: {
-					backgroundColor: '#f5a623'
+					backgroundColor: '#0092ca'
 				},
 				headerTitleStyle: {
 					fontWeight: 'bold'
@@ -147,7 +148,7 @@ const AppNavigator = createStackNavigator(
 			screen: ProfileScreen,
 			navigationOptions: () => ({
 				headerStyle: {
-					backgroundColor: '#f5a623'
+					backgroundColor: '#0092ca'
 				},
 				headerTitleStyle: {
 					fontWeight: 'bold'
@@ -158,7 +159,7 @@ const AppNavigator = createStackNavigator(
 			screen: AddressScreen,
 			navigationOptions: () => ({
 				headerStyle: {
-					backgroundColor: '#f5a623'
+					backgroundColor: '#0092ca'
 				},
 				headerTitleStyle: {
 					fontWeight: 'bold'
@@ -183,7 +184,7 @@ const AppNavigator = createStackNavigator(
 			screen: COrderScreen,
 			navigationOptions: () => ({
 				headerStyle: {
-					backgroundColor: '#f5a623'
+					backgroundColor: '#0092ca'
 				},
 				headerTitleStyle: {
 					fontWeight: 'bold'
@@ -206,7 +207,7 @@ const AppNavigator = createStackNavigator(
 			screen: HOrderScreen,
 			navigationOptions: () => ({
 				headerStyle: {
-					backgroundColor: '#f5a623'
+					backgroundColor: '#0092ca'
 				},
 				headerTitleStyle: {
 					fontWeight: 'bold'
@@ -217,7 +218,7 @@ const AppNavigator = createStackNavigator(
 			screen: HProfileScreen,
 			navigationOptions: () => ({
 				headerStyle: {
-					backgroundColor: '#f5a623'
+					backgroundColor: '#0092ca'
 				},
 				headerTitleStyle: {
 					fontWeight: 'bold'
@@ -234,7 +235,7 @@ const AppNavigator = createStackNavigator(
 			screen: AcceptedOrderScreen,
 			navigationOptions: () => ({
 				headerStyle: {
-					backgroundColor: '#f5a623'
+					backgroundColor: '#0092ca'
 				},
 				headerTitleStyle: {
 					fontWeight: 'bold'
@@ -245,7 +246,7 @@ const AppNavigator = createStackNavigator(
 			screen: CompletedOrderScreen,
 			navigationOptions: () => ({
 				headerStyle: {
-					backgroundColor: '#f5a623'
+					backgroundColor: '#0092ca'
 				},
 				headerTitleStyle: {
 					fontWeight: 'bold'

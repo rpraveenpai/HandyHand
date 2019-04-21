@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 		bottom: 80,
 		left: 20,
 		borderRadius: 10,
-		backgroundColor: '#f5a623',
+		backgroundColor: '#0092ca',
 		alignItems: 'center',
 		shadowColor: '#000000',
 		elevation: 7,
@@ -40,6 +40,6 @@ const styles = StyleSheet.create({
 	Text: {
 		fontSize: 15,
 		fontWeight: 'bold',
-		color: 'white'
+		color: '#eeeeee'
 	}
 });

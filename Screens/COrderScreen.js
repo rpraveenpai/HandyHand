@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ImageBackground, StyleSheet, FlatList, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, FlatList, Text, View, TouchableOpacity } from 'react-native';
 import DataStore from '../Store/datastore';
 import { observer } from 'mobx-react';
 
@@ -13,6 +13,7 @@ export default class COrderScreen extends Component {
 		};
 	}
 
+	//function to render items in flatlist.
 	renderItem = ({ item }) => {
 		return (
 			<View style={{ flex: 1, flexDirection: 'row', marginBottom: 3 }}>
@@ -26,32 +27,31 @@ export default class COrderScreen extends Component {
 		);
 	};
 
+	//function to draw a line to seperate each items in flatlist.
 	renderSeperator = () => {
-		return <View style={{ height: 1, width: '100%', backgroundColor: '#000' }} />;
+		return <View style={{ height: 1, width: '100%', backgroundColor: '#222831' }} />;
 	};
 	render() {
 		return (
-			<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.container}>
-				<View style={styles.container}>
-					<FlatList
-						data={this.state.data}
-						renderItem={this.renderItem}
-						keyExtractor={(item, index) => index.toString()}
-						ItemSeparatorComponent={this.renderSeperator}
-					/>
+			<View style={styles.container}>
+				<FlatList
+					data={this.state.data}
+					renderItem={this.renderItem}
+					keyExtractor={(item, index) => index.toString()}
+					ItemSeparatorComponent={this.renderSeperator}
+				/>
 
-					<View style={styles.button}>
-						<TouchableOpacity
-							style={styles.buttonContainer}
-							onPress={() => {
-								this.props.navigation.navigate('Settings');
-							}}
-						>
-							<Text style={styles.buttonText}>Back</Text>
-						</TouchableOpacity>
-					</View>
+				<View style={styles.button}>
+					<TouchableOpacity
+						style={styles.buttonContainer}
+						onPress={() => {
+							this.props.navigation.navigate('Settings');
+						}}
+					>
+						<Text style={styles.buttonText}>Back</Text>
+					</TouchableOpacity>
 				</View>
-			</ImageBackground>
+			</View>
 		);
 	}
 }
@@ -60,23 +60,24 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		width: '100%',
-		height: '100%'
+		height: '100%',
+		backgroundColor: '#eeeeee'
 	},
 	button: {
 		padding: 20
 	},
 	title: {
 		fontSize: 18,
-		color: '#000',
+		color: '#222831',
 		fontWeight: 'bold',
 		marginBottom: 5
 	},
 	subtitle: {
 		fontSize: 16,
-		color: '#f5a623'
+		color: '#0092ca'
 	},
 	buttonContainer: {
-		backgroundColor: '#f5a623',
+		backgroundColor: '#0092ca',
 		paddingVertical: 15,
 		paddingHorizontal: 20,
 		borderRadius: 2,

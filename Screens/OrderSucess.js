@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, ImageBackground, TouchableOpacity, BackHandler, ToastAndroid } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, BackHandler, ToastAndroid } from 'react-native';
 import DataStore from '../Store/datastore';
 import { observer } from 'mobx-react';
 
@@ -41,26 +41,24 @@ export default class OrderSuccess extends Component {
 
 	render() {
 		return (
-			<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.container}>
-				<View style={styles.container}>
-					<View style={styles.orderContainer}>
-						<Text style={styles.title}>ORDER SUCCESS</Text>
-						<Text style={styles.orderText}>Order ID: {this.state.orderID}</Text>
-						<Text style={styles.orderText}>Name: {this.state.name}</Text>
-						<Text style={styles.orderText}>Phone: {this.state.phone}</Text>
-						<Text style={styles.orderText}>Service: {this.state.service}</Text>
-						<Text style={styles.orderText}>Service Info: {this.state.serviceInfo}</Text>
-						<TouchableOpacity
-							style={styles.buttonContainer}
-							onPress={() => {
-								this._alert();
-							}}
-						>
-							<Text style={styles.buttonText}>Okay</Text>
-						</TouchableOpacity>
-					</View>
+			<View style={styles.container}>
+				<View style={styles.orderContainer}>
+					<Text style={styles.title}>ORDER SUCCESS</Text>
+					<Text style={styles.orderText}>Order ID: {this.state.orderID}</Text>
+					<Text style={styles.orderText}>Name: {this.state.name}</Text>
+					<Text style={styles.orderText}>Phone: {this.state.phone}</Text>
+					<Text style={styles.orderText}>Service: {this.state.service}</Text>
+					<Text style={styles.orderText}>Service Info: {this.state.serviceInfo}</Text>
+					<TouchableOpacity
+						style={styles.buttonContainer}
+						onPress={() => {
+							this._alert();
+						}}
+					>
+						<Text style={styles.buttonText}>Okay</Text>
+					</TouchableOpacity>
 				</View>
-			</ImageBackground>
+			</View>
 		);
 	}
 }
@@ -70,19 +68,20 @@ const styles = StyleSheet.create({
 		flex: 1,
 		width: '100%',
 		height: '100%',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		backgroundColor: '#eeeeee'
 	},
 	title: {
 		fontSize: 35,
 		fontWeight: 'bold',
 		padding: 10,
-		color: '#fff'
+		color: '#eeeeee'
 	},
 	orderContainer: {
 		flexDirection: 'column',
 		alignItems: 'center',
 		borderRadius: 10,
-		backgroundColor: '#f5a623',
+		backgroundColor: '#0092ca',
 		marginVertical: 20,
 		marginHorizontal: 30
 	},
@@ -92,7 +91,7 @@ const styles = StyleSheet.create({
 		padding: 5
 	},
 	buttonContainer: {
-		backgroundColor: '#fff',
+		backgroundColor: '#eeeeee',
 		paddingVertical: 15,
 		width: 60,
 		borderRadius: 2,
@@ -104,7 +103,7 @@ const styles = StyleSheet.create({
 	},
 	buttonText: {
 		textAlign: 'center',
-		color: '#f5a623',
+		color: '#0092ca',
 		fontWeight: 'bold',
 		fontSize: 20
 	}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ImageBackground, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 
 export default class SelectionScreen extends React.Component {
 	static navigationOptions = {
@@ -7,27 +7,25 @@ export default class SelectionScreen extends React.Component {
 	};
 	render() {
 		return (
-			<ImageBackground source={require('../assets/background/bgwhite.png')} style={styles.container}>
-				<View style={styles.container}>
-					<View style={styles.logoContainer}>
-						<Image style={styles.logo} source={require('../assets/icons/logo.png')} />
+			<View style={styles.container}>
+				<View style={styles.logoContainer}>
+					<Image style={styles.logo} source={require('../assets/icons/logo.png')} />
+				</View>
+				<View style={styles.menuContainer}>
+					<View style={styles.menuItem}>
+						<TouchableOpacity onPress={() => this.props.navigation.navigate('CLogin')}>
+							<Image source={require('../assets/icons/user.png')} style={styles.image} />
+						</TouchableOpacity>
+						<Text style={styles.buttonText}>Customer</Text>
 					</View>
-					<View style={styles.menuContainer}>
-						<View style={styles.menuItem}>
-							<TouchableOpacity onPress={() => this.props.navigation.navigate('CLogin')}>
-								<Image source={require('../assets/icons/user.png')} style={styles.image} />
-							</TouchableOpacity>
-							<Text style={styles.buttonText}>Customer</Text>
-						</View>
-						<View style={styles.menuItem}>
-							<TouchableOpacity onPress={() => this.props.navigation.navigate('HLogin')}>
-								<Image source={require('../assets/icons/handyman.png')} style={styles.image} />
-							</TouchableOpacity>
-							<Text style={styles.buttonText}>Handyman</Text>
-						</View>
+					<View style={styles.menuItem}>
+						<TouchableOpacity onPress={() => this.props.navigation.navigate('HLogin')}>
+							<Image source={require('../assets/icons/handyman.png')} style={styles.image} />
+						</TouchableOpacity>
+						<Text style={styles.buttonText}>Handyman</Text>
 					</View>
 				</View>
-			</ImageBackground>
+			</View>
 		);
 	}
 }
@@ -37,11 +35,12 @@ const styles = StyleSheet.create({
 		flex: 1,
 		width: '100%',
 		height: '100%',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		backgroundColor: '#eeeeee'
 	},
 	buttonText: {
 		textAlign: 'center',
-		color: '#2a363b',
+		color: '#222831',
 		fontWeight: '700',
 		fontSize: 20
 	},
@@ -52,10 +51,10 @@ const styles = StyleSheet.create({
 	},
 	logo: {
 		width: '100%',
-		height: '50%'
+		height: '50%',
+		resizeMode: 'contain'
 	},
 	menuContainer: {
-		//height: '40%',
 		alignItems: 'center',
 		flexDirection: 'row',
 		justifyContent: 'center',
@@ -70,7 +69,5 @@ const styles = StyleSheet.create({
 		width: '100%',
 		height: '100%',
 		opacity: 0.8
-		//borderColor: '#2a363b',
-		//borderWidth: 3
 	}
 });
