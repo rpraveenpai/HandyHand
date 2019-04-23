@@ -23,10 +23,7 @@ export default class CLoginScreen extends React.Component {
 		this.state = {
 			customerID: '',
 			username: '',
-			password: '',
-			name: '',
-			email: '',
-			phone: ''
+			password: ''
 		};
 	}
 
@@ -47,6 +44,7 @@ export default class CLoginScreen extends React.Component {
 					DataStore.updateCEmail(response.data.email);
 					DataStore.updateCPhone(response.data.phone);
 					DataStore.updateCPass(response.data.password);
+					DataStore.updateCToken(response.data.token);
 					self.props.navigation.navigate('Home');
 				} else {
 					alert('Login Failed');

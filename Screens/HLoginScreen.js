@@ -23,12 +23,7 @@ export default class HLoginScreen extends React.Component {
 		this.state = {
 			handy_ID: '',
 			username: '',
-			password: '',
-			name: '',
-			email: '',
-			phone: '',
-			service: '',
-			experience: ''
+			password: ''
 		};
 	}
 
@@ -51,6 +46,7 @@ export default class HLoginScreen extends React.Component {
 					DataStore.updateHPass(response.data.password);
 					DataStore.updateHService(response.data.service);
 					DataStore.updateHExp(response.data.experience);
+					DataStore.updateHToken(response.data.token);
 					self.props.navigation.navigate('HandyHome');
 				} else {
 					alert('Login Failed');

@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity, Picker } from 'react-native';
 import axios from 'axios';
+import { Notifications, Permissions } from 'expo';
 
 export default class HandymanSignupScreen extends React.Component {
 	static navigationOptions = {
@@ -16,8 +17,38 @@ export default class HandymanSignupScreen extends React.Component {
 			password: '',
 			phone: '',
 			service: '',
-			experience: ''
+			experience: '',
+			token: ''
 		};
+	}
+
+	//registering for push notification
+	registerForPushNotificationsAsync = async () => {
+		const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+		let finalStatus = existingStatus;
+
+		// only ask if permissions have not already been determined, because
+		// iOS won't necessarily prompt the user a second time.
+		if (existingStatus !== 'granted') {
+			// Android remote notification permissions are granted during the app
+			// install, so this will only ask on iOS
+			const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+			finalStatus = status;
+		}
+
+		// Stop here if the user did not grant permissions
+		if (finalStatus !== 'granted') {
+			return;
+		}
+
+		// Get the token that uniquely identifies this device
+		let token = await Notifications.getExpoPushTokenAsync();
+		this.setState({ token: token });
+	};
+
+	//calling registerforpushnotification function before updating the screen.
+	async componentDidMount() {
+		await this.registerForPushNotificationsAsync();
 	}
 
 	//axios data handling.
@@ -31,7 +62,8 @@ export default class HandymanSignupScreen extends React.Component {
 				phone: self.state.phone,
 				email: self.state.email,
 				experience: self.state.experience,
-				service: self.state.service
+				service: self.state.service,
+				token: self.state.token
 			})
 			.then(function(response) {
 				if (response.data.res == 'success') {

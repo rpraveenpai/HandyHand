@@ -18,7 +18,8 @@ class DataStore {
 		name: '',
 		password: '',
 		email: '',
-		phone: ''
+		phone: '',
+		token: ''
 	};
 
 	handy_details = {
@@ -29,7 +30,8 @@ class DataStore {
 		service: '',
 		experience: '',
 		email: '',
-		phone: ''
+		phone: '',
+		token: ''
 	};
 
 	order_details = {
@@ -79,6 +81,9 @@ class DataStore {
 	updateCPhone(phone) {
 		this.cust_details.phone = phone;
 	}
+	updateCToken(token) {
+		this.cust_details.token = token;
+	}
 
 	//updating handyman details.
 	updateHID(handyID) {
@@ -104,6 +109,9 @@ class DataStore {
 	}
 	updateHExp(experience) {
 		this.handy_details.experience = experience;
+	}
+	updateHToken(token) {
+		this.handy_details.token = token;
 	}
 
 	//updating order details.
@@ -198,6 +206,7 @@ decorate(DataStore, {
 	updateCEmail: action,
 	updateCPhone: action,
 	updateCPass: action,
+	updateCToken: action,
 
 	updateHID: action,
 	updateHUser: action,
@@ -207,6 +216,7 @@ decorate(DataStore, {
 	updateHPass: action,
 	updateHExp: action,
 	updateHService: action,
+	updateHToken: action,
 
 	updateOCID: action,
 	updateHOID: action,
