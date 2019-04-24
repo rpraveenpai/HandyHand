@@ -22,7 +22,8 @@ export default class LocationScreen extends React.Component {
 			name: DataStore.order_details.cname,
 			phone: DataStore.order_details.phone,
 			service: DataStore.order_details.service,
-			serviceInfo: DataStore.order_details.serviceInfo
+			serviceInfo: DataStore.order_details.serviceInfo,
+			token: DataStore.cust_details.token
 		};
 
 		this._getALocationAsync();
@@ -69,7 +70,8 @@ export default class LocationScreen extends React.Component {
 				latitude: this.state.region.latitude,
 				longitude: this.state.region.longitude,
 				latitudeDelta: this.state.region.latitudeDelta,
-				longitudeDelta: this.state.region.longitudeDelta
+				longitudeDelta: this.state.region.longitudeDelta,
+				token: this.state.token
 			})
 			.then(function(response) {
 				if (response.data.res == 'success') {

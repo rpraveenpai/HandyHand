@@ -16,8 +16,8 @@ export default class HandymanSignupScreen extends React.Component {
 			username: '',
 			password: '',
 			phone: '',
-			service: '',
-			experience: '',
+			service: 'Electrician',
+			experience: '1',
 			token: ''
 		};
 	}
@@ -102,10 +102,6 @@ export default class HandymanSignupScreen extends React.Component {
 			alert('Please fill email');
 		} else if (this.state.phone == '') {
 			alert('Please fill phone number');
-		} else if (this.state.service == '') {
-			alert('Please select type of service');
-		} else if (this.state.experience == '') {
-			alert('Please select year of experience');
 		} else {
 			if (!this.validateEmail(this.state.email)) {
 				alert('Enter a valid email address');

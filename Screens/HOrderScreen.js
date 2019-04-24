@@ -76,6 +76,7 @@ export default class HOrderScreen extends Component {
 		DataStore.updateOPhone(item.PhoneNumber);
 		DataStore.updateSerInfo(item.ServiceInfo);
 		DataStore.updateDate(item.Order_Date);
+		DataStore.updateOToken(item.Token);
 
 		let providers = await Location.getProviderStatusAsync();
 

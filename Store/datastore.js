@@ -47,7 +47,8 @@ class DataStore {
 		latitudeDelta: '',
 		longitudeDelta: '',
 		orderdate: '',
-		phone: ''
+		phone: '',
+		token: ''
 	};
 
 	HandyLocation = {
@@ -135,6 +136,9 @@ class DataStore {
 	}
 	updateSerInfo(serviceInfo) {
 		this.order_details.serviceInfo = serviceInfo;
+	}
+	updateOToken(token) {
+		this.order_details.token = token;
 	}
 
 	updateLongitude(longitude) {
