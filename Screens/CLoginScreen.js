@@ -55,6 +55,7 @@ export default class CLoginScreen extends React.Component {
 			});
 	};
 
+	//check if fields are empty.
 	_onLogin = async () => {
 		if (this.state.username == '' || this.state.password == '') alert('Username and password cannot be empty');
 		else await this._getData();

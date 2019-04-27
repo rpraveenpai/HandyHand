@@ -16,7 +16,7 @@ export default class HomeScreen extends Component {
 		};
 	}
 
-	//Code to disable hardware back button
+	//using back handler to disable hardware back button
 	componentDidMount() {
 		BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
 	}

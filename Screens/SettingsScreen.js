@@ -27,7 +27,6 @@ export default class SettingsScreen extends Component {
 			.then(function(response) {
 				DataStore.updateCorder(JSON.parse(response.data));
 				self.props.navigation.navigate('COrder');
-				//alert(self.state.data);
 			})
 			.catch(function(error) {
 				alert(error);

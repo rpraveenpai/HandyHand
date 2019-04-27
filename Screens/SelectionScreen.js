@@ -5,6 +5,7 @@ export default class SelectionScreen extends React.Component {
 	static navigationOptions = {
 		title: 'Selection'
 	};
+
 	render() {
 		return (
 			<View style={styles.container}>

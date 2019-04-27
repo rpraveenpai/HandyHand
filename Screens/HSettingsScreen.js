@@ -13,7 +13,6 @@ export default class HSettingsScreen extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			//isLoading: true,
 			HandyID: DataStore.handy_details.HandyID
 		};
 	}

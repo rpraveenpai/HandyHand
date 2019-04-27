@@ -8,9 +8,8 @@ import {
 	View,
 	BackHandler,
 	ToastAndroid,
-	AppState
+	Alert
 } from 'react-native';
-import { Notifications, Permissions } from 'expo';
 import DataStore from '../Store/datastore';
 import { observer } from 'mobx-react';
 import { OpenMapDirections } from 'react-native-navigation-directions';
@@ -28,23 +27,17 @@ export default class App extends React.Component {
 			phone: DataStore.order_details.phone,
 			serInfo: DataStore.order_details.serviceInfo,
 			date: DataStore.order_details.orderdate,
-			token: DataStore.order_details.token,
-			appState: AppState.currentState
+			token: DataStore.order_details.token
 		};
-		//	console.log(this.state.region);
-		//this._checkLocation();
 	}
 
-	//Code to disable hardware back button
+	//using backhandler to disable hardware backbutton.
 	componentDidMount() {
 		BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
-		AppState.addEventListener('change', this._handleAppStateChange);
-		this._notificationSubscription = Notifications.addListener(this._handleNotification);
 	}
 
 	componentWillUnmount() {
 		BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
-		AppState.removeEventListener('change', this._handleAppStateChange);
 	}
 
 	handleBackButton() {
@@ -52,20 +45,22 @@ export default class App extends React.Component {
 		return true;
 	}
 
-	//function to handle app state change.
-	_handleAppStateChange = (nextAppState) => {
-		if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
-			console.log('App has come to the foreground!');
-			this._checkLocation();
-		}
-		this.setState({ appState: nextAppState });
-	};
-
 	//function to open google maps and show direction to user location.
 	_callShowDirections = () => {
 		if (this.state.region.longitude == this.state.longitude || this.state.region.latitude == this.state.longitude) {
-			alert("You are at customer's location");
-			//this.sendPushnotification();
+			Alert.alert('You are at customer location', 'Click Yes to proceed.', [
+				{
+					text: 'Cancel',
+					onPress: () => this.props.navigation.navigate('AcceptedOrder'),
+					style: 'cancel'
+				},
+				{
+					text: 'Yes',
+					onPress: () => {
+						this.props.navigation.navigate('Reached');
+					}
+				}
+			]);
 		} else {
 			const startPoint = {
 				longitude: this.state.region.longitude,
@@ -82,29 +77,6 @@ export default class App extends React.Component {
 			OpenMapDirections(startPoint, endPoint, transportPlan).then((res) => {
 				console.log(res);
 			});
-		}
-	};
-
-	sendPushnotification = () => {
-		let response = fetch('https://exp.host/--/api/v2/push/send', {
-			method: 'POST',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				to: this.state.token,
-				sound: 'default',
-				title: 'Handyman reached',
-				body: 'Your handyman has reached your location'
-			})
-		});
-	};
-	_checkLocation = () => {
-		if (this.state.region.longitude == this.state.longitude || this.state.region.latitude == this.state.longitude) {
-			//push notification
-			this.sendPushnotification();
-			//axios table status update ('complete')
 		}
 	};
 

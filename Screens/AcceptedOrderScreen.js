@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Alert, StyleSheet, FlatList, Text, View, TouchableOpacity } from 'react-native';
+import { Alert, StyleSheet, FlatList, Text, View, TouchableOpacity, AppState } from 'react-native';
 import DataStore from '../Store/datastore';
 import { observer } from 'mobx-react';
-import { IntentLauncherAndroid } from 'expo';
-import { Location } from 'expo';
+import { IntentLauncherAndroid, Location } from 'expo';
 import { OpenMapDirections } from 'react-native-navigation-directions';
 
 @observer
@@ -40,22 +39,30 @@ export default class AcceptedOrderScreen extends Component {
 		}
 	};
 
-	//function to store specified data from the whole array.
+	//function to store specified data from the whole array and call it in maps.
 	_StoreLocation = async (item) => {
 		this.setState({ longitude: item.Longitude });
 		this.setState({ latitude: item.Latitude });
-
+		this.setState({ orderid: item.Order_ID });
+		DataStore.updateOToken(item.Token);
+		DataStore.updateOPhone(item.PhoneNumber);
 		let providers = await Location.getProviderStatusAsync();
 
 		if (providers.locationServicesEnabled == true) {
-			Alert.alert('Do you want to get direction?', 'Click Yes to proceed.', [
+			Alert.alert('Reached your destination? Or need directions?', 'Select an option to proceed.', [
 				{
 					text: 'Cancel',
 					onPress: () => this.props.navigation.navigate('AcceptedOrder'),
 					style: 'cancel'
 				},
 				{
-					text: 'Yes',
+					text: 'Reached',
+					onPress: () => {
+						this.props.navigation.navigate('Reached');
+					}
+				},
+				{
+					text: 'Direction',
 					onPress: () => {
 						this._callShowDirections();
 					}

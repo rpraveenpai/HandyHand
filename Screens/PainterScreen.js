@@ -15,6 +15,7 @@ export default class PainterScreen extends React.Component {
 			PainterWork: 'General Painter Work'
 		};
 	}
+	//updates painter work to datastore and then navigates to address screen.
 	_handlePress = () => {
 		Datastore.updateSerInfo(this.state.PainterWork);
 		this.props.navigation.navigate('Address');

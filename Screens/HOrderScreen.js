@@ -14,7 +14,9 @@ export default class HOrderScreen extends Component {
 			data: DataStore.order.horder,
 			orderid: '',
 			handyid: DataStore.handy_details.handyID,
-			hname: DataStore.handy_details.name
+			hname: DataStore.handy_details.name,
+			phone: DataStore.handy_details.phone,
+			token: ''
 		};
 	}
 
@@ -39,18 +41,32 @@ export default class HOrderScreen extends Component {
 		DataStore.updateRegion(region); //storing region in datastore.
 	};
 
-	//updating HandyId and handy Name on order_info.
-	_acceptOrder = () => {
+	//updating HandyId,hname and hphone orderinfo table and sending notification to customer.
+	_acceptOrder = async () => {
 		var self = this;
 		axios
 			.post('http://handyhand.herokuapp.com/accept_order.php/', {
 				orderid: self.state.orderid,
 				handyid: self.state.handyid,
-				hname: self.state.hname
+				hname: self.state.hname,
+				phone: self.state.phone
 			})
 			.then(function(response) {
 				if (response.data.res == 'success') {
 					ToastAndroid.show('Order Has been accepted', ToastAndroid.SHORT);
+					let response = fetch('https://exp.host/--/api/v2/push/send', {
+						method: 'POST',
+						headers: {
+							Accept: 'application/json',
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify({
+							to: self.state.token,
+							sound: 'default',
+							title: 'Order Accepted',
+							body: 'Handyman will contact you soon.'
+						})
+					});
 					self.props.navigation.navigate('HLocation');
 				} else if (response.data.res == 'issue') {
 					alert('You have already accepted one order. Complete it to book another order');
@@ -72,6 +88,7 @@ export default class HOrderScreen extends Component {
 		DataStore.updateLongitudeDelta(item.LongitudeDela);
 		DataStore.updateOrderID(item.Order_ID);
 		this.setState({ orderid: item.Order_ID });
+		this.setState({ token: item.Token });
 		DataStore.updateOCName(item.Cname);
 		DataStore.updateOPhone(item.PhoneNumber);
 		DataStore.updateSerInfo(item.ServiceInfo);

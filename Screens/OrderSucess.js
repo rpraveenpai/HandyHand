@@ -25,7 +25,7 @@ export default class OrderSuccess extends Component {
 		this.props.navigation.navigate('Home');
 	};
 
-	//Code to disable hardware back button
+	//using back handler to disable hardware backbutton.
 	componentDidMount() {
 		BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
 	}

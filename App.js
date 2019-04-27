@@ -26,6 +26,8 @@ import HProfileScreen from './Screens/HProfileScreen';
 import HLocationScreen from './Screens/HLocationScreen';
 import AcceptedOrderScreen from './Screens/AcceptedOrderScreen';
 import CompletedOrderScreen from './Screens/CompletedOrderScreen';
+import ReachedScreen from './Screens/ReachedScreen';
+import COrderCompleteScreen from './Screens/COrderCompleteScreen';
 
 export default class App extends React.Component {
 	render() {
@@ -244,6 +246,28 @@ const AppNavigator = createStackNavigator(
 		},
 		CompletedOrder: {
 			screen: CompletedOrderScreen,
+			navigationOptions: () => ({
+				headerStyle: {
+					backgroundColor: '#0092ca'
+				},
+				headerTitleStyle: {
+					fontWeight: 'bold'
+				}
+			})
+		},
+		Reached: {
+			screen: ReachedScreen,
+			navigationOptions: () => ({
+				headerStyle: {
+					backgroundColor: '#0092ca'
+				},
+				headerTitleStyle: {
+					fontWeight: 'bold'
+				}
+			})
+		},
+		COrderComplete: {
+			screen: COrderCompleteScreen,
 			navigationOptions: () => ({
 				headerStyle: {
 					backgroundColor: '#0092ca'

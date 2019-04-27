@@ -58,6 +58,24 @@ class DataStore {
 		longitudeDelta: ''
 	};
 
+	handyinfo = {
+		token: '',
+		phone: '',
+		orderid: ''
+	};
+
+	//updating handyman token for customer.
+	updateHandyToken(token) {
+		this.handyinfo.token = token;
+	}
+	updateHandyPhone(phone) {
+		this.handyinfo.phone = phone;
+	}
+
+	updateHandyOrderId(orderid) {
+		this.handyinfo.orderid = orderid;
+	}
+
 	//updating username for session.
 	updateUser(username) {
 		this.session.username = username;
@@ -202,6 +220,7 @@ decorate(DataStore, {
 	order_details: observable,
 	order: observable,
 	HandyLocation: observable,
+	handyinfo: observable,
 
 	updateCID: action,
 	updateUser: action,
@@ -235,6 +254,7 @@ decorate(DataStore, {
 	updateSerInfo: action,
 	updateOrderID: action,
 	updateDate: action,
+	updateOToken: action,
 
 	updateCorder: action,
 	updateHorder: action,
@@ -245,7 +265,11 @@ decorate(DataStore, {
 	updateHLongitude: action,
 	updateHLatitude: action,
 	updateHLatitudeDelta: action,
-	updateHLongitudeDelta: action
+	updateHLongitudeDelta: action,
+
+	updateHandyOrderId: action,
+	updateHandyPhone: action,
+	updateHandyToken: action
 });
 
 export default new DataStore();

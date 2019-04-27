@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground, Image, Text, TouchableOpacity, Picker } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity, Picker } from 'react-native';
 import Datastore from '../Store/datastore';
 import { observer } from 'mobx-react';
 

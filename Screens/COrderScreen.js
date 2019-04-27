@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, FlatList, Text, View, TouchableOpacity } from 'react-native';
 import DataStore from '../Store/datastore';
 import { observer } from 'mobx-react';
+import axios from 'axios';
 
 @observer
 export default class COrderScreen extends Component {
@@ -13,12 +14,44 @@ export default class COrderScreen extends Component {
 		};
 	}
 
+	//checking if order is completed. then fetching handyman data to datastore.
+	_finalOrder = (item) => {
+		this.setState({ phone: item.Hphone });
+		DataStore.updateHandyOrderId(item.Order_ID);
+
+		if (item.StatusInfo == 'Incomplete') {
+			alert('Your order is not accepted.');
+		} else if (item.StatusInfo == 'Completed') {
+			alert('Your order is completed.');
+		} else {
+			var self = this;
+			axios
+				.post('http://handyhand.herokuapp.com/get_handydata.php/', {
+					orderid: item.Order_ID
+				})
+				.then(function(response) {
+					if (response.data.res == 'success') {
+						DataStore.updateHandyPhone(response.data.phone);
+						DataStore.updateHandyToken(response.data.token);
+						self.props.navigation.navigate('COrderComplete');
+					} else {
+						alert('Failed');
+					}
+				})
+				.catch(function(error) {
+					alert(error);
+				});
+		}
+	};
+
 	//function to render items in flatlist.
 	renderItem = ({ item }) => {
 		return (
 			<View style={{ flex: 1, flexDirection: 'row', marginBottom: 3 }}>
 				<View style={{ flex: 1, justifycontent: 'center' }}>
-					<Text style={styles.title}>Order ID: {item.Order_ID}</Text>
+					<Text style={styles.title} onPress={this._finalOrder.bind(this, item)}>
+						Order ID: {item.Order_ID}
+					</Text>
 					<Text style={styles.subtitle}>Service: {item.TypeOfService}</Text>
 					<Text style={styles.subtitle}>StatusInfo: {item.StatusInfo}</Text>
 					<Text style={styles.subtitle}>Date: {item.Order_Date}</Text>

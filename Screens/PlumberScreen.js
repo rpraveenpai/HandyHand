@@ -15,6 +15,7 @@ export default class PlumberScreen extends React.Component {
 		};
 	}
 
+	//updates plumberwork work to datastore and then navigates to address screen.
 	_handlePress = () => {
 		Datastore.updateSerInfo(this.state.PlumberWork);
 		this.props.navigation.navigate('Address');

@@ -14,6 +14,7 @@ export default class GardenerScreen extends React.Component {
 			GardenerWork: 'General Gardener Work'
 		};
 	}
+	//updates gardener work to datastore and then navigates to address screen.
 	_handlePress = () => {
 		Datastore.updateSerInfo(this.state.GardenerWork);
 		this.props.navigation.navigate('Address');

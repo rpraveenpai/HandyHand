@@ -14,6 +14,8 @@ export default class ElectricianScreen extends React.Component {
 			ElectricianWork: 'General Electrical Work'
 		};
 	}
+
+	//updates electrical work to datastore and then navigates to address screen.
 	_handlePress = () => {
 		Datastore.updateSerInfo(this.state.ElectricianWork);
 		this.props.navigation.navigate('Address');
