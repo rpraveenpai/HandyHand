@@ -20,6 +20,12 @@ export default class AddressScreen extends React.Component {
 		};
 	}
 
+	//regex for indian phone number validation.
+	validatePhone = (phone) => {
+		var rp = /^[789]\d{9}$/;
+		return rp.test(phone);
+	};
+
 	//function to check if user booked max number of service.
 	_next = () => {
 		var self = this;
@@ -46,23 +52,29 @@ export default class AddressScreen extends React.Component {
 
 	//function to enable/check if location services are turned on.
 	_check = async () => {
-		let providers = await Location.getProviderStatusAsync();
-
-		if (providers.locationServicesEnabled == true) {
-			this._next();
+		if (!this.validatePhone(this.state.phone)) {
+			alert('Enter a valid phone number');
 		} else {
-			Alert.alert('Location Services must be on to proceed further', 'Please turn on location', [
-				{
-					text: 'Cancel',
-					onPress: () => this.props.navigation.navigate('Address'),
-					style: 'cancel'
-				},
-				{
-					text: 'OK',
-					onPress: () =>
-						IntentLauncherAndroid.startActivityAsync(IntentLauncherAndroid.ACTION_LOCATION_SOURCE_SETTINGS)
-				}
-			]);
+			let providers = await Location.getProviderStatusAsync();
+
+			if (providers.locationServicesEnabled == true) {
+				this._next();
+			} else {
+				Alert.alert('Location Services must be on to proceed further', 'Please turn on location', [
+					{
+						text: 'Cancel',
+						onPress: () => this.props.navigation.navigate('Address'),
+						style: 'cancel'
+					},
+					{
+						text: 'OK',
+						onPress: () =>
+							IntentLauncherAndroid.startActivityAsync(
+								IntentLauncherAndroid.ACTION_LOCATION_SOURCE_SETTINGS
+							)
+					}
+				]);
+			}
 		}
 	};
 

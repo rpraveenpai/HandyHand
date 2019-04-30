@@ -19,3 +19,11 @@ $ npm install mobx --save
  ```sh
 $ npm install --save react-native-status-bar-height
 ```
+ - react-native-navigation-directions
+ ```sh
+$ npm i react-native-navigation-directions --save
+```
+ - react-native-phone-call
+ ```sh
+$ npm install --save react-native-phone-call
+```

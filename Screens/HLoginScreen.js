@@ -49,7 +49,7 @@ export default class HLoginScreen extends React.Component {
 					DataStore.updateHToken(response.data.token);
 					self.props.navigation.navigate('HandyHome');
 				} else {
-					alert('Login Failed');
+					alert('Incorrect Username or Password');
 				}
 			})
 			.catch(function(error) {

@@ -43,7 +43,7 @@ export default class HProfileScreen extends React.Component {
 						returnKeyType="next"
 						style={styles.input}
 						value={this.state.name}
-						editable={this.state.editable}
+						editable={false}
 					/>
 					<Text style={styles.textstyle}>Email</Text>
 					<TextInput

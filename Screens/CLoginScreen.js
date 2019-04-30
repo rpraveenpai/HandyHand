@@ -47,7 +47,7 @@ export default class CLoginScreen extends React.Component {
 					DataStore.updateCToken(response.data.token);
 					self.props.navigation.navigate('Home');
 				} else {
-					alert('Login Failed');
+					alert('Incorrect Username or Password');
 				}
 			})
 			.catch(function(error) {
